@@ -1,0 +1,400 @@
+{
+  "version": "1.0.0",
+  "trip": {
+    "title": "Italian Grand Tour",
+    "dest": "Rome, Florence, Venice, Amalfi Coast",
+    "start": "2025-06-01",
+    "end": "2025-06-15",
+    "travelers": 2,
+    "notes": "Romantic anniversary trip. Focus on art, food, and coastal relaxation. Confirmed all bookings. Need to arrange travel insurance."
+  },
+  "sections": [
+    {
+      "id": "mm690tn7yad4o",
+      "name": "Rome — Days 1–4",
+      "color": "#c8a96e",
+      "notes": "Check in by 3pm at Hotel Artemide. Pick up Roma Pass on arrival.",
+      "items": [
+        {
+          "id": "mm690tn7sd0hd",
+          "sectionId": "mm690tn7yad4o",
+          "title": "Fly LHR → FCO",
+          "category": "Flight",
+          "emoji": "✈️",
+          "emojiOverride": false,
+          "location": "Heathrow Airport T2",
+          "date": "2025-06-01",
+          "timeStart": "08:00",
+          "timeEnd": "11:30",
+          "notes": "BA269. Check-in 05:30. Bags already checked online.",
+          "color": "#c8a96e",
+          "attachments": [
+            {
+              "label": "BA Booking Ref XY1234",
+              "url": "https://ba.com"
+            }
+          ],
+          "alternatives": [],
+          "multiDay": false,
+          "dateEnd": ""
+        },
+        {
+          "id": "mm690tn76nu18",
+          "sectionId": "mm690tn7yad4o",
+          "title": "Hotel Artemide Check-in",
+          "category": "Stay",
+          "emoji": "🏨",
+          "emojiOverride": false,
+          "location": "Via Nazionale 22, Rome",
+          "date": "2025-06-01",
+          "timeStart": "15:00",
+          "timeEnd": "",
+          "notes": "4-star boutique hotel. Superior double booked. Ref: ART-20250601. Rooftop terrace.",
+          "color": "#8fb4c8",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": true,
+          "dateEnd": "2025-06-04"
+        },
+        {
+          "id": "mm690tn7oadcx",
+          "sectionId": "mm690tn7yad4o",
+          "title": "Colosseum & Roman Forum",
+          "category": "Sightseeing",
+          "emoji": "🏛️",
+          "emojiOverride": false,
+          "location": "Piazza del Colosseo, Rome",
+          "date": "2025-06-02",
+          "timeStart": "09:00",
+          "timeEnd": "13:00",
+          "notes": "Pre-booked skip-the-line entry. Underground arena included. Guided tour at 09:30.",
+          "color": "#a8c8a0",
+          "attachments": [
+            {
+              "label": "Tickets",
+              "url": "https://colosseum.it"
+            }
+          ],
+          "alternatives": [
+            {
+              "id": "mm690tn7t5nj6",
+              "title": "Palatine Hill alternative morning",
+              "notes": "Quieter option if crowds too heavy",
+              "active": false
+            }
+          ],
+          "multiDay": false,
+          "dateEnd": ""
+        },
+        {
+          "id": "mm690tn7m6rqg",
+          "sectionId": "mm690tn7yad4o",
+          "title": "Dinner — Da Enzo al 29",
+          "category": "Restaurant",
+          "emoji": "🍽️",
+          "emojiOverride": false,
+          "location": "Via dei Vascellari 29, Trastevere",
+          "date": "2025-06-02",
+          "timeStart": "20:00",
+          "timeEnd": "22:00",
+          "notes": "Roman trattoria. Book 2 weeks ahead. Try: cacio e pepe, coda alla vaccinara. Cash preferred.",
+          "color": "#c8a0a8",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "mm690tn78f8mx",
+              "title": "Osteria dell'Enoteca (backup)",
+              "notes": "More formal. Via Santo Spirito 3.",
+              "active": false
+            }
+          ],
+          "multiDay": false,
+          "dateEnd": ""
+        },
+        {
+          "id": "mm690tn7jmvqw",
+          "sectionId": "mm690tn7yad4o",
+          "title": "Vatican Museums & Sistine Chapel",
+          "category": "Museum",
+          "emoji": "🏛️",
+          "emojiOverride": false,
+          "location": "Viale Vaticano, Vatican City",
+          "date": "2025-06-03",
+          "timeStart": "09:00",
+          "timeEnd": "13:00",
+          "notes": "Early bird entry. Focus on Gallery of Maps, Raphael Rooms, Sistine Chapel. Shoulders covered required.",
+          "color": "#c8a96e",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false,
+          "dateEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "mm690tn7h6nkl",
+      "name": "Florence — Days 5–8",
+      "color": "#8fb4c8",
+      "notes": "Slower pace. Focus on Uffizi and day trips. Studio Officina Profumo visit confirmed.",
+      "items": [
+        {
+          "id": "mm690tn79daw9",
+          "sectionId": "mm690tn7h6nkl",
+          "title": "Train Rome → Florence",
+          "category": "Train",
+          "emoji": "🚄",
+          "emojiOverride": false,
+          "location": "Roma Termini → Santa Maria Novella",
+          "date": "2025-06-05",
+          "timeStart": "09:30",
+          "timeEnd": "11:00",
+          "notes": "Trenitalia Frecciarossa FR9615. Car 4 seats 31A/31B. Pre-booked. Check in 30min early.",
+          "color": "#a8c8a0",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false,
+          "dateEnd": ""
+        },
+        {
+          "id": "mm690tn75ivqm",
+          "sectionId": "mm690tn7h6nkl",
+          "title": "Uffizi Gallery",
+          "category": "Museum",
+          "emoji": "🖼️",
+          "emojiOverride": false,
+          "location": "Piazzale degli Uffizi 6, Florence",
+          "date": "2025-06-06",
+          "timeStart": "10:00",
+          "timeEnd": "14:00",
+          "notes": "Must-see: Botticelli's Birth of Venus, Raphael's Madonna. Pre-book obligatory.",
+          "color": "#8fb4c8",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false,
+          "dateEnd": ""
+        },
+        {
+          "id": "mm690tn7t50ee",
+          "sectionId": "mm690tn7h6nkl",
+          "title": "Day Trip — Cinque Terre",
+          "category": "Activity",
+          "emoji": "🥾",
+          "emojiOverride": false,
+          "location": "Cinque Terre National Park",
+          "date": "2025-06-07",
+          "timeStart": "07:30",
+          "timeEnd": "20:00",
+          "notes": "Take 07:30 train from SMN. Buy Cinque Terre card. Walk Corniglia–Vernazza–Monterosso path. Sunset in Riomaggiore.",
+          "color": "#c8a0a8",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "mm690tn7x7xso",
+              "title": "San Gimignano day trip instead",
+              "notes": "Easier if weather is poor. Medieval towers.",
+              "active": false
+            }
+          ],
+          "multiDay": false,
+          "dateEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "mm690tn7326dq",
+      "name": "Venice — Days 9–11",
+      "color": "#a8c8a0",
+      "notes": "Water taxi from Piazzale Roma to hotel. No wheeled luggage on bridges.",
+      "items": [
+        {
+          "id": "mm690tn7dujym",
+          "sectionId": "mm690tn7326dq",
+          "title": "Florence → Venice",
+          "category": "Train",
+          "emoji": "🚄",
+          "emojiOverride": false,
+          "location": "SMN → Santa Lucia",
+          "date": "2025-06-09",
+          "timeStart": "10:05",
+          "timeEnd": "12:53",
+          "notes": "Italo EVO. Pre-booked. 1st class. Arrive Venezia Santa Lucia.",
+          "color": "#c8a96e",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false,
+          "dateEnd": ""
+        },
+        {
+          "id": "mm690tn7reeh0",
+          "sectionId": "mm690tn7326dq",
+          "title": "Gondola Tour",
+          "category": "Activity",
+          "emoji": "⛴️",
+          "emojiOverride": false,
+          "location": "Rialto Bridge, Venice",
+          "date": "2025-06-10",
+          "timeStart": "17:30",
+          "timeEnd": "18:30",
+          "notes": "Book through hotel. Shared gondola cheaper (~€30pp vs €80 private). Sunset time.",
+          "color": "#a0a8c8",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false,
+          "dateEnd": ""
+        }
+      ]
+    },
+    {
+      "id": "mm690tn7j63sx",
+      "name": "Amalfi Coast — Days 12–15",
+      "color": "#c8a0a8",
+      "notes": "Most relaxed section. SITA buses connect villages. Car rental not recommended — roads narrow.",
+      "items": [
+        {
+          "id": "mm690tn7dqvud",
+          "sectionId": "mm690tn7j63sx",
+          "title": "Villa Rufolo, Ravello",
+          "category": "Sightseeing",
+          "emoji": "🌿",
+          "emojiOverride": false,
+          "location": "Piazza Duomo, Ravello",
+          "date": "2025-06-13",
+          "timeStart": "10:00",
+          "timeEnd": "12:00",
+          "notes": "Stunning gardens overlooking the coast. Wagner wrote here. Worth the bus ride up.",
+          "color": "#a8c8a0",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false,
+          "dateEnd": ""
+        },
+        {
+          "id": "mm690tn7qc08k",
+          "sectionId": "mm690tn7j63sx",
+          "title": "Beach Day — Spiaggia di Duoglio",
+          "category": "Beach",
+          "emoji": "🏖️",
+          "emojiOverride": false,
+          "location": "Amalfi, Salerno",
+          "date": "2025-06-14",
+          "timeStart": "10:00",
+          "timeEnd": "16:00",
+          "notes": "Quieter beach accessible by path from Amalfi. Bring snorkeling gear.",
+          "color": "#c8a0a8",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false,
+          "dateEnd": ""
+        },
+        {
+          "id": "mm690tn7b6miu",
+          "sectionId": "mm690tn7j63sx",
+          "title": "Return Flights Naples → LHR",
+          "category": "Flight",
+          "emoji": "✈️",
+          "emojiOverride": false,
+          "location": "Naples Capodichino Airport",
+          "date": "2025-06-15",
+          "timeStart": "14:00",
+          "timeEnd": "16:45",
+          "notes": "BA2598. Allow 3 hours to reach airport from Amalfi by ferry+taxi.",
+          "color": "#c8a96e",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false,
+          "dateEnd": ""
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "mode": "structured",
+    "darkMode": true,
+    "showMap": false,
+    "showAssistant": true,
+    "aiMode": false,
+    "showConflicts": true,
+    "autoEmoji": true
+  },
+  "ui": {
+    "expandedSections": {
+      "mm690tn7yad4o": true,
+      "mm690tn7h6nkl": true,
+      "mm690tn7326dq": true,
+      "mm690tn7j63sx": true
+    },
+    "expandedItems": {},
+    "activePanel": null,
+    "selectedSection": null
+  },
+  "packing": [
+    {
+      "id": "mm690tn7x1w1b",
+      "category": "Documents",
+      "name": "Passport",
+      "checked": false
+    },
+    {
+      "id": "mm690tn7x8nf8",
+      "category": "Documents",
+      "name": "Travel insurance docs",
+      "checked": false
+    },
+    {
+      "id": "mm690tn7v7cwf",
+      "category": "Documents",
+      "name": "Hotel confirmations printout",
+      "checked": true
+    },
+    {
+      "id": "mm690tn74v5b8",
+      "category": "Documents",
+      "name": "Train tickets",
+      "checked": true
+    },
+    {
+      "id": "mm690tn7cqoqu",
+      "category": "Clothing",
+      "name": "Smart casual outfit (3x)",
+      "checked": false
+    },
+    {
+      "id": "mm690tn7xcs1r",
+      "category": "Clothing",
+      "name": "Comfortable walking shoes",
+      "checked": false
+    },
+    {
+      "id": "mm690tn73z42o",
+      "category": "Clothing",
+      "name": "Light jacket",
+      "checked": false
+    },
+    {
+      "id": "mm690tn79zjgx",
+      "category": "Clothing",
+      "name": "Swimwear",
+      "checked": false
+    },
+    {
+      "id": "mm690tn7kwb6s",
+      "category": "Essentials",
+      "name": "Universal power adapter",
+      "checked": false
+    },
+    {
+      "id": "mm690tn7ag7r4",
+      "category": "Essentials",
+      "name": "Sunscreen SPF50",
+      "checked": false
+    },
+    {
+      "id": "mm690tn820nd1",
+      "category": "Essentials",
+      "name": "Portable power bank",
+      "checked": false
+    }
+  ],
+  "savedAt": "2026-02-28T11:39:34.566Z",
+  "schemaVersion": "1.0"
+}

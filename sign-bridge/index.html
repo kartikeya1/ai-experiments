@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Bridge — Text to Sign Language</title>
+  <meta name="description" content="A friendly tool that turns typed English into sign language — for caregivers and loved ones who want to communicate with someone who is deaf." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 4 v16 M20 2 v18 M26 4 v16 M14 20 q0 12 12 12 q12 0 12 -12 v-4 q-3 0 -6 4 v-8 q-3 0 -6 4 v-12 q-3 0 -6 4 v6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </span>
+      <div>
+        <h1>Sign Bridge</h1>
+        <p class="tagline">Type what you want to say — see it in sign language.</p>
+      </div>
+    </div>
+    <div class="lang-toggle" role="radiogroup" aria-label="Sign language">
+      <button class="lang-btn is-active" data-lang="ASL" role="radio" aria-checked="true">
+        <span class="flag" aria-hidden="true">🇺🇸</span>
+        <span>ASL <span class="lang-sub">American</span></span>
+      </button>
+      <button class="lang-btn" data-lang="ISL" role="radio" aria-checked="false">
+        <span class="flag" aria-hidden="true">🇮🇳</span>
+        <span>ISL <span class="lang-sub">Indian</span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="input-card" aria-label="Type your message">
+      <label class="input-label" for="textInput">Your message</label>
+      <textarea
+        id="textInput"
+        rows="3"
+        autocomplete="off"
+        spellcheck="true"
+        placeholder="Type something to sign — e.g. &quot;Hello, are you hungry?&quot;"
+      ></textarea>
+
+      <div class="suggestions" aria-label="Quick suggestions">
+        <button class="suggestion" data-text="Hello, how are you?">Hello, how are you?</button>
+        <button class="suggestion" data-text="I love you">I love you</button>
+        <button class="suggestion" data-text="Are you hungry?">Are you hungry?</button>
+        <button class="suggestion" data-text="Do you need water?">Do you need water?</button>
+        <button class="suggestion" data-text="Please come here">Please come here</button>
+        <button class="suggestion" data-text="Thank you">Thank you</button>
+      </div>
+
+      <div class="primary-actions">
+        <button id="convertBtn" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" /></svg>
+          Convert to sign
+        </button>
+        <button id="clearBtn" class="btn btn-ghost">Clear</button>
+      </div>
+    </section>
+
+    <section id="player" class="player-card" aria-live="polite" hidden>
+      <div class="player-header">
+        <span id="playerProgress" class="player-progress">Sign 1 of 1</span>
+        <span id="playerLanguage" class="player-language">ASL</span>
+      </div>
+
+      <div class="stage" aria-label="Current sign">
+        <div class="stage-svg" id="stageSvg"></div>
+        <div class="stage-text">
+          <div id="stageLabel" class="stage-label">A</div>
+          <div id="stageDescription" class="stage-description">Closed fist…</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="prevBtn" class="ctrl" aria-label="Previous sign" title="Previous (←)">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <button id="playBtn" class="ctrl ctrl-play" aria-label="Play" title="Play/Pause (Space)">
+          <svg id="playIcon" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true"><polygon points="6,4 20,12 6,20" fill="currentColor"/></svg>
+          <svg id="pauseIcon" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true" hidden><rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/></svg>
+        </button>
+        <button id="nextBtn" class="ctrl" aria-label="Next sign" title="Next (→)">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <button id="repeatBtn" class="ctrl ctrl-toggle" aria-label="Repeat" aria-pressed="false" title="Repeat">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 12V8a2 2 0 0 1 2-2h12l-3-3M20 12v4a2 2 0 0 1-2 2H6l3 3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+      </div>
+
+      <div class="speed-row">
+        <label for="speedSlider" class="speed-label">Speed</label>
+        <input id="speedSlider" type="range" min="500" max="3000" value="1400" step="100" aria-label="Speed in milliseconds per sign" />
+        <span id="speedValue" class="speed-value">1.4s / sign</span>
+      </div>
+
+      <div class="sequence" aria-label="Full sequence — click any sign to jump to it">
+        <ol id="sequenceList" class="sequence-list"></ol>
+      </div>
+    </section>
+
+    <section class="reference" aria-label="Alphabet quick reference">
+      <details>
+        <summary>
+          <span class="ref-title">Alphabet reference</span>
+          <span class="ref-hint">Tap a letter to preview the sign</span>
+        </summary>
+        <div id="alphabetGrid" class="alphabet-grid"></div>
+      </details>
+    </section>
+
+    <footer class="page-footer">
+      <p><strong>How this works.</strong> When a word is in our dictionary, you'll see its dedicated sign. Otherwise, the word is fingerspelled letter by letter. The diagrams are simplified guides — for a true visual reference, especially for ISL, watching a real signer is best.</p>
+      <p class="muted">Coming soon: Hindi and other Indian-language input · saved phrases · video-quality signs.</p>
+    </footer>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,923 @@
+{
+  "version": "1.0.0",
+  "schemaVersion": "1.0",
+  "savedAt": "2025-02-28T10:00:00.000Z",
+  "trip": {
+    "title": "Bali Family Grand Tour — May 2026",
+    "dest": "Seminyak, Ubud, Sanur, Uluwatu, Nusa Dua",
+    "start": "2026-05-03",
+    "end": "2026-05-13",
+    "travelers": 7,
+    "notes": "Group of 7: 1 couple with infant (under 6 months), 2 other couples, 1 set of parents (older). 10-night trip across three bases in Bali — Seminyak (beach & buzz), Ubud (culture & nature), and Nusa Dua/Sanur (calm & resort). May is ideal: dry season begins, fewer crowds than peak Jul/Aug, sea calm and clear.\n\nGROUP COMPOSITION:\n• Parents (older couple) — moderate activity level, temple visits, relaxing\n• Couple A (with baby <6 months) — schedule around baby nap windows, prioritise villa time, no intense activities; hire local nanny for nights out\n• Couple B (active) — keen on water sports, sunset spots, adventures\n• Couple C (culture lovers) — temples, cooking class, Ubud market\n\nKEY LOGISTICS:\n• Book a large 4-bedroom private villa with pool & staff for each base — DO NOT split accommodation across hotels\n• Arrange private AC minivan (9-seater) with driver for all transfers and day trips — book in advance\n• Infant formula: bring full supply from home — Bali shops don't carry formula for under 6 months\n• Hire a local Balinese nanny (via villa or Febylous Bali) for 2–3 evenings so the parents of the baby can join the group for dinner\n• Temple visits: everyone needs sarong + sash — most temples provide or rent them. Baby cannot enter some inner sanctuaries\n• Travel insurance: mandatory for everyone, especially the infant\n• Vaccinations: consult your GP before travel (Hep A, typhoid, consider malaria prophylaxis)\n• Currency: IDR. Bring some cash, ATMs widely available (Bank BCA most reliable). Avoid street money changers\n• WhatsApp local driver and villa manager numbers before departure\n• Mosquito protection critical for infant — use DEET-free repellent (Picaridin-based), full-sleeve clothing at dawn/dusk, mosquito net for cot"
+  },
+  "sections": [
+    {
+      "id": "sec_arrival",
+      "name": "Day 1 — Arrival & Settling In (Seminyak)",
+      "color": "#c8a96e",
+      "notes": "Arrive into Nguyen Rai International Airport (DPS), Denpasar. Private minivan transfer pre-booked. Check-in at Seminyak villa. First evening: slow, order in or walk to a nearby restaurant — everyone is jet-lagged. DO NOT plan activities on arrival day.",
+      "items": [
+        {
+          "id": "item_flight_in",
+          "sectionId": "sec_arrival",
+          "title": "Arrive Ngurah Rai International Airport (DPS)",
+          "category": "Flight",
+          "emoji": "🛫",
+          "emojiOverride": false,
+          "location": "Ngurah Rai International Airport, Denpasar, Bali",
+          "date": "2026-05-03",
+          "dateEnd": "",
+          "timeStart": "11:00",
+          "timeEnd": "",
+          "notes": "Confirm all 7 passports have minimum 6 months validity. Indonesia: visa-on-arrival available for most nationalities (USD 35/person, pay at airport kiosk before immigration). Baby: passport & visa required even for infants. Queue for VoA can be long — use e-VOA online pre-purchase to save time (evisa.imigrasi.go.id).\n\nAirport customs form (e-CD) is now mandatory — fill online before landing. Declare any items over USD 500.\n\nRequest airport wheelchair/assistance for parents if needed — book via airline in advance.\n\nBaby bassinet: pre-request from airline for the flight. Ask for bulk-head seats.",
+          "color": "#c8a96e",
+          "attachments": [
+            { "label": "Indonesia e-VOA portal", "url": "https://evisa.imigrasi.go.id" }
+          ],
+          "alternatives": [
+            {
+              "id": "alt_flight_1",
+              "title": "Garuda Indonesia via Jakarta (GA)",
+              "notes": "Often most comfortable, modern fleet, good for baby bassinet. Direct Bali-London also available seasonally.",
+              "active": false
+            },
+            {
+              "id": "alt_flight_2",
+              "title": "Singapore Airlines via Changi (SQ)",
+              "notes": "Excellent service, 2-leg journey, Changi a great transit for families with a baby. Good lounge access.",
+              "active": true
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_transfer_seminyak",
+          "sectionId": "sec_arrival",
+          "title": "Private Minivan Transfer to Seminyak Villa",
+          "category": "Transfer",
+          "emoji": "🚐",
+          "emojiOverride": false,
+          "location": "DPS Airport → Seminyak, Badung Regency, Bali",
+          "date": "2026-05-03",
+          "dateEnd": "",
+          "timeStart": "12:30",
+          "timeEnd": "13:30",
+          "notes": "Pre-booked 9-seater private AC minivan with driver. Approx 30–45 min in traffic. Confirm driver has your WhatsApp number. Stop at Pepito Supermarket Seminyak on the way (5 min detour) to stock villa with essentials — water, snacks, baby supplies, breakfast items.\n\nDO NOT use airport taxis — always use pre-booked private driver or Bluebird/Grab.\n\nHave villa address in Indonesian ready to share with driver. Payment agreed in advance.",
+          "color": "#c8b8a0",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_transfer_1",
+              "title": "Bluebird Taxi (metered, reliable)",
+              "notes": "Only if private minivan falls through. Book via Bluebird app. Still insist on a/c vehicle.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_villa_seminyak",
+          "sectionId": "sec_arrival",
+          "title": "Check-in: 4-Bedroom Private Villa, Seminyak",
+          "category": "Stay",
+          "emoji": "🏡",
+          "emojiOverride": true,
+          "location": "Seminyak / Umalas area, Badung Regency, Bali",
+          "date": "2026-05-03",
+          "dateEnd": "2026-05-07",
+          "timeStart": "14:00",
+          "timeEnd": "",
+          "notes": "Book a 4-bedroom villa with private pool, fully-staffed (housekeeper, cook for breakfasts). Seminyak/Umalas area preferred — quieter than central Seminyak but walking distance to restaurants and beach clubs.\n\nKey requirements for this booking:\n- Minimum 4 bedrooms with ensuite bathrooms\n- Private pool (fenced or with pool alarm for infant safety — request at booking)\n- Travel cot/crib in baby's parents' room\n- Full kitchen access\n- Daily housekeeping + breakfast service\n- Blackout curtains in baby's room (critical for nap schedule)\n- Ground floor bedroom option for older parents\n\nSuggested properties: Villa Lenu (6BR, Seminyak), Villa Du Bah (3BR, Kerobokan), or search balivillaescapes.com.au for 4BR options sleeping 8.\n\nConfirm with villa manager on WhatsApp before arrival.",
+          "color": "#8fb4c8",
+          "attachments": [
+            { "label": "Bali Villa Escapes — Large Family Villas", "url": "https://balivillaescapes.com.au/large-bali-villas-for-groups-weddings-family-holidays/" }
+          ],
+          "alternatives": [
+            {
+              "id": "alt_villa_s_1",
+              "title": "Two connected 2-bedroom villas (same compound)",
+              "notes": "Some estates have two villas sharing a garden/pool — good for privacy. Ideal for the couple with baby to have separate villa.",
+              "active": false
+            }
+          ],
+          "multiDay": true
+        },
+        {
+          "id": "item_day1_dinner",
+          "sectionId": "sec_arrival",
+          "title": "Arrival Dinner — Lazy Pool Evening + Warungs",
+          "category": "Restaurant",
+          "emoji": "🍜",
+          "emojiOverride": false,
+          "location": "Seminyak / In-villa or nearby",
+          "date": "2026-05-03",
+          "dateEnd": "",
+          "timeStart": "19:00",
+          "timeEnd": "21:00",
+          "notes": "First evening: keep it gentle. Options:\n1. Order delivery via GrabFood or GoFood — wide selection of local and international cuisines\n2. Walk to Sisterfields (Jl. Petitenget, Seminyak) — family-friendly, great all-day brunch-style food, good for baby-carrier arrival\n3. La Lucciola (Jl. Petitenget) — beachside, romantic but casual, good for the whole group\n\nAvoid big adventure dinners on Day 1 — everyone needs rest. Baby especially needs to adjust to timezone. Early bedtime for the whole group.",
+          "color": "#a8c8a0",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_d1_dinner_1",
+              "title": "In-villa cook prepares dinner",
+              "notes": "Most villas with staff can prepare dinner for an additional groceries cost. Ask villa manager in advance. Most relaxed option for jet-lagged group with infant.",
+              "active": true
+            }
+          ],
+          "multiDay": false
+        }
+      ]
+    },
+    {
+      "id": "sec_seminyak",
+      "name": "Days 2–4 — Seminyak: Beaches, Beach Clubs & Spa",
+      "color": "#c8a96e",
+      "notes": "Base: Seminyak villa (4 nights total). These days ease the group into Bali rhythm — morning pool time, beach afternoons, sunset beach clubs. Schedule naps and feeds for the baby around activities. Hire nanny for at least one evening so the infant's parents get a proper night out.",
+      "items": [
+        {
+          "id": "item_seminyak_morning",
+          "sectionId": "sec_seminyak",
+          "title": "Morning Pool Swim & Villa Breakfast",
+          "category": "Buffer",
+          "emoji": "🌅",
+          "emojiOverride": true,
+          "location": "Private Villa, Seminyak",
+          "date": "2026-05-04",
+          "dateEnd": "2026-05-06",
+          "timeStart": "07:30",
+          "timeEnd": "09:30",
+          "notes": "Let the group set its own rhythm for the first few mornings. Villa staff prepare breakfast (fruit, eggs, toast, Balinese coffee). Baby morning nap often coincides with breakfast time — ideal.\n\nPool: Babies under 6 months can be dipped in pool water only if: the pool is well-maintained and chlorinated (confirm with villa), UV-protected with shade, and the baby's doctor has okayed it. Use high-factor baby-safe sunscreen (SPF50+). Limit sun exposure to before 10am and after 4pm for the infant.",
+          "color": "#c8b8a0",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": true
+        },
+        {
+          "id": "item_seminyak_beach",
+          "sectionId": "sec_seminyak",
+          "title": "Seminyak Beach & Double Six Beach",
+          "category": "Beach",
+          "emoji": "🏖️",
+          "emojiOverride": false,
+          "location": "Double Six Beach / Seminyak Beach, Badung Regency, Bali",
+          "date": "2026-05-04",
+          "dateEnd": "",
+          "timeStart": "16:00",
+          "timeEnd": "18:30",
+          "notes": "Visit beach late afternoon to avoid peak UV hours — ideal for baby too. Double Six beach has a wide flat sand, gentle enough for strolling with a pram/carrier.\n\nNote: Seminyak and Kuta beaches can have stronger undertow — swimming is possible but don't enter rough sections. Watch the flags.\n\nBring: sun umbrella, beach mat, carrier for baby, plenty of water, hats for everyone.\n\nSunset here is beautiful — stake out a good spot by 17:30. Many beach clubs line the shore; grab drinks and watch the sun set into the Indian Ocean.",
+          "color": "#c8a96e",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_beach_1",
+              "title": "Petitenget Beach (quieter, more local)",
+              "notes": "Less crowded, more local vibe, great for a quieter afternoon with the baby. Near Pura Petitenget temple.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_potato_head",
+          "sectionId": "sec_seminyak",
+          "title": "Potato Head Beach Club — Sunset Drinks",
+          "category": "Activity",
+          "emoji": "🥂",
+          "emojiOverride": true,
+          "location": "Jl. Petitenget No.51B, Seminyak, Bali",
+          "date": "2026-05-05",
+          "dateEnd": "",
+          "timeStart": "16:00",
+          "timeEnd": "19:30",
+          "notes": "One of Bali's most iconic beach clubs. Photogenic curved wall of vintage windows. Pool, sun loungers, excellent cocktails.\n\nGroup strategy: Some of the group come for sunset cocktails while the baby's parent(s) do an early villa evening or baby's late-afternoon nap window falls here. This is NOT a stressful baby-unfriendly spot — it's actually quite family-tolerant in the afternoon before it gets loud.\n\nReservations: Book a day bed or table in advance, especially for a group of 7. Minimum spend required on day beds (~IDR 500,000–1,000,000 each).\n\nAlternative sunset: Ku De Ta / COMO Beach Club nearby — similar vibe, also excellent.",
+          "color": "#c8a0a8",
+          "attachments": [
+            { "label": "Potato Head Beach Club", "url": "https://www.ptthead.com/bali" }
+          ],
+          "alternatives": [
+            {
+              "id": "alt_pthead_1",
+              "title": "Ku De Ta Beach Club",
+              "notes": "Right next door. Slightly more relaxed, also legendary Seminyak sunset spot. KuDeTa hosts special Family Sundays.",
+              "active": false
+            },
+            {
+              "id": "alt_pthead_2",
+              "title": "La Brisa Beach Club, Canggu",
+              "notes": "30 min north — more bohemian vibe, beautiful driftwood décor. Great for sunset and cocktails, quieter than Seminyak clubs.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_couples_spa",
+          "sectionId": "sec_seminyak",
+          "title": "Couples Spa Morning — Massage & Treatments",
+          "category": "Spa",
+          "emoji": "💆",
+          "emojiOverride": true,
+          "location": "Seminyak area, Bali",
+          "date": "2026-05-05",
+          "dateEnd": "",
+          "timeStart": "10:00",
+          "timeEnd": "12:00",
+          "notes": "Arrange in pairs: while nanny watches the baby, both couples take turns. Bali is world-famous for spa treatments at extraordinary value. Traditional Balinese massage (1hr ~IDR 150,000–300,000).\n\nRecommended spas in Seminyak:\n- Prana Spa (Jl. Kunti — stunning Moroccan interior, multiple rooms for groups)\n- Sundari Day Spa (more affordable, traditional, great reviews)\n- Ask villa manager for their trusted local recommendation\n\nFor the older parents: book a rejuvenating 90-min Balinese massage + foot reflexology. They'll love it.\n\nNOTE: Postpartum moms — check with your doctor before massage if you're still within 6 months of birth.",
+          "color": "#a0a8c8",
+          "attachments": [
+            { "label": "Prana Spa Seminyak", "url": "https://www.pranaspabali.com/" }
+          ],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_nanny_evening",
+          "sectionId": "sec_seminyak",
+          "title": "Hire Local Nanny — Group Dinner Night Out",
+          "category": "Note",
+          "emoji": "🍽️",
+          "emojiOverride": true,
+          "location": "Seminyak restaurants, Bali",
+          "date": "2026-05-06",
+          "dateEnd": "",
+          "timeStart": "18:00",
+          "timeEnd": "22:00",
+          "notes": "Arrange certified local nanny through villa manager or Febylous Bali (febylousbali.co.id). Nanny typically charged IDR 100,000–150,000/hour with travel fee. Book minimum 5 hours.\n\nNanny should ideally:\n- Speak some English\n- Have experience with infants\n- Come with own references\n- Arrive 30 min before group leaves to hand over baby routine\n\nGroup Dinner: The whole group of adults dine together without baby (a rare treat!). Recommended restaurants:\n- MADE'S WARUNG (iconic, central Seminyak — traditional Balinese food, tourist-friendly)\n- Merah Putih (upscale Indonesian, jaw-dropping bamboo interior, Jl. Petitenget)\n- Sarong (Jl. Petitenget — Pan-Asian fine dining, elegant, excellent for an anniversary or celebratory dinner)\n- Motel Mexicola (fun, loud, great cocktails — for the younger couples)",
+          "color": "#a8c8a0",
+          "attachments": [
+            { "label": "Febylous Bali — Nanny Services", "url": "https://febylousbali.co.id/" }
+          ],
+          "alternatives": [
+            {
+              "id": "alt_nanny_1",
+              "title": "Merah Putih — Upscale Indonesian",
+              "notes": "Jl. Petitenget No.100X. Stunning split-level bamboo architecture. One of Bali's finest restaurants. Book weeks in advance.",
+              "active": true
+            },
+            {
+              "id": "alt_nanny_2",
+              "title": "Sarong — Pan-Asian Fine Dining",
+              "notes": "Intimate, stunning interiors, well-curated cocktail list. Great for a special occasion dinner.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_tanah_lot",
+          "sectionId": "sec_seminyak",
+          "title": "Day Trip — Tanah Lot Temple at Sunset",
+          "category": "Sightseeing",
+          "emoji": "🛕",
+          "emojiOverride": true,
+          "location": "Pura Tanah Lot, Beraban, Tabanan Regency, Bali",
+          "date": "2026-05-06",
+          "dateEnd": "",
+          "timeStart": "15:00",
+          "timeEnd": "19:30",
+          "notes": "Tanah Lot — Bali's most photographed sea temple, perched on a rocky outcrop. Visit at sunset for the magical golden light. Approx 45–60 min drive from Seminyak (pre-booked private minivan).\n\nEntrancefee: IDR 60,000 adult, IDR 30,000 child. Baby free.\n\nWearing: sarong + sash required to enter the temple grounds. Provided/rented at entrance (~IDR 15,000). Shoulders should be covered.\n\nBaby tips: Baby carrier recommended — temple grounds are stepped and uneven. Bring plenty of shade and water. Schedule visit timing so it lands in a baby alert-and-happy window (not nap time).\n\nNote: You cannot enter the inner sanctum if non-Hindu, but the views from the surrounding area and black sand beach below are spectacular. The Kecak fire dance is NOT performed at Tanah Lot (that's Uluwatu — see Day 7).\n\nAfter sunset: dinner at one of the many warungs/restaurants nearby, then minivan back by 20:30.",
+          "color": "#c8a96e",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        }
+      ]
+    },
+    {
+      "id": "sec_ubud_transfer",
+      "name": "Day 5 — Transfer to Ubud",
+      "color": "#a8c8a0",
+      "notes": "Morning at leisure in Seminyak villa. Checkout and scenic transfer to Ubud. Short stops possible en route. Ubud is Bali's cultural and spiritual heart — rice terraces, temples, art markets, yoga studios. About 1.5 hrs from Seminyak.",
+      "items": [
+        {
+          "id": "item_seminyak_morning2",
+          "sectionId": "sec_ubud_transfer",
+          "title": "Villa Checkout & Last Seminyak Morning",
+          "category": "Buffer",
+          "emoji": "🌤️",
+          "emojiOverride": true,
+          "location": "Seminyak Villa, Bali",
+          "date": "2026-05-07",
+          "dateEnd": "",
+          "timeStart": "07:00",
+          "timeEnd": "10:00",
+          "notes": "Final villa breakfast. Pack and check out by 10:00. Store luggage with villa manager while doing the transfer stop at Tegenungan Waterfall if the group is up for it.",
+          "color": "#c8b8a0",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_tegenungan",
+          "sectionId": "sec_ubud_transfer",
+          "title": "Stop — Tegenungan Waterfall",
+          "category": "Activity",
+          "emoji": "💧",
+          "emojiOverride": true,
+          "location": "Desa Kemenuh, Gianyar Regency, Bali (30 min south of Ubud)",
+          "date": "2026-05-07",
+          "dateEnd": "",
+          "timeStart": "11:00",
+          "timeEnd": "12:30",
+          "notes": "A beautiful jungle waterfall easily accessible by car. Great for photos and a refreshing dip. Steps to the bottom (about 100+ steps) — manageable for the older parents but take care.\n\nBaby: Carry in a carrier or leave in minivan with one person while others swim. The mist is beautiful but water quality for infant skin contact not guaranteed.\n\nEntrance fee: IDR 20,000–30,000/person.\n\nCan get crowded by midday — arrive by 10:30 for best experience. Wear swimwear under clothes if planning to swim.",
+          "color": "#a8c8a0",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_teg_1",
+              "title": "Skip waterfall, go straight to Ubud + Monkey Forest",
+              "notes": "If group is tired or baby is having a rough day. Use the time for Ubud Monkey Forest instead.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_ubud_villa",
+          "sectionId": "sec_ubud_transfer",
+          "title": "Check-in: Ubud Rice Field Villa",
+          "category": "Stay",
+          "emoji": "🌿",
+          "emojiOverride": true,
+          "location": "Ubud area, Gianyar Regency, Bali",
+          "date": "2026-05-07",
+          "dateEnd": "2026-05-10",
+          "timeStart": "14:00",
+          "timeEnd": "",
+          "notes": "Seek a 4-bedroom villa with rice field or jungle views. Ubud villas are generally more affordable than Seminyak. Key requirements same as Seminyak villa: crib, pool fence, ground-floor option for parents.\n\nSuggested: Look on balivillaescapes.com.au or vilawillis.com for Ubud 4BR options. Shamballa Moon (Ubud) is well reviewed for family stays.\n\nNote: Ubud is 30–45 min from central Ubud markets by road — ensure villa is not too remote for easy access. Tegallalang area villas offer stunning rice terrace views but add 15 min to drive.\n\nUbud evenings: cooler than coast, bring a light layer for dinners.",
+          "color": "#a8c8a0",
+          "attachments": [
+            { "label": "Bali Villa Escapes Ubud", "url": "https://balivillaescapes.com.au/" }
+          ],
+          "alternatives": [],
+          "multiDay": true
+        }
+      ]
+    },
+    {
+      "id": "sec_ubud",
+      "name": "Days 5–8 — Ubud: Culture, Temples & Rice Terraces",
+      "color": "#a8c8a0",
+      "notes": "Ubud is the soul of Bali. Schedule activities to align with baby's nap and feed routine — morning activities before 10:30 heat, downtime 12–15:00 for baby midday nap, afternoon outings from 15:00 onward. Evenings: traditional dance, upscale dining, or relaxed warung dinners.",
+      "items": [
+        {
+          "id": "item_monkey_forest",
+          "sectionId": "sec_ubud",
+          "title": "Sacred Monkey Forest Sanctuary",
+          "category": "Sightseeing",
+          "emoji": "🐒",
+          "emojiOverride": true,
+          "location": "Jl. Monkey Forest, Ubud, Gianyar Regency, Bali",
+          "date": "2026-05-08",
+          "dateEnd": "",
+          "timeStart": "09:00",
+          "timeEnd": "10:30",
+          "notes": "Ancient forest sanctuary with hundreds of free-roaming long-tailed macaques. UNESCO-listed subak ecosystem surroundings. Three ancient temples within the forest. Serene, shaded, and magical at opening time.\n\nTicket: IDR 80,000 adult, IDR 60,000 child. Baby free.\n\nCRITICAL BABY SAFETY NOTE: Do NOT bring any food, bottles, or bright shiny objects visible to monkeys. Monkeys WILL grab bags, glasses, phones. Keep baby out of direct monkey reach — monkeys may be attracted to baby smells or sounds. Carry baby in a front carrier facing inward. Do not let monkeys approach the baby. Have one adult purely designated for baby safety.\n\nGroup tip: Older parents may find the path uneven — wear sturdy shoes. Very shaded and cool — actually pleasant even by 10am.",
+          "color": "#a8c8a0",
+          "attachments": [
+            { "label": "Monkey Forest Official", "url": "https://www.monkeyforestubud.com/" }
+          ],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_ubud_market",
+          "sectionId": "sec_ubud",
+          "title": "Ubud Traditional Art Market",
+          "category": "Shopping",
+          "emoji": "🛍️",
+          "emojiOverride": false,
+          "location": "Jl. Raya Ubud (opposite Ubud Royal Palace), Ubud, Bali",
+          "date": "2026-05-08",
+          "dateEnd": "",
+          "timeStart": "10:30",
+          "timeEnd": "12:00",
+          "notes": "Vibrant covered market with batik, woodcarvings, silver jewellery, sarongs, spirit-level haggling culture. Great for souvenirs. Start your bargaining at 30–40% of the first quoted price and work up to 50–60%.\n\nFor the baby: it's crowded and can be overwhelming in the heat — avoid going in deep if the baby is unsettled. One adult can stay outside in shade with the baby while others shop in rotation.\n\nBest buys: handmade sarongs (IDR 50,000+), silver earrings (IDR 100,000–300,000), Ganesh sculptures, painted kites, Balinese coffee.\n\nFor older parents: the Royal Palace (Puri Saren Agung) is right opposite — free to walk into the outer courtyard, beautiful carved gates.",
+          "color": "#c8a0a8",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_tegalalang",
+          "sectionId": "sec_ubud",
+          "title": "Tegalalang Rice Terraces — Morning Visit",
+          "category": "Sightseeing",
+          "emoji": "🌾",
+          "emojiOverride": true,
+          "location": "Jl. Raya Tegalalang, Tegalalang, Gianyar Regency, Bali",
+          "date": "2026-05-09",
+          "dateEnd": "",
+          "timeStart": "08:30",
+          "timeEnd": "11:00",
+          "notes": "Arrive early (before 9am if possible) for fewer crowds and softer morning light. UNESCO Heritage subak irrigation system. Stunning layered green rice paddies cascading down the valley. One of Bali's most iconic views.\n\nEntrance: IDR 25,000/person (donation). Some stalls add a small charge for walking through their section.\n\nActivities available onsite: tandem swing (IDR 400,000), zipline (IDR 350,000), sky bike (IDR 450,000) — suitable for couples B and C, not for the baby's parents or older parents.\n\nBABY & OLDER PARENTS: The main viewpoint is accessible via a few steps. A carrier is essential — strollers DO NOT work on the terrace paths. Plan for the older parents to view from the restaurant terrace level (many cafés offer stunning views without the steep descent).\n\nNearby: Bali Pulina Coffee Plantation — 5 min drive. Luwak coffee tasting (civet coffee), tea, and excellent rice-field views from their terrace. Worth a 30-min visit after the terraces.\n\nReturn to villa by 11:00 for baby midday nap.",
+          "color": "#a8c8a0",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_tirta_empul",
+          "sectionId": "sec_ubud",
+          "title": "Tirta Empul Holy Spring Temple",
+          "category": "Sightseeing",
+          "emoji": "🛕",
+          "emojiOverride": true,
+          "location": "Jl. Tirta, Tampaksiring, Gianyar Regency, Bali",
+          "date": "2026-05-09",
+          "dateEnd": "",
+          "timeStart": "15:00",
+          "timeEnd": "17:00",
+          "notes": "Sacred spring temple where Balinese Hindus perform melukat purification rituals in sacred pools. Deeply spiritual and atmospheric. The holy spring has been flowing for over 1,000 years.\n\nEntrance: IDR 50,000/person. Sarong + sash required (provided).\n\nParticipation in the purification ritual (melukat) is optional but an incredible cultural experience for those willing. Wear swimwear under clothes if you want to participate.\n\nBaby: Cannot enter inner purification pools. Keep baby in carrier and in shaded areas — note it can be busy with local pilgrims. Respect the sanctity of the space.\n\nFor the older parents: the outer courtyards, gardens, and ancient stone architecture are deeply beautiful and easy to explore without entering the pools.",
+          "color": "#a0a8c8",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_tirta_1",
+              "title": "Gunung Kawi Temple (royal tombs)",
+              "notes": "10 min from Tirta Empul. Ancient royal shrine carved into cliff face. Dramatic and less visited. Note: 371 steps descent — not for tired legs.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_cooking_class",
+          "sectionId": "sec_ubud",
+          "title": "Balinese Cooking Class — Morning Activity",
+          "category": "Activity",
+          "emoji": "🍳",
+          "emojiOverride": true,
+          "location": "Ubud area, Bali (various operators)",
+          "date": "2026-05-10",
+          "dateEnd": "",
+          "timeStart": "08:00",
+          "timeEnd": "12:30",
+          "notes": "A beloved Bali activity — visit a local market, buy fresh ingredients, learn to cook 5–7 traditional Balinese dishes (satay lilit, lawar, jaje bali, nasi goreng, etc.), then eat what you make!\n\nIdeal for: older parents and the culture-loving couple. Baby's parents can choose to join if nanny is arranged for the morning, or one parent can attend while the other manages the baby.\n\nRecommended operators:\n- Paon Bali Cooking Class (Jl. Suweta) — intimate, market visit included, highly rated\n- Casa Luna Cooking School — run by Bali food author Janet DeNeefe\n\nDuration: ~4 hours including market visit + cooking + eating. Price: USD 35–55/person.\n\nNote: This also works well as a morning activity for the youngest couples — leave baby with the other couple or nanny and enjoy a rare adults-focused morning activity.",
+          "color": "#c8b8a0",
+          "attachments": [
+            { "label": "Paon Bali Cooking Class", "url": "https://paon-bali.com/" }
+          ],
+          "alternatives": [
+            {
+              "id": "alt_cook_1",
+              "title": "Silver jewellery-making class (Celuk Village)",
+              "notes": "30 min south of Ubud in Celuk, the silver village. 2-3hr class making your own ring or earring. Beautiful keepsake. Good for couples.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_campuhan",
+          "sectionId": "sec_ubud",
+          "title": "Campuhan Ridge Walk — Early Morning",
+          "category": "Hiking",
+          "emoji": "🥾",
+          "emojiOverride": false,
+          "location": "Campuhan Ridge Walk, Ubud, Gianyar Regency, Bali",
+          "date": "2026-05-08",
+          "dateEnd": "",
+          "timeStart": "07:00",
+          "timeEnd": "08:30",
+          "notes": "One of Ubud's most beloved walks — a 9km (or shorter) ridge path through alang-alang grasslands and jungle. Golden morning light, minimal traffic, very peaceful.\n\nThis is best for the younger couples on a sunrise morning. Older parents can join if they feel up to a gentle 45-min walk (do the easier first 2km section only).\n\nFor baby: a soft structured baby carrier works well for this walk — path is mostly smooth walking track with some gentle inclines. Very scenic for photos.\n\nStart point: Jl. Raya Campuhan, near Hotel Tjampuhan. Free entry. Walk from sunrise (06:30) for the magic light.\n\nAfter: Breakfast at Kafe or Bridge Café Ubud.",
+          "color": "#a8c8a0",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_kecak_dance",
+          "sectionId": "sec_ubud",
+          "title": "Evening — Kecak Fire Dance (Ubud Royal Palace)",
+          "category": "Event",
+          "emoji": "🎭",
+          "emojiOverride": false,
+          "location": "Ubud Royal Palace (Puri Saren Agung), Jl. Raya Ubud, Bali",
+          "date": "2026-05-09",
+          "dateEnd": "",
+          "timeStart": "19:00",
+          "timeEnd": "21:00",
+          "notes": "Traditional Balinese Kecak and Fire Dance performed in the open-air royal palace courtyard. Based on the Ramayana, performed by 50+ male dancers in hypnotic chanting. One of the most powerful cultural experiences in Bali.\n\nNote: Performances vary by evening — some nights it's Kecak, others Legong or Barong. Check the palace schedule on arrival. Also excellent at Uluwatu (cliff backdrop — see Day 7).\n\nTickets: IDR 100,000–150,000/person at door or in advance from hotels.\n\nBaby: the performance involves loud chanting and some fire — decide based on baby's temperament. A tired or colicky baby will struggle. If baby is settled, it's a beautiful 1-hour experience. Alternatively, one adult stays at villa with baby while the group attends.\n\nDress: sarong required to enter the palace — provided at the gate.",
+          "color": "#c8a0a8",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_kecak_1",
+              "title": "Kecak Dance at Uluwatu Temple (Day 7)",
+              "notes": "The Uluwatu Kecak at sunset with the Indian Ocean backdrop is the more dramatic setting. Consider doing one or the other to avoid repetition.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_ubud_dinner",
+          "sectionId": "sec_ubud",
+          "title": "Dinner — Nook Restaurant (Rice Field Views)",
+          "category": "Restaurant",
+          "emoji": "🍽️",
+          "emojiOverride": false,
+          "location": "Jl. Bisma, Ubud, Gianyar Regency, Bali",
+          "date": "2026-05-09",
+          "dateEnd": "",
+          "timeStart": "19:00",
+          "timeEnd": "21:00",
+          "notes": "Nook is beloved for its rice paddy views — the dining deck hovers over the valley. Family-friendly, kids' menu available. Indonesian and international cuisine. Great sunset and evening views.\n\nFor baby: outdoor seating but under cover, relatively quiet, accessible — one of the better dining options for the whole group including a baby.\n\nAlternative: Mozaic Restaurant (fine dining, Ubud's most renowned, Jl. Raya Sanggingan) — for a special evening without baby (use nanny).",
+          "color": "#a8c8a0",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_ubuddinner_1",
+              "title": "Mozaic Restaurant (fine dining)",
+              "notes": "Ubud's finest tasting menu restaurant. Book months in advance. For adult-only evening (nanny required for baby). Around USD 100/person.",
+              "active": false
+            },
+            {
+              "id": "alt_ubuddinner_2",
+              "title": "Warung Sopa (local organic)",
+              "notes": "Ubud's most beloved vegetarian-leaning warung. Affordable, delicious, family atmosphere. IDR 80,000–150,000/meal.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        }
+      ]
+    },
+    {
+      "id": "sec_nusadua_transfer",
+      "name": "Day 8 — Transfer to Nusa Dua/Sanur (South Bali)",
+      "color": "#8fb4c8",
+      "notes": "Check out of Ubud villa after morning. Drive south to Nusa Dua or Sanur for the final 3 nights — calm seas, excellent family resort area, easy beach access, shallow water perfect for the infant. En route, stop at Garuda Wisnu Kencana Cultural Park.",
+      "items": [
+        {
+          "id": "item_gwk",
+          "sectionId": "sec_nusadua_transfer",
+          "title": "Stop — Garuda Wisnu Kencana Cultural Park",
+          "category": "Sightseeing",
+          "emoji": "🦅",
+          "emojiOverride": true,
+          "location": "Jl. Raya Uluwatu, Ungasan, Kuta Selatan, Badung Regency, Bali",
+          "date": "2026-05-10",
+          "dateEnd": "",
+          "timeStart": "11:00",
+          "timeEnd": "13:00",
+          "notes": "Massive cultural park on the Bukit Peninsula. Home to the enormous 120m Garuda Wisnu Kencana statue (completed 2018) — one of the tallest statues in the world. Incredible photo opportunity.\n\nPark includes: cultural performances, street food, terraced limestone cliffs, open-air amphitheatre.\n\nEntrance: IDR 125,000/person.\n\nBaby: the park is flat and walkable, pram-friendly in some sections, carrier recommended for steps/inclines. Very hot in midday sun — bring shade, water, apply baby-safe sunscreen.\n\nGood for a 1.5–2 hour visit before checking in to the Nusa Dua villa.",
+          "color": "#c8a96e",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_gwk_1",
+              "title": "Skip GWK, go directly to Nusa Dua for early check-in and beach",
+              "notes": "If the group is tired or baby needs a calm afternoon. Nusa Dua beach is beautiful and worth extra time.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_nusadua_villa",
+          "sectionId": "sec_nusadua_transfer",
+          "title": "Check-in: Villa / Resort, Nusa Dua or Sanur",
+          "category": "Stay",
+          "emoji": "🏨",
+          "emojiOverride": false,
+          "location": "Nusa Dua, Badung Regency, Bali — OR — Sanur, Denpasar Selatan",
+          "date": "2026-05-10",
+          "dateEnd": "2026-05-13",
+          "timeStart": "14:00",
+          "timeEnd": "",
+          "notes": "Two excellent options for the final 3 nights:\n\nOPTION A — NUSA DUA: Luxury resort area. Calm, protected lagoon beaches. Very family-friendly. Consider InterContinental Bali Sanur Resort (they have 2-3BR pool villas), Sofitel Bali Nusa Dua Beach Resort, or The Mulia Resort. More expensive but ultra-comfortable for a group with an infant.\n\nOPTION B — SANUR: Quieter, more local town. Flat shallow calm beach (perfect for toddlers and baby paddling). Beachfront path for morning pram walks. More affordable. Good restaurant scene. Recommend: Villa Seriska Sanur (private chef, beach access, family-friendly) or InterContinental Bali Sanur.\n\nSANUR is RECOMMENDED for this group — calmer beach, easier with a baby, great for the older parents to walk. The shallow water is safe and beautiful in May.\n\nEnsure the villa has: crib available, shallow pool section, close beach access, good WiFi.",
+          "color": "#8fb4c8",
+          "attachments": [
+            { "label": "InterContinental Bali Sanur Resort", "url": "https://www.ihg.com/intercontinental/hotels/gb/en/sanur/dpshn/hoteldetail" }
+          ],
+          "alternatives": [
+            {
+              "id": "alt_nvilla_1",
+              "title": "The Mulia, Nusa Dua (ultra-luxury resort)",
+              "notes": "If budget allows. All-inclusive options, stunning beachfront, multiple pools, baby-friendly. Private villas available.",
+              "active": false
+            },
+            {
+              "id": "alt_nvilla_2",
+              "title": "Sanur Private Villa (via Booking.com)",
+              "notes": "Search for 4BR private villas in Sanur with pool. More flexibility and value vs hotel resort. Quieter neighbourhood.",
+              "active": true
+            }
+          ],
+          "multiDay": true
+        }
+      ]
+    },
+    {
+      "id": "sec_south_bali",
+      "name": "Days 9–10 — South Bali: Uluwatu, Beach & Nusa Lembongan Option",
+      "color": "#8fb4c8",
+      "notes": "Final days — mix of adventure for the younger couples (Uluwatu, water sports) and relaxation for the older parents and baby's family (Sanur beach, calm mornings). Group can split for activities as needed — some to Uluwatu, some enjoying the villa/beach.",
+      "items": [
+        {
+          "id": "item_sanur_beach",
+          "sectionId": "sec_south_bali",
+          "title": "Sanur Beachfront Morning Walk & Swim",
+          "category": "Beach",
+          "emoji": "🌊",
+          "emojiOverride": true,
+          "location": "Sanur Beach Promenade, Sanur, Denpasar, Bali",
+          "date": "2026-05-11",
+          "dateEnd": "",
+          "timeStart": "07:00",
+          "timeEnd": "09:30",
+          "notes": "Sanur's beachfront path runs for 8km — perfect for an early morning walk with pram or baby carrier. Sunrise over the sea (east-facing beach — rare for Bali, most beaches face west). The sea is completely calm — protected by reef. Extremely safe for paddling and shallow swimming.\n\nFor baby: dip toes in the calm shallow water (sea temperature ~27°C). Shaded palm trees provide natural cover. Best time: 06:30–09:00 before the heat builds.\n\nFor older parents: the flat, well-paved promenade is ideal for gentle exercise without stairs or uneven ground.\n\nFor active couples: rent bicycles along the path (~IDR 30,000/hr) for a longer ride.",
+          "color": "#8fb4c8",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_uluwatu",
+          "sectionId": "sec_south_bali",
+          "title": "Uluwatu Temple & Kecak Sunset Fire Dance",
+          "category": "Sightseeing",
+          "emoji": "🌅",
+          "emojiOverride": true,
+          "location": "Pura Luhur Uluwatu, Pecatu, South Kuta, Badung Regency, Bali",
+          "date": "2026-05-11",
+          "dateEnd": "",
+          "timeStart": "15:00",
+          "timeEnd": "20:00",
+          "notes": "Uluwatu Temple — Bali's most dramatic sea cliff temple, 70m above the Indian Ocean. One of six spiritual pillars of Bali. The Kecak and Fire Dance at sunset (starts ~18:00) with the ocean as backdrop is unmissable.\n\nTiming: Arrive by 15:00–15:30 to walk the cliff path, explore the temple exterior, watch the monkeys and ocean views, then get seats for the dance by 17:30.\n\nKecak dance tickets: IDR 150,000/person. Temple entrance: IDR 50,000.\n\nSarong required — provided at entrance.\n\nMONKEY WARNING (same as Monkey Forest): monkeys at Uluwatu are notoriously bold and will grab sunglasses, phones, hats, anything. Secure everything before entering. Do NOT bring bright or shiny items outside your bag.\n\nFor the baby: this is a 5-hour outing. Assess baby's energy that day. The Kecak involves loud drumming and fire — can be intense for an infant. If baby seems unsettled, one parent can wait at the adjacent restaurant/café (great ocean views) while the other watches the dance. Alternatively, leave baby at villa with nanny and the older parents stay behind too.\n\nAfter: Dinner in Jimbaran Bay (see next item). Driver waits.",
+          "color": "#c8a96e",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_jimbaran",
+          "sectionId": "sec_south_bali",
+          "title": "Jimbaran Bay Seafood Dinner on the Beach",
+          "category": "Restaurant",
+          "emoji": "🦞",
+          "emojiOverride": true,
+          "location": "Jimbaran Bay Beach Seafood Warungs, Jimbaran, Badung Regency, Bali",
+          "date": "2026-05-11",
+          "dateEnd": "",
+          "timeStart": "19:30",
+          "timeEnd": "21:30",
+          "notes": "Classic Bali experience — barbecued fresh seafood served on tables on the sand at Jimbaran Bay, with torches and the sound of waves. Fish, lobster, prawns, grilled corn, Bintang beer.\n\nRecommended: Teba Mega Jimbaran (slightly better quality than the row of basic warungs). Negotiate price in advance or confirm prices on menu before ordering.\n\nFor baby: the open-air beach setting is breezy and pleasant. Evenings can have mosquitoes — apply insect repellent to baby before going (use picaridin-based or citronella, NOT DEET on infant skin).\n\nFor older parents: this is a very comfortable, easygoing dinner — chairs at tables, no steps, beautiful setting. They'll love it.",
+          "color": "#c8a96e",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_jim_1",
+              "title": "Rock Bar, AYANA Resort Uluwatu",
+              "notes": "Iconic cliffside cocktail bar 14m above the Indian Ocean. No dinner menu but legendary sundowners. Best for the active couple on a separate evening.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_watersports",
+          "sectionId": "sec_south_bali",
+          "title": "Water Sports — Tanjung Benoa (Younger Couples)",
+          "category": "Activity",
+          "emoji": "🤿",
+          "emojiOverride": true,
+          "location": "Tanjung Benoa Water Sports, Benoa, Badung Regency, Bali",
+          "date": "2026-05-12",
+          "dateEnd": "",
+          "timeStart": "09:00",
+          "timeEnd": "13:00",
+          "notes": "FOR: The two younger couples (not older parents or baby's parents unless nanny arranged). Tanjung Benoa is Bali's water sports hub — calm, protected bay.\n\nAvailable activities:\n- Banana boat (IDR 100,000/person, ~15 min)\n- Parasailing (IDR 250,000/person)\n- Flyboard (IDR 350,000/15min)\n- Jet ski (IDR 250,000/30min)\n- Glass-bottom boat (family-friendly, IDR 150,000/person — GREAT for older parents!)\n- Snorkelling (IDR 100,000/person)\n\nFor OLDER PARENTS: glass-bottom boat tour or snorkelling from the beach is ideal — see Bali's underwater life without any exertion.\n\nFOR BABY'S PARENTS: stay at villa for morning nap routine, or join via glass-bottom boat for 1 hour with baby in carrier.\n\nBest operators: Benoa Marine Recreation or similar. Negotiate a package for the group.",
+          "color": "#8fb4c8",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_ws_1",
+              "title": "Snorkelling day trip to Nusa Penida (active couples)",
+              "notes": "For Couple B specifically — full-day speedboat from Sanur to Nusa Penida. See manta rays at Manta Point, Crystal Bay, Kelingking Beach viewpoint. One of the best day trips from Bali. NOT suitable for baby or older parents.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        },
+        {
+          "id": "item_final_spa",
+          "sectionId": "sec_south_bali",
+          "title": "Group Spa Afternoon — Last Indulgence",
+          "category": "Spa",
+          "emoji": "💆",
+          "emojiOverride": true,
+          "location": "Nusa Dua or Sanur spa, Bali",
+          "date": "2026-05-12",
+          "dateEnd": "",
+          "timeStart": "14:00",
+          "timeEnd": "16:30",
+          "notes": "Final afternoon treat — book multiple treatment rooms at a quality spa. 90-min Balinese massage + flower petal foot soak for all adults who want it.\n\nNusa Dua has excellent resort spas: The Mulia Spa, COMO Shambhala (at COMO Uma Canggu), Spa Serena at Conrad Bali.\n\nFor older parents: a full-body Balinese massage + herbal steam bath — 90 min (IDR 350,000–500,000/person at quality spa).\n\nFor baby's parents: one goes while nanny or partner watches baby. Even 60-min massage is a huge morale boost for new parents travelling with an infant.",
+          "color": "#a0a8c8",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_farewell_dinner",
+          "sectionId": "sec_south_bali",
+          "title": "Farewell Group Dinner — Special Evening",
+          "category": "Restaurant",
+          "emoji": "🥂",
+          "emojiOverride": true,
+          "location": "Sanur or Nusa Dua, Bali",
+          "date": "2026-05-12",
+          "dateEnd": "",
+          "timeStart": "19:00",
+          "timeEnd": "21:30",
+          "notes": "Final evening together. Make it special — choose a restaurant where everyone can sit comfortably together.\n\nOptions:\n1. IN-VILLA private dinner: Ask the villa cook to prepare a full Balinese feast — satay, lawar, nasi goreng, ayam betutu, fresh tropical fruit dessert. Most atmospheric option, completely flexible for baby's routine. Decorate pool area with candles.\n\n2. Kayumanis Sanur (luxury beachfront villas restaurant — open to walk-ins for dinner, romantic, beautiful setting, Indonesian-fusion menu)\n\n3. Massimo Restaurant Sanur (Italian-Balinese, charming garden, easy with large groups, baby-friendly)\n\nBring: group photos printed from earlier in the trip (Ubud, Seminyak, Tegalalang) — great to present at the table as a keepsake. A Bali photo book ordered online during the trip and printed at home makes a beautiful gift.",
+          "color": "#c8a96e",
+          "attachments": [],
+          "alternatives": [
+            {
+              "id": "alt_fdinner_1",
+              "title": "In-villa private dinner (most recommended)",
+              "notes": "Have villa cook + one extra hired chef prepare a traditional Balinese feast. Set up candles by the pool. Relaxed, baby-friendly, intimate. Cost: groceries + chef tip.",
+              "active": true
+            },
+            {
+              "id": "alt_fdinner_2",
+              "title": "Kayumanis Sanur Private Estate",
+              "notes": "Stunning beachfront, romantic Indonesian cuisine, can accommodate groups. Booking required.",
+              "active": false
+            }
+          ],
+          "multiDay": false
+        }
+      ]
+    },
+    {
+      "id": "sec_departure",
+      "name": "Day 11 — Departure",
+      "color": "#c8b8a0",
+      "notes": "Final morning at the villa or resort. Allow plenty of time for airport transfer — Ngurah Rai airport can be busy in late morning. Check-in 3 hours before international departure.",
+      "items": [
+        {
+          "id": "item_final_morning",
+          "sectionId": "sec_departure",
+          "title": "Final Villa Morning — Last Bali Moments",
+          "category": "Buffer",
+          "emoji": "🌺",
+          "emojiOverride": true,
+          "location": "Villa, Sanur/Nusa Dua, Bali",
+          "date": "2026-05-13",
+          "dateEnd": "",
+          "timeStart": "07:00",
+          "timeEnd": "09:30",
+          "notes": "Last breakfast by the pool. Photos. Say goodbye to the villa staff (tip them generously — this is customary and expected in Bali). Standard tipping: IDR 200,000–500,000 per staff member depending on length of stay and quality of service.\n\nLast minute Bali shopping: ask your driver to stop at a local market or Krisna Souvenir Shop (open early, good fixed prices, near airport road) for any final gifts.\n\nRemember: export from Bali of certain items requires declaration (coral, cultural artefacts, certain wood items). Check what's permitted.",
+          "color": "#c8b8a0",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_airport_transfer",
+          "sectionId": "sec_departure",
+          "title": "Private Minivan Transfer to DPS Airport",
+          "category": "Transfer",
+          "emoji": "🚐",
+          "emojiOverride": true,
+          "location": "Sanur/Nusa Dua → Ngurah Rai International Airport (DPS)",
+          "date": "2026-05-13",
+          "dateEnd": "",
+          "timeStart": "10:00",
+          "timeEnd": "11:00",
+          "notes": "Allow 60–90 min depending on traffic. Sanur to airport is approximately 30–40 min in normal traffic, but Bali traffic is unpredictable — do not cut it fine.\n\nCheckout from villa: 10:00 typically (confirm with villa). Arrange luggage collection 30 min before departure.\n\nAt airport: International terminal is modern and comfortable. Baby facilities available (nursing rooms in terminal). Duty-free is well-stocked — good place to buy Kopi Luwak coffee, Bali chocolate, Balinese spices as gifts.\n\nTip the driver well (IDR 100,000–200,000).",
+          "color": "#c8b8a0",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        },
+        {
+          "id": "item_depart",
+          "sectionId": "sec_departure",
+          "title": "Depart Bali — Ngurah Rai International Airport",
+          "category": "Flight",
+          "emoji": "✈️",
+          "emojiOverride": false,
+          "location": "Ngurah Rai International Airport (DPS), Bali",
+          "date": "2026-05-13",
+          "dateEnd": "",
+          "timeStart": "14:00",
+          "timeEnd": "",
+          "notes": "Check in 3 hours before international flight. Baby: nursing rooms in the departure terminal. Request priority boarding (most airlines grant this for families with infants under 2).\n\nFinal customs form: no special requirements unless carrying items over the permitted limit.\n\nBest advice: book flights with a long layover if possible (Singapore, Kuala Lumpur, Hong Kong) — gives the baby a break from the flight and lets the group stretch. Changi Airport Singapore is particularly excellent for families — world-class facilities, sleeping areas, showers.",
+          "color": "#c8a96e",
+          "attachments": [],
+          "alternatives": [],
+          "multiDay": false
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "mode": "structured",
+    "darkMode": true,
+    "showConflicts": true,
+    "autoEmoji": true,
+    "aiMode": false,
+    "showMap": false,
+    "showAssistant": true
+  },
+  "packing": [
+    { "id": "pk_001", "category": "Documents — All Adults", "name": "Passports (min 6 months validity)", "checked": false },
+    { "id": "pk_002", "category": "Documents — All Adults", "name": "e-VOA printout or app confirmation", "checked": false },
+    { "id": "pk_003", "category": "Documents — All Adults", "name": "Travel insurance cards (each person)", "checked": false },
+    { "id": "pk_004", "category": "Documents — All Adults", "name": "Villa confirmation printouts (both addresses)", "checked": false },
+    { "id": "pk_005", "category": "Documents — All Adults", "name": "Driver WhatsApp number saved offline", "checked": false },
+    { "id": "pk_006", "category": "Documents — All Adults", "name": "Emergency contact list (doctor, embassy, insurance)", "checked": false },
+    { "id": "pk_007", "category": "Baby Essentials", "name": "Infant formula — FULL trip supply from home", "checked": false },
+    { "id": "pk_008", "category": "Baby Essentials", "name": "Travel cot/bassinet (confirm villa has one)", "checked": false },
+    { "id": "pk_009", "category": "Baby Essentials", "name": "Baby passport + e-VOA", "checked": false },
+    { "id": "pk_010", "category": "Baby Essentials", "name": "Baby carrier (soft structured, front-facing & inward)", "checked": false },
+    { "id": "pk_011", "category": "Baby Essentials", "name": "Lightweight pram/stroller (for Sanur beachfront path)", "checked": false },
+    { "id": "pk_012", "category": "Baby Essentials", "name": "Baby-safe sunscreen SPF50+ (mineral-based)", "checked": false },
+    { "id": "pk_013", "category": "Baby Essentials", "name": "Picaridin-based insect repellent (NOT DEET for infant)", "checked": false },
+    { "id": "pk_014", "category": "Baby Essentials", "name": "Mosquito net for travel cot", "checked": false },
+    { "id": "pk_015", "category": "Baby Essentials", "name": "Baby long-sleeve lightweight onesies (x6)", "checked": false },
+    { "id": "pk_016", "category": "Baby Essentials", "name": "Baby wide-brim sun hat", "checked": false },
+    { "id": "pk_017", "category": "Baby Essentials", "name": "Nappies/diapers — enough for first 3 days (Bali has Pampers at Pepito)", "checked": false },
+    { "id": "pk_018", "category": "Baby Essentials", "name": "Baby medicines (paracetamol drops, saline nasal spray, oral rehydration salts)", "checked": false },
+    { "id": "pk_019", "category": "Baby Essentials", "name": "Baby white noise machine (portable)", "checked": false },
+    { "id": "pk_020", "category": "Baby Essentials", "name": "Portable baby bassinet for travel (e.g. Snuggle Me, BabyBjörn)", "checked": false },
+    { "id": "pk_021", "category": "Health & Medical", "name": "Vaccination records for all travellers", "checked": false },
+    { "id": "pk_022", "category": "Health & Medical", "name": "Prescription medications (full trip supply +5 days extra)", "checked": false },
+    { "id": "pk_023", "category": "Health & Medical", "name": "Adults insect repellent (DEET 30–50%)", "checked": false },
+    { "id": "pk_024", "category": "Health & Medical", "name": "Sunscreen SPF50 adults", "checked": false },
+    { "id": "pk_025", "category": "Health & Medical", "name": "Antidiarrheal medication (Imodium) + rehydration sachets", "checked": false },
+    { "id": "pk_026", "category": "Health & Medical", "name": "Hand sanitiser (pocket-size, x3)", "checked": false },
+    { "id": "pk_027", "category": "Health & Medical", "name": "Antihistamine (Cetirizine or Loratadine)", "checked": false },
+    { "id": "pk_028", "category": "Health & Medical", "name": "Basic first aid kit (plasters, antiseptic wipes, blister plasters)", "checked": false },
+    { "id": "pk_029", "category": "Clothing", "name": "Lightweight linen/cotton clothing (x5 outfits each)", "checked": false },
+    { "id": "pk_030", "category": "Clothing", "name": "Swimwear (2 sets per person)", "checked": false },
+    { "id": "pk_031", "category": "Clothing", "name": "Light evening layer (cardigan/shawl) — Ubud cooler evenings", "checked": false },
+    { "id": "pk_032", "category": "Clothing", "name": "Comfortable walking sandals + closed-toe shoes", "checked": false },
+    { "id": "pk_033", "category": "Clothing", "name": "Modest temple clothing (shoulders+knees covered, for all)", "checked": false },
+    { "id": "pk_034", "category": "Clothing", "name": "Wide-brim sun hats (one each)", "checked": false },
+    { "id": "pk_035", "category": "Clothing", "name": "Sturdy shoes for Campuhan Ridge Walk / temple walks", "checked": false },
+    { "id": "pk_036", "category": "Electronics & Accessories", "name": "Universal travel adapters (Indonesia: Type C/F) — x3 minimum", "checked": false },
+    { "id": "pk_037", "category": "Electronics & Accessories", "name": "Portable power banks (1 per couple)", "checked": false },
+    { "id": "pk_038", "category": "Electronics & Accessories", "name": "Bali eSIM or local SIM (buy at airport — Telkomsel recommended)", "checked": false },
+    { "id": "pk_039", "category": "Electronics & Accessories", "name": "Camera + memory cards", "checked": false },
+    { "id": "pk_040", "category": "Electronics & Accessories", "name": "Waterproof phone pouch (for water sports + waterfall)", "checked": false },
+    { "id": "pk_041", "category": "Money & Finance", "name": "Debit cards for ATM (Bank BCA most reliable, avoid airport rates)", "checked": false },
+    { "id": "pk_042", "category": "Money & Finance", "name": "USD 200 cash per couple as emergency backup", "checked": false },
+    { "id": "pk_043", "category": "Money & Finance", "name": "Notify home bank of Bali travel dates", "checked": false },
+    { "id": "pk_044", "category": "Leisure", "name": "Good book / e-reader for slow afternoons", "checked": false },
+    { "id": "pk_045", "category": "Leisure", "name": "Snorkelling masks (if not renting at Tanjung Benoa)", "checked": false }
+  ],
+  "ui": {
+    "expandedSections": {
+      "sec_arrival": true,
+      "sec_seminyak": true,
+      "sec_ubud_transfer": true,
+      "sec_ubud": true,
+      "sec_nusadua_transfer": true,
+      "sec_south_bali": true,
+      "sec_departure": true
+    },
+    "expandedItems": {
+      "item_flight_in": true,
+      "item_transfer_seminyak": false,
+      "item_villa_seminyak": true,
+      "item_day1_dinner": false,
+      "item_seminyak_morning": false,
+      "item_seminyak_beach": false,
+      "item_potato_head": false,
+      "item_couples_spa": false,
+      "item_nanny_evening": true,
+      "item_tanah_lot": true,
+      "item_seminyak_morning2": false,
+      "item_tegenungan": false,
+      "item_ubud_villa": true,
+      "item_monkey_forest": true,
+      "item_ubud_market": false,
+      "item_tegalalang": true,
+      "item_tirta_empul": false,
+      "item_cooking_class": false,
+      "item_campuhan": false,
+      "item_kecak_dance": false,
+      "item_ubud_dinner": false,
+      "item_gwk": false,
+      "item_nusadua_villa": true,
+      "item_sanur_beach": false,
+      "item_uluwatu": true,
+      "item_jimbaran": false,
+      "item_watersports": false,
+      "item_final_spa": false,
+      "item_farewell_dinner": true,
+      "item_final_morning": false,
+      "item_airport_transfer": false,
+      "item_depart": false
+    },
+    "activePanel": null,
+    "selectedSection": null
+  }
+}

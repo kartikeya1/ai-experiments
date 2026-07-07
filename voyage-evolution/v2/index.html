@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voyagr — Premium Itinerary Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --bg3: #1a1a24;
+  --bg4: #22222f;
+  --border: #2a2a3a;
+  --border2: #3a3a4f;
+  --text: #e8e8f0;
+  --text2: #9898b0;
+  --text3: #5a5a70;
+  --accent: #c8a96e;
+  --accent2: #e8c98e;
+  --accent3: #8fb4c8;
+  --danger: #c86868;
+  --success: #68c888;
+  --warn: #c8a468;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow2: 0 2px 8px rgba(0,0,0,0.3);
+  --radius: 8px;
+  --radius2: 12px;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --transition: 0.18s ease;
+}
+[data-theme="light"] {
+  --bg: #f5f3ee;
+  --bg2: #eeebe3;
+  --bg3: #e5e0d5;
+  --bg4: #d8d2c5;
+  --border: #c8c0b0;
+  --border2: #b0a898;
+  --text: #1a1a22;
+  --text2: #4a4a5a;
+  --text3: #8a8a9a;
+  --accent: #8a6830;
+  --accent2: #a07838;
+  --shadow: 0 4px 24px rgba(0,0,0,0.1);
+  --shadow2: 0 2px 8px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:var(--font-body);background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
+
+/* SCROLLBARS */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* LAYOUT */
+#app{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+#header{display:flex;align-items:center;padding:0 20px;height:52px;border-bottom:1px solid var(--border);background:var(--bg2);flex-shrink:0;gap:16px;z-index:100}
+#main{display:flex;flex:1;overflow:hidden}
+#sidebar{width:280px;border-right:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0;transition:width var(--transition)}
+#sidebar.collapsed{width:0}
+#canvas{flex:1;overflow-y:auto;padding:24px;background:var(--bg)}
+#panel{width:320px;border-left:1px solid var(--border);background:var(--bg2);overflow-y:auto;flex-shrink:0;transition:width var(--transition)}
+#panel.hidden{width:0;overflow:hidden}
+
+/* HEADER */
+.brand{font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:0.05em;color:var(--accent);cursor:pointer;white-space:nowrap}
+.brand span{color:var(--text3);font-size:13px;font-weight:300;font-family:var(--font-body);margin-left:6px;letter-spacing:0.15em;text-transform:uppercase}
+.header-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--radius);border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;font-family:var(--font-body);font-size:13px;font-weight:400;transition:all var(--transition);white-space:nowrap;user-select:none}
+.btn:hover{background:var(--bg3);border-color:var(--border2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#0a0a0f;font-weight:500}
+.btn.primary:hover{background:var(--accent2);border-color:var(--accent2)}
+.btn.ghost{border-color:transparent}
+.btn.ghost:hover{background:var(--bg3)}
+.btn.danger{border-color:var(--danger);color:var(--danger)}
+.btn.danger:hover{background:rgba(200,104,104,0.1)}
+.btn.sm{padding:4px 10px;font-size:12px}
+.btn.icon{padding:6px;width:32px;height:32px;justify-content:center}
+.mode-toggle{display:flex;background:var(--bg3);border-radius:var(--radius);padding:2px;border:1px solid var(--border)}
+.mode-toggle .btn{border:none;background:transparent;padding:4px 12px;font-size:12px;border-radius:6px}
+.mode-toggle .btn.active{background:var(--accent);color:#0a0a0f}
+kbd{display:inline-block;padding:1px 5px;background:var(--bg4);border:1px solid var(--border2);border-radius:4px;font-family:var(--font-mono);font-size:11px;color:var(--text2)}
+
+/* SIDEBAR */
+.sidebar-header{padding:16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.sidebar-header h3{font-family:var(--font-display);font-size:15px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text2)}
+.trip-meta{padding:16px;border-bottom:1px solid var(--border)}
+.trip-title-input{width:100%;background:transparent;border:none;color:var(--text);font-family:var(--font-display);font-size:18px;font-weight:600;outline:none;padding:0;caret-color:var(--accent)}
+.trip-title-input::placeholder{color:var(--text3)}
+.trip-subtitle{font-size:12px;color:var(--text3);margin-top:2px;font-family:var(--font-body)}
+.field-row{display:flex;gap:8px;margin-top:8px}
+.field-mini{flex:1;display:flex;flex-direction:column;gap:3px}
+.field-mini label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em}
+.field-mini input,.field-mini select,.field-mini textarea{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:12px;padding:5px 8px;border-radius:6px;outline:none;transition:border-color var(--transition)}
+.field-mini input:focus,.field-mini select:focus,.field-mini textarea:focus{border-color:var(--accent)}
+.field-mini select option{background:var(--bg3)}
+.field-mini textarea{resize:vertical;min-height:60px;font-size:12px}
+.sidebar-sections{flex:1;overflow-y:auto;padding:8px}
+.section-nav-item{display:flex;align-items:center;padding:8px 10px;border-radius:var(--radius);cursor:pointer;gap:8px;transition:background var(--transition);color:var(--text2);font-size:13px}
+.section-nav-item:hover{background:var(--bg3);color:var(--text)}
+.section-nav-item.active{background:rgba(200,169,110,0.12);color:var(--accent)}
+.section-nav-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sidebar-footer{padding:12px 16px;border-top:1px solid var(--border);font-size:10px;color:var(--text3);text-align:center;line-height:1.4}
+
+/* CANVAS */
+.canvas-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.canvas-title{font-family:var(--font-display);font-size:28px;font-weight:300;color:var(--text);letter-spacing:0.02em}
+.canvas-title em{color:var(--accent);font-style:italic}
+.section-block{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);margin-bottom:16px;overflow:hidden;transition:box-shadow var(--transition);animation:fadeIn 0.2s ease}
+.section-block.drag-over{border-color:var(--accent);box-shadow:0 0 0 2px rgba(200,169,110,0.2)}
+.section-block.dragging{opacity:0.5;transform:rotate(1deg)}
+.section-header{display:flex;align-items:center;padding:14px 16px;cursor:pointer;gap:10px;border-bottom:1px solid var(--border);background:var(--bg3);position:relative}
+.section-header:hover .section-actions{opacity:1}
+.section-drag-handle{color:var(--text3);cursor:grab;font-size:16px;flex-shrink:0}
+.section-drag-handle:active{cursor:grabbing}
+.section-color{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.section-name-input{background:transparent;border:none;color:var(--text);font-family:var(--font-display);font-size:16px;font-weight:600;outline:none;flex:1;caret-color:var(--accent);min-width:0}
+.section-name-input::placeholder{color:var(--text3)}
+.section-meta{font-size:11px;color:var(--text3);white-space:nowrap}
+.section-actions{display:flex;align-items:center;gap:4px;opacity:0;transition:opacity var(--transition)}
+.section-toggle{color:var(--text3);font-size:12px;transition:transform var(--transition);margin-left:4px}
+.section-toggle.collapsed{transform:rotate(-90deg)}
+.section-body{padding:12px}
+.section-body.hidden{display:none}
+.section-notes{padding:8px 12px;border-bottom:1px solid var(--border);background:rgba(200,169,110,0.04)}
+.section-notes textarea{width:100%;background:transparent;border:none;color:var(--text2);font-family:var(--font-body);font-size:12px;outline:none;resize:none;line-height:1.5}
+.section-notes textarea::placeholder{color:var(--text3)}
+
+/* ITEMS */
+.item-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;transition:all var(--transition);position:relative;animation:fadeIn 0.2s ease}
+.item-card:hover{border-color:var(--border2);box-shadow:var(--shadow2)}
+.item-card.active-alt{border-color:var(--accent);background:rgba(200,169,110,0.04)}
+.item-card.dragging{opacity:0.4;transform:scale(0.98)}
+.item-card.drag-over-top{border-top:2px solid var(--accent)}
+.item-card.drag-over-bottom{border-bottom:2px solid var(--accent)}
+.item-header{display:flex;align-items:center;padding:10px 12px;gap:8px;cursor:pointer}
+.item-header:hover .item-actions{opacity:1}
+.item-drag-handle{color:var(--text3);cursor:grab;font-size:14px;flex-shrink:0}
+.item-drag-handle:active{cursor:grabbing}
+.item-emoji{font-size:18px;flex-shrink:0;cursor:pointer}
+.item-info{flex:1;min-width:0}
+.item-title-input{background:transparent;border:none;color:var(--text);font-family:var(--font-body);font-size:13px;font-weight:500;outline:none;width:100%;caret-color:var(--accent)}
+.item-title-input::placeholder{color:var(--text3)}
+.item-meta-row{display:flex;align-items:center;gap:8px;margin-top:2px;flex-wrap:wrap}
+.item-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:10px;font-size:11px;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.item-time-badge{background:rgba(143,180,200,0.1);border-color:rgba(143,180,200,0.3);color:var(--accent3)}
+.item-loc-badge{background:rgba(200,169,110,0.08);border-color:rgba(200,169,110,0.2);color:var(--accent)}
+.item-actions{display:flex;align-items:center;gap:2px;opacity:0;transition:opacity var(--transition);flex-shrink:0}
+.item-color-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;cursor:pointer}
+.conflict-badge{color:var(--warn);font-size:12px;cursor:help}
+.spanning-badge{color:var(--accent3);font-size:11px;background:rgba(143,180,200,0.1);padding:1px 6px;border-radius:8px}
+.item-body{padding:0 12px 10px;display:none}
+.item-body.open{display:block}
+.item-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.field-group{display:flex;flex-direction:column;gap:3px}
+.field-group.full{grid-column:1/-1}
+.field-group label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em}
+.field-group input,.field-group select,.field-group textarea{background:var(--bg2);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:12px;padding:6px 8px;border-radius:6px;outline:none;transition:border-color var(--transition);width:100%}
+.field-group input:focus,.field-group select:focus,.field-group textarea:focus{border-color:var(--accent)}
+.field-group select option{background:var(--bg2)}
+.field-group textarea{resize:vertical;min-height:80px;font-size:12px;line-height:1.5}
+.attachments{margin-top:8px}
+.attachment-item{display:flex;align-items:center;gap:6px;padding:5px 8px;background:var(--bg3);border-radius:6px;margin-bottom:4px;font-size:12px}
+.attachment-item a{color:var(--accent);text-decoration:none;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.attachment-item a:hover{color:var(--accent2)}
+.add-attachment{display:flex;gap:6px;margin-top:4px}
+.add-attachment input{flex:1;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:12px;padding:5px 8px;border-radius:6px;outline:none}
+.alternatives{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)}
+.alternatives-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
+.alt-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:8px 10px;margin-bottom:6px;position:relative}
+.alt-card.active{border-color:var(--success);background:rgba(104,200,136,0.05)}
+.alt-active-btn{position:absolute;top:6px;right:6px;font-size:11px;padding:2px 8px}
+.alt-title-input{background:transparent;border:none;color:var(--text);font-size:12px;font-weight:500;outline:none;width:calc(100% - 70px)}
+.alt-notes{width:100%;background:transparent;border:none;color:var(--text2);font-size:11px;outline:none;resize:none;margin-top:4px;line-height:1.4}
+.add-alt-btn{font-size:12px;color:var(--text3);cursor:pointer;background:none;border:1px dashed var(--border);border-radius:6px;padding:4px 10px;width:100%;text-align:center;transition:all var(--transition)}
+.add-alt-btn:hover{border-color:var(--accent);color:var(--accent)}
+.add-item-row{display:flex;gap:6px;padding:8px;border-top:1px dashed var(--border);margin-top:4px}
+.item-type-quick{display:flex;gap:4px;flex-wrap:wrap}
+.quick-type-btn{padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);font-size:12px;cursor:pointer;transition:all var(--transition)}
+.quick-type-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* PANEL */
+.panel-header{padding:16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.panel-header h3{font-family:var(--font-display);font-size:15px;font-weight:600;letter-spacing:0.05em}
+.panel-section{padding:16px;border-bottom:1px solid var(--border)}
+.panel-section h4{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;font-weight:500}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;font-size:13px}
+.toggle{position:relative;width:36px;height:20px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:var(--bg4);border-radius:10px;cursor:pointer;transition:background var(--transition)}
+.toggle-slider:before{content:'';position:absolute;width:14px;height:14px;left:3px;top:3px;background:var(--text3);border-radius:50%;transition:all var(--transition)}
+.toggle input:checked~.toggle-slider{background:var(--accent)}
+.toggle input:checked~.toggle-slider:before{transform:translateX(16px);background:#fff}
+.shortcut-list{list-style:none}
+.shortcut-list li{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:12px;color:var(--text2);border-bottom:1px solid var(--border)}
+.shortcut-list li:last-child{border-bottom:none}
+.color-swatches{display:flex;gap:6px;flex-wrap:wrap}
+.color-swatch{width:24px;height:24px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color var(--transition)}
+.color-swatch:hover,.color-swatch.active{border-color:var(--text)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat-box{background:var(--bg3);border-radius:var(--radius);padding:10px;text-align:center}
+.stat-num{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--accent)}
+.stat-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px}
+
+/* MAP */
+#map-container{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:16px;margin-bottom:16px}
+#map-view{width:100%;height:300px;background:var(--bg3);border-radius:var(--radius);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.map-placeholder{text-align:center;color:var(--text3)}
+.map-placeholder .map-icon{font-size:48px;margin-bottom:12px}
+.map-location-tag{position:absolute;background:var(--accent);color:#0a0a0f;font-size:11px;padding:2px 6px;border-radius:4px;transform:translate(-50%,-100%);white-space:nowrap;font-weight:500}
+.map-location-tag:after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);border:4px solid transparent;border-top-color:var(--accent)}
+.map-line{position:absolute;pointer-events:none}
+.map-dot{position:absolute;width:10px;height:10px;background:var(--accent);border-radius:50%;transform:translate(-50%,-50%);border:2px solid var(--bg)}
+
+/* TOASTS */
+#toast-container{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);box-shadow:var(--shadow);font-size:13px;pointer-events:all;animation:slideIn 0.2s ease;max-width:320px}
+.toast.success{border-color:var(--success);background:rgba(104,200,136,0.08)}
+.toast.error{border-color:var(--danger);background:rgba(200,104,104,0.08)}
+.toast.warn{border-color:var(--warn);background:rgba(200,164,104,0.08)}
+.toast.info{border-color:var(--accent3)}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+
+/* MODAL */
+#modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+#modal-overlay.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:28px;max-width:520px;width:90%;box-shadow:var(--shadow);animation:fadeIn 0.2s ease}
+.modal h2{font-family:var(--font-display);font-size:22px;font-weight:600;margin-bottom:8px}
+.modal p{color:var(--text2);font-size:13px;margin-bottom:20px;line-height:1.6}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.modal-input{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:14px;padding:10px 12px;border-radius:var(--radius);outline:none;margin-bottom:16px;transition:border-color var(--transition)}
+.modal-input:focus{border-color:var(--accent)}
+.modal textarea.modal-input{resize:vertical;min-height:100px}
+
+/* HELP PANEL */
+.help-section{padding:16px;font-size:13px;color:var(--text2);line-height:1.7}
+.help-section h4{font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--text);margin:16px 0 6px}
+.help-section h4:first-child{margin-top:0}
+.help-section code{background:var(--bg4);padding:1px 5px;border-radius:4px;font-family:var(--font-mono);font-size:12px;color:var(--accent)}
+
+/* PRESENTATION EXPORT */
+@media print {
+  body{background:#fff;color:#111}
+  #app{display:none}
+  #print-view{display:block!important}
+}
+#print-view{display:none;font-family:'Georgia',serif;max-width:800px;margin:0 auto;padding:40px}
+.print-header{text-align:center;margin-bottom:40px;border-bottom:2px solid #c8a96e;padding-bottom:24px}
+.print-header h1{font-size:36px;font-weight:300;letter-spacing:0.05em;margin-bottom:6px}
+.print-header p{color:#666;font-size:14px}
+.print-section{margin-bottom:32px}
+.print-section-title{font-size:20px;font-weight:600;border-left:3px solid #c8a96e;padding-left:12px;margin-bottom:12px}
+.print-item{padding:10px 0;border-bottom:1px solid #eee}
+.print-item-title{font-weight:600;font-size:15px}
+.print-item-meta{color:#888;font-size:12px;margin-top:2px}
+.print-item-notes{color:#444;font-size:13px;margin-top:4px}
+.print-footer{text-align:center;margin-top:40px;padding-top:16px;border-top:1px solid #eee;font-size:11px;color:#aaa}
+
+/* PACKING LIST */
+.packing-section{padding:12px}
+.packing-category{margin-bottom:12px}
+.packing-cat-title{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:6px;font-weight:500}
+.packing-item{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:13px}
+.packing-item input[type=checkbox]{accent-color:var(--accent);width:14px;height:14px}
+.packing-add{display:flex;gap:6px;margin-top:8px}
+.packing-add input{flex:1;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:12px;padding:5px 8px;border-radius:6px;outline:none}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg2)}
+.tab{padding:10px 16px;cursor:pointer;font-size:13px;color:var(--text3);border-bottom:2px solid transparent;transition:all var(--transition);white-space:nowrap}
+.tab:hover{color:var(--text2)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  #sidebar{width:0}
+  #panel{width:0}
+  #canvas{padding:12px}
+  .canvas-title{font-size:20px}
+}
+
+/* AI MODE */
+.ai-panel{padding:16px;background:linear-gradient(135deg,rgba(143,180,200,0.05),rgba(200,169,110,0.05));border:1px solid rgba(143,180,200,0.2);border-radius:var(--radius2);margin-bottom:16px}
+.ai-label{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent3);margin-bottom:8px;font-weight:500}
+.ai-panel textarea{width:100%;background:var(--bg3);border:1px solid rgba(143,180,200,0.2);color:var(--text);font-size:12px;padding:8px;border-radius:var(--radius);outline:none;resize:vertical;min-height:120px;font-family:var(--font-mono)}
+
+/* CONFLICT WARNING */
+.conflict-indicator{display:flex;align-items:center;gap:6px;padding:6px 10px;background:rgba(200,164,104,0.1);border:1px solid rgba(200,164,104,0.3);border-radius:var(--radius);font-size:12px;color:var(--warn);margin-bottom:8px}
+
+/* UNDO STACK VISUAL */
+.undo-indicator{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:12px;color:var(--text2);z-index:9000;animation:fadeIn 0.2s ease;pointer-events:none}
+
+/* SECTION COLORS */
+.color-picker-row{display:flex;gap:6px;margin-top:4px}
+.color-dot-btn{width:18px;height:18px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color var(--transition)}
+.color-dot-btn:hover,.color-dot-btn.selected{border-color:var(--text)}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <!-- HEADER -->
+  <div id="header">
+    <div class="brand" onclick="showAbout()" title="About Voyagr">Voyagr<span>itinerary design</span></div>
+    <div class="mode-toggle">
+      <button class="btn active" id="mode-structured" onclick="setMode('structured')" title="Structured day-by-day view">Structured</button>
+      <button class="btn" id="mode-hybrid" onclick="setMode('hybrid')" title="Flexible hybrid view">Hybrid</button>
+    </div>
+    <div class="header-actions">
+      <button class="btn ghost icon" onclick="toggleDark()" title="Toggle dark/light mode (Ctrl+D)" id="theme-btn">☀️</button>
+      <button class="btn ghost" onclick="showHelp()" title="Help & shortcuts">? Help</button>
+      <button class="btn ghost" onclick="loadDemo()" title="Load sample itinerary">Demo</button>
+      <button class="btn ghost" onclick="duplicateTrip()" title="Duplicate trip (Ctrl+Shift+D)">⧉ Clone</button>
+      <button class="btn" onclick="importFile()" title="Import save file">📂 Open</button>
+      <button class="btn primary" onclick="saveFile()" title="Save to JSON (Ctrl+S)">💾 Save</button>
+      <button class="btn ghost" onclick="exportPresentation()" title="Export as HTML presentation">📄 Export</button>
+    </div>
+  </div>
+
+  <div id="main">
+    <!-- SIDEBAR -->
+    <div id="sidebar">
+      <div class="sidebar-header">
+        <h3>Trip</h3>
+        <div style="display:flex;gap:4px">
+          <button class="btn icon ghost sm" onclick="togglePanel('settings')" title="Settings">⚙</button>
+          <button class="btn icon ghost sm" onclick="addSection()" title="Add section (Ctrl+Shift+S)">+</button>
+        </div>
+      </div>
+      <div class="trip-meta">
+        <input class="trip-title-input" id="trip-title" placeholder="Trip Name..." value="" oninput="onTripChange()">
+        <div class="trip-subtitle" id="trip-subtitle">Click to edit trip details</div>
+        <div class="field-row">
+          <div class="field-mini">
+            <label>Start Date</label>
+            <input type="date" id="trip-start" oninput="onTripChange()">
+          </div>
+          <div class="field-mini">
+            <label>End Date</label>
+            <input type="date" id="trip-end" oninput="onTripChange()">
+          </div>
+        </div>
+        <div class="field-row" style="margin-top:8px">
+          <div class="field-mini" style="flex:2">
+            <label>Destination(s)</label>
+            <input type="text" id="trip-dest" placeholder="e.g. Paris, Rome" oninput="onTripChange()">
+          </div>
+          <div class="field-mini">
+            <label>Travelers</label>
+            <input type="number" id="trip-travelers" min="1" value="1" oninput="onTripChange()" style="width:60px">
+          </div>
+        </div>
+        <div class="field-row" style="margin-top:8px">
+          <div class="field-mini">
+            <label>Trip Notes</label>
+            <textarea id="trip-notes" placeholder="Overall trip notes..." oninput="onTripChange()" rows="2"></textarea>
+          </div>
+        </div>
+      </div>
+      <div id="section-nav" class="sidebar-sections"></div>
+      <div class="sidebar-footer">
+        ✦ Brewed with love by KT using Cursor<br>
+        <span id="undo-count" style="color:var(--text3)">No changes yet</span>
+      </div>
+    </div>
+
+    <!-- CANVAS -->
+    <div id="canvas">
+      <div class="canvas-header">
+        <div>
+          <div class="canvas-title" id="canvas-title">New <em>Itinerary</em></div>
+          <div style="font-size:12px;color:var(--text3);margin-top:2px" id="canvas-meta"></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div id="conflict-summary"></div>
+          <button class="btn sm" onclick="addSection()" title="Add section (Ctrl+Shift+S)">+ Section</button>
+          <button class="btn sm" onclick="togglePanel('packing')" title="Packing list">🧳 Packing</button>
+          <button class="btn sm" onclick="togglePanel('map')" title="Map view">🗺 Map</button>
+          <button class="btn sm" onclick="togglePanel('stats')" title="Trip stats">📊 Stats</button>
+        </div>
+      </div>
+
+      <div id="ai-panel" style="display:none">
+        <div class="ai-panel">
+          <div class="ai-label">🤖 AI Import Mode — Paste JSON itinerary data</div>
+          <textarea id="ai-input" placeholder='{"trip":{"title":"My Trip"},"sections":[...]}'></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn primary sm" onclick="importFromAI()">Import JSON</button>
+            <button class="btn sm" onclick="toggleAIMode()">Exit AI Mode</button>
+            <button class="btn sm ghost" onclick="copySchema()">Copy Schema Docs</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="sections-container"></div>
+
+      <div style="text-align:center;padding:24px;color:var(--text3);font-size:13px" id="empty-state">
+        <div style="font-size:40px;margin-bottom:12px">✦</div>
+        <div style="font-family:var(--font-display);font-size:18px;font-weight:300;margin-bottom:6px">Begin designing your journey</div>
+        <div>Add your first section, or load the demo itinerary to explore.</div>
+        <div style="margin-top:16px;display:flex;gap:10px;justify-content:center">
+          <button class="btn" onclick="addSection()">+ Add Section</button>
+          <button class="btn" onclick="loadDemo()">Load Demo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div id="panel" class="hidden">
+      <div id="panel-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container"></div>
+
+<!-- MODAL -->
+<div id="modal-overlay">
+  <div class="modal" id="modal-box">
+    <h2 id="modal-title">Confirm</h2>
+    <p id="modal-body"></p>
+    <div class="modal-actions" id="modal-actions"></div>
+  </div>
+</div>
+
+<!-- PRINT VIEW -->
+<div id="print-view"></div>
+
+<input type="file" id="file-input" accept=".json" style="display:none" onchange="handleFileLoad(event)">
+
+<script>
+// ============================================================
+//  VOYAGR — Premium Travel Itinerary Design Platform
+//  Version: 1.0.0
+//  Architecture: Frontend-only, serverless, in-memory
+// ============================================================
+
+const VERSION = '1.0.0';
+
+// ---- STATE ----
+let state = {
+  version: VERSION,
+  trip: {
+    title: '', dest: '', start: '', end: '', travelers: 1, notes: ''
+  },
+  sections: [],
+  settings: {
+    mode: 'structured',
+    darkMode: true,
+    showMap: false,
+    showAssistant: true,
+    aiMode: false,
+    showConflicts: true,
+    autoEmoji: true
+  },
+  ui: {
+    expandedSections: {},
+    expandedItems: {},
+    activePanel: null,
+    selectedSection: null
+  },
+  packing: []
+};
+
+let undoStack = [];
+let redoStack = [];
+let hasUnsaved = false;
+let dragState = { type: null, id: null, sectionId: null };
+const MAX_UNDO = 100;
+
+// ---- EMOJI MAP ----
+const EMOJI_MAP = {
+  flight: '✈️', fly: '✈️', airport: '🛫', hotel: '🏨', stay: '🏨', hostel: '🛏️',
+  restaurant: '🍽️', dinner: '🍽️', lunch: '🥗', breakfast: '☕', cafe: '☕', food: '🍜',
+  museum: '🏛️', art: '🎨', gallery: '🖼️', tour: '🗺️', sightseeing: '👁️',
+  beach: '🏖️', hiking: '🥾', hike: '🥾', mountain: '⛰️', park: '🌿',
+  train: '🚄', bus: '🚌', car: '🚗', taxi: '🚕', ferry: '⛴️', cruise: '🚢',
+  shopping: '🛍️', market: '🛒', spa: '💆', massage: '💆',
+  theater: '🎭', concert: '🎵', show: '🎪', nightlife: '🌃',
+  check: '📋', buffer: '⏸️', note: '📝', meeting: '🤝', activity: '🎯',
+  visa: '🪪', document: '📄', packing: '🧳', transfer: '🔄',
+  sunrise: '🌅', sunset: '🌇', photography: '📸', photo: '📸',
+  wine: '🍷', bar: '🥂', coffee: '☕', tea: '🍵'
+};
+
+const CATEGORIES = ['Stay', 'Flight', 'Train', 'Transport', 'Restaurant', 'Activity', 'Sightseeing', 'Museum', 'Shopping', 'Beach', 'Hiking', 'Tour', 'Transfer', 'Buffer', 'Note', 'Meeting', 'Event', 'Other'];
+const COLORS = ['#c8a96e','#8fb4c8','#a8c8a0','#c8a0a8','#a0a8c8','#c8b8a0','#90a0b0','#b8a0c8','#c8c0a0','#a0c8c0'];
+const SECTION_COLORS = ['#c8a96e','#8fb4c8','#a8c8a0','#c8a0a8','#a0a8c8','#c8b8a0'];
+
+// ---- LOGGING ----
+const log = {
+  info: (msg, data) => console.log(`[Voyagr][INFO] ${msg}`, data||''),
+  warn: (msg, data) => console.warn(`[Voyagr][WARN] ${msg}`, data||''),
+  error: (msg, data) => console.error(`[Voyagr][ERROR] ${msg}`, data||''),
+  action: (action, data) => console.log(`[Voyagr][ACTION] ${action}`, data||'')
+};
+
+// ---- INIT ----
+document.addEventListener('DOMContentLoaded', () => {
+  log.info('Initializing Voyagr v'+VERSION);
+  applyTheme();
+  render();
+  setupKeyboardShortcuts();
+  setupBeforeUnload();
+  updateUndoUI();
+  log.info('Ready');
+});
+
+// ---- UNDO/REDO ----
+function pushUndo(description) {
+  undoStack.push({ description, state: deepClone(state) });
+  if (undoStack.length > MAX_UNDO) undoStack.shift();
+  redoStack = [];
+  hasUnsaved = true;
+  updateUndoUI();
+  log.action('Undo push: '+description);
+}
+
+function undo() {
+  if (!undoStack.length) { toast('Nothing to undo', 'warn'); return; }
+  redoStack.push(deepClone(state));
+  state = undoStack.pop().state;
+  hasUnsaved = true;
+  render();
+  updateUndoUI();
+  showUndoIndicator('Undone');
+  log.action('Undo');
+}
+
+function redo() {
+  if (!redoStack.length) { toast('Nothing to redo', 'warn'); return; }
+  undoStack.push(deepClone(state));
+  state = redoStack.pop();
+  hasUnsaved = true;
+  render();
+  updateUndoUI();
+  showUndoIndicator('Redone');
+  log.action('Redo');
+}
+
+function updateUndoUI() {
+  const el = document.getElementById('undo-count');
+  if (el) el.textContent = undoStack.length ? `${undoStack.length} changes` : 'No changes';
+}
+
+let undoIndicatorTimeout;
+function showUndoIndicator(text) {
+  const existing = document.getElementById('undo-indicator');
+  if (existing) existing.remove();
+  const el = document.createElement('div');
+  el.id = 'undo-indicator';
+  el.className = 'undo-indicator';
+  el.textContent = text;
+  document.body.appendChild(el);
+  clearTimeout(undoIndicatorTimeout);
+  undoIndicatorTimeout = setTimeout(() => el.remove(), 1500);
+}
+
+// ---- DEEP CLONE ----
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+// ---- ID GENERATION ----
+function genId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+}
+
+// ---- THEME ----
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', state.settings.darkMode ? 'dark' : 'light');
+  const btn = document.getElementById('theme-btn');
+  if (btn) btn.textContent = state.settings.darkMode ? '☀️' : '🌙';
+}
+
+function toggleDark() {
+  state.settings.darkMode = !state.settings.darkMode;
+  applyTheme();
+  log.action('Toggle theme: '+( state.settings.darkMode?'dark':'light'));
+}
+
+// ---- MODE ----
+function setMode(mode) {
+  pushUndo('Switch mode to '+mode);
+  state.settings.mode = mode;
+  document.getElementById('mode-structured').classList.toggle('active', mode==='structured');
+  document.getElementById('mode-hybrid').classList.toggle('active', mode==='hybrid');
+  render();
+  toast('Switched to '+mode+' mode', 'info');
+  log.action('Mode: '+mode);
+}
+
+// ---- TRIP CHANGE ----
+function onTripChange() {
+  state.trip.title = document.getElementById('trip-title').value;
+  state.trip.start = document.getElementById('trip-start').value;
+  state.trip.end = document.getElementById('trip-end').value;
+  state.trip.dest = document.getElementById('trip-dest').value;
+  state.trip.travelers = parseInt(document.getElementById('trip-travelers').value)||1;
+  state.trip.notes = document.getElementById('trip-notes').value;
+  updateCanvasHeader();
+  renderSectionNav();
+  hasUnsaved = true;
+}
+
+function updateCanvasHeader() {
+  const t = state.trip;
+  const titleEl = document.getElementById('canvas-title');
+  if (titleEl) {
+    if (t.title) titleEl.innerHTML = `<em>${escHtml(t.title)}</em>`;
+    else titleEl.innerHTML = 'New <em>Itinerary</em>';
+  }
+  const metaEl = document.getElementById('canvas-meta');
+  if (metaEl) {
+    const parts = [];
+    if (t.dest) parts.push('📍 '+t.dest);
+    if (t.start && t.end) parts.push('🗓 '+formatDateRange(t.start, t.end));
+    else if (t.start) parts.push('🗓 From '+formatDate(t.start));
+    if (t.travelers > 1) parts.push('👥 '+t.travelers+' travelers');
+    metaEl.textContent = parts.join(' · ');
+  }
+}
+
+function formatDate(d) {
+  if (!d) return '';
+  const date = new Date(d+'T00:00:00');
+  return date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+}
+
+function formatDateRange(s, e) {
+  return formatDate(s)+' → '+formatDate(e);
+}
+
+// ---- SECTIONS ----
+function addSection(name) {
+  pushUndo('Add section');
+  const id = genId();
+  const colorIndex = state.sections.length % SECTION_COLORS.length;
+  const section = {
+    id, name: name||'New Section',
+    color: SECTION_COLORS[colorIndex],
+    notes: '', items: []
+  };
+  state.sections.push(section);
+  state.ui.expandedSections[id] = true;
+  render();
+  updateEmptyState();
+  toast('Section added', 'success');
+  log.action('Add section', {id});
+  // Focus name input
+  setTimeout(() => {
+    const input = document.getElementById('section-name-'+id);
+    if (input) { input.focus(); input.select(); }
+  }, 50);
+  return section;
+}
+
+function deleteSection(id) {
+  const sec = state.sections.find(s=>s.id===id);
+  showConfirm(
+    `Delete "${sec?.name||'Section'}"?`,
+    'All items in this section will be deleted. This cannot be undone after save.',
+    [
+      { label: 'Delete', class: 'danger', action: () => {
+        pushUndo('Delete section');
+        state.sections = state.sections.filter(s=>s.id!==id);
+        delete state.ui.expandedSections[id];
+        render(); updateEmptyState();
+        toast('Section deleted', 'success');
+        log.action('Delete section', {id});
+      }},
+      { label: 'Cancel', class: '', action: null }
+    ]
+  );
+}
+
+function duplicateSection(id) {
+  pushUndo('Duplicate section');
+  const sec = state.sections.find(s=>s.id===id);
+  if (!sec) return;
+  const newSec = deepClone(sec);
+  newSec.id = genId();
+  newSec.name = sec.name + ' (copy)';
+  newSec.items = newSec.items.map(item => ({ ...item, id: genId() }));
+  const idx = state.sections.indexOf(sec);
+  state.sections.splice(idx+1, 0, newSec);
+  state.ui.expandedSections[newSec.id] = true;
+  render(); updateEmptyState();
+  toast('Section duplicated', 'success');
+  log.action('Duplicate section', {from:id, to:newSec.id});
+}
+
+function updateSectionName(id, name) {
+  const sec = state.sections.find(s=>s.id===id);
+  if (sec) { sec.name = name; renderSectionNav(); hasUnsaved = true; }
+}
+
+function updateSectionNotes(id, notes) {
+  const sec = state.sections.find(s=>s.id===id);
+  if (sec) { sec.notes = notes; hasUnsaved = true; }
+}
+
+function updateSectionColor(id, color) {
+  pushUndo('Change section color');
+  const sec = state.sections.find(s=>s.id===id);
+  if (sec) { sec.color = color; renderSectionNav(); render(); }
+}
+
+function toggleSection(id) {
+  state.ui.expandedSections[id] = !state.ui.expandedSections[id];
+  const body = document.getElementById('sec-body-'+id);
+  const toggle = document.getElementById('sec-toggle-'+id);
+  if (body) body.classList.toggle('hidden', !state.ui.expandedSections[id]);
+  if (toggle) toggle.classList.toggle('collapsed', !state.ui.expandedSections[id]);
+}
+
+// ---- ITEMS ----
+function createItem(sectionId, type) {
+  pushUndo('Add item');
+  const sec = state.sections.find(s=>s.id===sectionId);
+  if (!sec) return;
+  const id = genId();
+  const emoji = getEmojiForType(type||'Activity');
+  const item = {
+    id, sectionId,
+    title: '',
+    category: type||'Activity',
+    emoji, emojiOverride: false,
+    location: '', date: '', timeStart: '', timeEnd: '',
+    notes: '', color: COLORS[0],
+    attachments: [],
+    alternatives: [],
+    multiDay: false, dateEnd: '',
+    collapsed: false
+  };
+  sec.items.push(item);
+  state.ui.expandedItems[id] = true;
+  renderSection(sectionId);
+  updateEmptyState();
+  hasUnsaved = true;
+  toast(getEmojiForType(type||'Activity')+' Item added', 'success');
+  log.action('Add item', {id, type, sectionId});
+  setTimeout(() => {
+    const input = document.getElementById('item-title-'+id);
+    if (input) input.focus();
+  }, 50);
+  return item;
+}
+
+function deleteItem(id, sectionId) {
+  pushUndo('Delete item');
+  const sec = state.sections.find(s=>s.id===sectionId);
+  if (!sec) return;
+  sec.items = sec.items.filter(i=>i.id!==id);
+  delete state.ui.expandedItems[id];
+  renderSection(sectionId);
+  updateEmptyState();
+  toast('Item deleted', 'success');
+  log.action('Delete item', {id, sectionId});
+}
+
+function duplicateItem(id, sectionId) {
+  pushUndo('Duplicate item');
+  const sec = state.sections.find(s=>s.id===sectionId);
+  if (!sec) return;
+  const item = sec.items.find(i=>i.id===id);
+  if (!item) return;
+  const newItem = deepClone(item);
+  newItem.id = genId();
+  newItem.title = item.title + ' (copy)';
+  const idx = sec.items.indexOf(item);
+  sec.items.splice(idx+1, 0, newItem);
+  state.ui.expandedItems[newItem.id] = true;
+  renderSection(sectionId);
+  toast('Item duplicated', 'success');
+  log.action('Duplicate item', {from:id, to:newItem.id});
+}
+
+function moveItemToSection(itemId, fromSectionId, toSectionId) {
+  if (fromSectionId === toSectionId) return;
+  pushUndo('Move item to section');
+  const fromSec = state.sections.find(s=>s.id===fromSectionId);
+  const toSec = state.sections.find(s=>s.id===toSectionId);
+  if (!fromSec||!toSec) return;
+  const item = fromSec.items.find(i=>i.id===itemId);
+  if (!item) return;
+  fromSec.items = fromSec.items.filter(i=>i.id!==itemId);
+  item.sectionId = toSectionId;
+  toSec.items.push(item);
+  renderSection(fromSectionId);
+  renderSection(toSectionId);
+  toast('Item moved', 'success');
+  log.action('Move item', {itemId, from:fromSectionId, to:toSectionId});
+}
+
+function toggleItem(id) {
+  state.ui.expandedItems[id] = !state.ui.expandedItems[id];
+  const body = document.getElementById('item-body-'+id);
+  if (body) body.classList.toggle('open', state.ui.expandedItems[id]);
+}
+
+function updateItemField(id, sectionId, field, value) {
+  const sec = state.sections.find(s=>s.id===sectionId);
+  if (!sec) return;
+  const item = sec.items.find(i=>i.id===id);
+  if (!item) return;
+  item[field] = value;
+  hasUnsaved = true;
+  if (field === 'category' && !item.emojiOverride && state.settings.autoEmoji) {
+    item.emoji = getEmojiForType(value);
+    const emojiEl = document.getElementById('item-emoji-'+id);
+    if (emojiEl) emojiEl.textContent = item.emoji;
+  }
+  if (field === 'title' && !item.emojiOverride && state.settings.autoEmoji) {
+    const newEmoji = getEmojiForTitle(value) || getEmojiForType(item.category);
+    if (newEmoji !== item.emoji) {
+      item.emoji = newEmoji;
+      const emojiEl = document.getElementById('item-emoji-'+id);
+      if (emojiEl) emojiEl.textContent = item.emoji;
+    }
+  }
+  if (['date','timeStart','timeEnd'].includes(field)) {
+    checkConflicts(sectionId);
+  }
+  updateItemBadges(id, item);
+}
+
+function updateItemBadges(id, item) {
+  const timeEl = document.getElementById('item-time-badge-'+id);
+  const locEl = document.getElementById('item-loc-badge-'+id);
+  if (timeEl) {
+    const t = formatItemTime(item);
+    timeEl.textContent = t;
+    timeEl.style.display = t ? '' : 'none';
+  }
+  if (locEl) {
+    locEl.textContent = item.location ? '📍 '+item.location : '';
+    locEl.style.display = item.location ? '' : 'none';
+  }
+}
+
+function addAttachment(itemId, sectionId) {
+  const input = document.getElementById('att-input-'+itemId);
+  const url = input?.value?.trim();
+  if (!url) return;
+  pushUndo('Add attachment');
+  const sec = state.sections.find(s=>s.id===sectionId);
+  const item = sec?.items.find(i=>i.id===itemId);
+  if (!item) return;
+  item.attachments = item.attachments||[];
+  item.attachments.push({ label: url, url });
+  input.value = '';
+  renderItemAttachments(itemId, item);
+  hasUnsaved = true;
+  toast('Link added', 'success');
+}
+
+function removeAttachment(itemId, sectionId, idx) {
+  pushUndo('Remove attachment');
+  const sec = state.sections.find(s=>s.id===sectionId);
+  const item = sec?.items.find(i=>i.id===itemId);
+  if (!item) return;
+  item.attachments.splice(idx, 1);
+  renderItemAttachments(itemId, item);
+  hasUnsaved = true;
+}
+
+function renderItemAttachments(itemId, item) {
+  const container = document.getElementById('attachments-'+itemId);
+  if (!container) return;
+  container.innerHTML = (item.attachments||[]).map((a,i) => `
+    <div class="attachment-item">
+      <span>🔗</span>
+      <a href="${escHtml(a.url)}" target="_blank">${escHtml(a.label||a.url)}</a>
+      <button class="btn icon ghost sm" onclick="removeAttachment('${itemId}','${item.sectionId}',${i})" title="Remove">✕</button>
+    </div>
+  `).join('');
+}
+
+// ---- ALTERNATIVES ----
+function addAlternative(itemId, sectionId) {
+  pushUndo('Add alternative');
+  const sec = state.sections.find(s=>s.id===sectionId);
+  const item = sec?.items.find(i=>i.id===itemId);
+  if (!item) return;
+  if ((item.alternatives||[]).length >= 3) { toast('Max 3 alternatives', 'warn'); return; }
+  item.alternatives = item.alternatives||[];
+  item.alternatives.push({ id: genId(), title: '', notes: '', active: false });
+  renderItemAlternatives(itemId, item);
+  hasUnsaved = true;
+}
+
+function setActiveAlt(itemId, sectionId, altId) {
+  const sec = state.sections.find(s=>s.id===sectionId);
+  const item = sec?.items.find(i=>i.id===itemId);
+  if (!item) return;
+  item.alternatives.forEach(a => a.active = (a.id===altId));
+  renderItemAlternatives(itemId, item);
+  hasUnsaved = true;
+}
+
+function removeAlt(itemId, sectionId, altId) {
+  pushUndo('Remove alternative');
+  const sec = state.sections.find(s=>s.id===sectionId);
+  const item = sec?.items.find(i=>i.id===itemId);
+  if (!item) return;
+  item.alternatives = item.alternatives.filter(a=>a.id!==altId);
+  renderItemAlternatives(itemId, item);
+  hasUnsaved = true;
+}
+
+function renderItemAlternatives(itemId, item) {
+  const container = document.getElementById('alts-'+itemId);
+  if (!container) return;
+  const alts = item.alternatives||[];
+  container.innerHTML = alts.map(a => `
+    <div class="alt-card ${a.active?'active':''}">
+      <input class="alt-title-input" placeholder="Alternative option..." value="${escHtml(a.title)}"
+        oninput="updateAlt('${itemId}','${item.sectionId}','${a.id}','title',this.value)">
+      ${a.active ? '<span style="position:absolute;top:6px;right:6px;font-size:11px;color:var(--success)">✓ Active</span>' : `<button class="btn sm ghost alt-active-btn" onclick="setActiveAlt('${itemId}','${item.sectionId}','${a.id}')">Set Active</button>`}
+      <br>
+      <textarea class="alt-notes" rows="2" placeholder="Notes..."
+        oninput="updateAlt('${itemId}','${item.sectionId}','${a.id}','notes',this.value)">${escHtml(a.notes)}</textarea>
+      <button class="btn sm danger" onclick="removeAlt('${itemId}','${item.sectionId}','${a.id}')" style="margin-top:4px">Remove</button>
+    </div>
+  `).join('');
+}
+
+function updateAlt(itemId, sectionId, altId, field, value) {
+  const sec = state.sections.find(s=>s.id===sectionId);
+  const item = sec?.items.find(i=>i.id===itemId);
+  if (!item) return;
+  const alt = item.alternatives?.find(a=>a.id===altId);
+  if (alt) { alt[field] = value; hasUnsaved = true; }
+}
+
+// ---- EMOJI ----
+function getEmojiForType(type) {
+  const key = type.toLowerCase();
+  for (const [k,v] of Object.entries(EMOJI_MAP)) {
+    if (key.includes(k)) return v;
+  }
+  return '📌';
+}
+
+function getEmojiForTitle(title) {
+  const lower = title.toLowerCase();
+  for (const [k,v] of Object.entries(EMOJI_MAP)) {
+    if (lower.includes(k)) return v;
+  }
+  return null;
+}
+
+function promptEmojiOverride(itemId, sectionId) {
+  const sec = state.sections.find(s=>s.id===sectionId);
+  const item = sec?.items.find(i=>i.id===itemId);
+  if (!item) return;
+  showInputModal('Change Emoji', 'Enter an emoji for this item:', item.emoji, (val) => {
+    if (!val.trim()) return;
+    pushUndo('Change emoji');
+    item.emoji = val.trim();
+    item.emojiOverride = true;
+    const el = document.getElementById('item-emoji-'+itemId);
+    if (el) el.textContent = item.emoji;
+    hasUnsaved = true;
+  });
+}
+
+// ---- CONFLICTS ----
+function checkConflicts(sectionId) {
+  const sec = state.sections.find(s=>s.id===sectionId);
+  if (!sec || !state.settings.showConflicts) return;
+  const timedItems = sec.items.filter(i=>i.date&&i.timeStart&&i.timeEnd);
+  const conflicts = new Set();
+  for (let i=0; i<timedItems.length; i++) {
+    for (let j=i+1; j<timedItems.length; j++) {
+      const a=timedItems[i], b=timedItems[j];
+      if (a.date===b.date && hasTimeOverlap(a.timeStart,a.timeEnd,b.timeStart,b.timeEnd)) {
+        conflicts.add(a.id); conflicts.add(b.id);
+      }
+    }
+  }
+  sec.items.forEach(item => {
+    const badge = document.getElementById('conflict-'+item.id);
+    if (badge) badge.style.display = conflicts.has(item.id) ? '' : 'none';
+  });
+  const summary = document.getElementById('conflict-summary');
+  const total = getAllConflicts();
+  if (summary) {
+    if (total>0) summary.innerHTML = `<span class="item-badge" style="background:rgba(200,164,104,0.15);border-color:var(--warn);color:var(--warn)">⚠️ ${total} conflict${total>1?'s':''}</span>`;
+    else summary.innerHTML = '';
+  }
+}
+
+function getAllConflicts() {
+  let total = 0;
+  state.sections.forEach(sec => {
+    const timedItems = sec.items.filter(i=>i.date&&i.timeStart&&i.timeEnd);
+    for (let i=0; i<timedItems.length; i++) {
+      for (let j=i+1; j<timedItems.length; j++) {
+        const a=timedItems[i], b=timedItems[j];
+        if (a.date===b.date && hasTimeOverlap(a.timeStart,a.timeEnd,b.timeStart,b.timeEnd)) total++;
+      }
+    }
+  });
+  return total;
+}
+
+function hasTimeOverlap(s1,e1,s2,e2) {
+  return s1<e2 && e1>s2;
+}
+
+// ---- RENDER ----
+function render() {
+  renderTripMeta();
+  renderSectionNav();
+  renderSections();
+  updateCanvasHeader();
+  updateEmptyState();
+}
+
+function renderTripMeta() {
+  const t = state.trip;
+  const el = (id) => document.getElementById(id);
+  if (el('trip-title')) el('trip-title').value = t.title||'';
+  if (el('trip-start')) el('trip-start').value = t.start||'';
+  if (el('trip-end')) el('trip-end').value = t.end||'';
+  if (el('trip-dest')) el('trip-dest').value = t.dest||'';
+  if (el('trip-travelers')) el('trip-travelers').value = t.travelers||1;
+  if (el('trip-notes')) el('trip-notes').value = t.notes||'';
+}
+
+function renderSectionNav() {
+  const nav = document.getElementById('section-nav');
+  if (!nav) return;
+  nav.innerHTML = state.sections.map(sec => `
+    <div class="section-nav-item ${state.ui.selectedSection===sec.id?'active':''}"
+      onclick="state.ui.selectedSection='${sec.id}';scrollToSection('${sec.id}');renderSectionNav()">
+      <div class="section-nav-dot" style="background:${sec.color}"></div>
+      <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(sec.name)||'Unnamed Section'}</span>
+      <span style="font-size:11px;color:var(--text3)">${sec.items.length}</span>
+    </div>
+  `).join('');
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById('section-'+id);
+  if (el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderSections() {
+  const container = document.getElementById('sections-container');
+  if (!container) return;
+  container.innerHTML = '';
+  state.sections.forEach(sec => {
+    const el = createSectionElement(sec);
+    container.appendChild(el);
+  });
+  setupSectionDragDrop();
+}
+
+function renderSection(sectionId) {
+  const existing = document.getElementById('section-'+sectionId);
+  const sec = state.sections.find(s=>s.id===sectionId);
+  if (!sec) { if (existing) existing.remove(); return; }
+  const el = createSectionElement(sec);
+  if (existing) existing.replaceWith(el);
+  else document.getElementById('sections-container')?.appendChild(el);
+  setupSectionDragDrop();
+}
+
+function createSectionElement(sec) {
+  const expanded = state.ui.expandedSections[sec.id] !== false;
+  const div = document.createElement('div');
+  div.className = 'section-block';
+  div.id = 'section-'+sec.id;
+  div.dataset.sectionId = sec.id;
+  div.innerHTML = `
+    <div class="section-header" ondblclick="toggleSection('${sec.id}')">
+      <span class="section-drag-handle" draggable="true" 
+        onmousedown="event.stopPropagation()"
+        title="Drag to reorder">⠿</span>
+      <div class="section-color" style="background:${sec.color}"></div>
+      <input class="section-name-input" id="section-name-${sec.id}" 
+        value="${escHtml(sec.name)}" placeholder="Section name..."
+        onclick="event.stopPropagation()"
+        onchange="updateSectionName('${sec.id}',this.value)"
+        oninput="updateSectionName('${sec.id}',this.value)">
+      <span class="section-meta">${sec.items.length} item${sec.items.length!==1?'s':''}</span>
+      <div class="section-actions">
+        ${SECTION_COLORS.map(c=>`<div class="color-dot-btn ${sec.color===c?'selected':''}" style="background:${c}" onclick="event.stopPropagation();updateSectionColor('${sec.id}','${c}')" title="Color"></div>`).join('')}
+        <button class="btn icon ghost sm" onclick="event.stopPropagation();duplicateSection('${sec.id}')" title="Duplicate section">⧉</button>
+        <button class="btn icon ghost sm danger" onclick="event.stopPropagation();deleteSection('${sec.id}')" title="Delete section">✕</button>
+      </div>
+      <span class="section-toggle ${expanded?'':'collapsed'}" id="sec-toggle-${sec.id}" onclick="event.stopPropagation();toggleSection('${sec.id}')">▾</span>
+    </div>
+    <div class="section-notes" style="${sec.notes||expanded?'':'display:none'}">
+      <textarea placeholder="Section notes..." rows="2"
+        oninput="updateSectionNotes('${sec.id}',this.value)"
+        onfocus="this.parentElement.style.display=''"
+        style="width:100%;background:transparent;border:none;color:var(--text2);font-family:var(--font-body);font-size:12px;outline:none;resize:none"
+      >${escHtml(sec.notes||'')}</textarea>
+    </div>
+    <div class="section-body ${expanded?'':'hidden'}" id="sec-body-${sec.id}">
+      <div id="items-${sec.id}" class="items-list">
+        ${sec.items.map(item => createItemHTML(item, sec.id)).join('')}
+      </div>
+      <div class="add-item-row">
+        <div class="item-type-quick">
+          ${['Stay','Flight','Train','Transport','Restaurant','Activity','Sightseeing','Museum','Note','Buffer'].map(t=>`
+            <button class="quick-type-btn" onclick="createItem('${sec.id}','${t}')" title="Add ${t}">
+              ${getEmojiForType(t)} ${t}
+            </button>
+          `).join('')}
+          <button class="quick-type-btn" onclick="showCategoryModal('${sec.id}')" title="More types">+ More</button>
+        </div>
+      </div>
+    </div>
+  `;
+  // Setup item drag/drop after insert
+  setTimeout(() => setupItemDragDrop(sec.id), 0);
+  return div;
+}
+
+function showCategoryModal(sectionId) {
+  showModal('Add Item', `
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      ${CATEGORIES.map(c=>`
+        <button class="btn" onclick="createItem('${sectionId}','${c}');closeModal()" style="justify-content:flex-start;gap:8px">
+          ${getEmojiForType(c)} ${c}
+        </button>
+      `).join('')}
+    </div>
+  `,[{label:'Cancel',class:'',action:null}]);
+}
+
+function createItemHTML(item, sectionId) {
+  const expanded = state.ui.expandedItems[item.id] !== false;
+  const timeStr = formatItemTime(item);
+  const isMultiDay = item.multiDay && item.dateEnd && item.dateEnd !== item.date;
+  return `
+    <div class="item-card ${expanded?'':'collapsed-item'}" id="item-${item.id}" data-item-id="${item.id}" data-section-id="${sectionId}" draggable="true">
+      <div class="item-header" onclick="toggleItem('${item.id}')">
+        <span class="item-drag-handle" draggable="true" title="Drag to reorder">⠿</span>
+        <span class="item-emoji" id="item-emoji-${item.id}" onclick="event.stopPropagation();promptEmojiOverride('${item.id}','${sectionId}')" title="Click to change emoji">${item.emoji||'📌'}</span>
+        <div class="item-info">
+          <input class="item-title-input" id="item-title-${item.id}" value="${escHtml(item.title)}" placeholder="Item title..."
+            onclick="event.stopPropagation()"
+            oninput="updateItemField('${item.id}','${sectionId}','title',this.value)">
+          <div class="item-meta-row">
+            <span class="item-badge" style="background:${item.color}22;border-color:${item.color}44;color:${item.color}">${item.category}</span>
+            <span class="item-badge item-time-badge" id="item-time-badge-${item.id}" ${timeStr?'':'style="display:none"'}>${timeStr}</span>
+            <span class="item-badge item-loc-badge" id="item-loc-badge-${item.id}" ${item.location?'':'style="display:none"'}>${item.location?'📍 '+item.location:''}</span>
+            ${isMultiDay ? `<span class="spanning-badge">↔ Multi-day</span>`:``}
+            <span class="conflict-badge" id="conflict-${item.id}" title="Time conflict with another item" style="display:none">⚠️</span>
+          </div>
+        </div>
+        <div class="item-actions">
+          <button class="btn icon ghost sm" onclick="event.stopPropagation();moveItemModal('${item.id}','${sectionId}')" title="Move to section">↕</button>
+          <button class="btn icon ghost sm" onclick="event.stopPropagation();duplicateItem('${item.id}','${sectionId}')" title="Duplicate">⧉</button>
+          <button class="btn icon ghost sm danger" onclick="event.stopPropagation();deleteItem('${item.id}','${sectionId}')" title="Delete">✕</button>
+        </div>
+      </div>
+      <div class="item-body ${expanded?'open':''}" id="item-body-${item.id}">
+        <div class="item-fields">
+          <div class="field-group">
+            <label>Category</label>
+            <select onchange="updateItemField('${item.id}','${sectionId}','category',this.value)">
+              ${CATEGORIES.map(c=>`<option ${item.category===c?'selected':''}>${c}</option>`).join('')}
+            </select>
+          </div>
+          <div class="field-group">
+            <label>Color Tag</label>
+            <div class="color-swatches" style="padding-top:4px">
+              ${COLORS.map(c=>`<div class="color-swatch ${item.color===c?'active':''}" style="background:${c}" onclick="updateItemField('${item.id}','${sectionId}','color','${c}');this.parentElement.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('active'));this.classList.add('active')" title="${c}"></div>`).join('')}
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Date</label>
+            <input type="date" value="${item.date||''}" onchange="updateItemField('${item.id}','${sectionId}','date',this.value)">
+          </div>
+          <div class="field-group">
+            <label>Multi-day End</label>
+            <input type="date" value="${item.dateEnd||''}" onchange="updateItemField('${item.id}','${sectionId}','dateEnd',this.value)">
+          </div>
+          <div class="field-group">
+            <label>Start Time</label>
+            <input type="time" value="${item.timeStart||''}" onchange="updateItemField('${item.id}','${sectionId}','timeStart',this.value)">
+          </div>
+          <div class="field-group">
+            <label>End Time</label>
+            <input type="time" value="${item.timeEnd||''}" onchange="updateItemField('${item.id}','${sectionId}','timeEnd',this.value)">
+          </div>
+          <div class="field-group full">
+            <label>Location</label>
+            <input type="text" placeholder="Address, venue, or city" value="${escHtml(item.location||'')}" 
+              oninput="updateItemField('${item.id}','${sectionId}','location',this.value)">
+          </div>
+          <div class="field-group full">
+            <label>Notes</label>
+            <textarea rows="3" placeholder="Detailed notes, instructions, booking references..."
+              oninput="updateItemField('${item.id}','${sectionId}','notes',this.value)">${escHtml(item.notes||'')}</textarea>
+          </div>
+        </div>
+        <div class="attachments">
+          <div class="field-group" style="margin-bottom:4px"><label>Links / References</label></div>
+          <div id="attachments-${item.id}">
+            ${(item.attachments||[]).map((a,i)=>`
+              <div class="attachment-item">
+                <span>🔗</span>
+                <a href="${escHtml(a.url)}" target="_blank">${escHtml(a.label||a.url)}</a>
+                <button class="btn icon ghost sm" onclick="removeAttachment('${item.id}','${sectionId}',${i})">✕</button>
+              </div>
+            `).join('')}
+          </div>
+          <div class="add-attachment">
+            <input id="att-input-${item.id}" placeholder="Paste URL or reference..." type="text"
+              onkeydown="if(event.key==='Enter')addAttachment('${item.id}','${sectionId}')">
+            <button class="btn sm" onclick="addAttachment('${item.id}','${sectionId}')">Add</button>
+          </div>
+        </div>
+        <div class="alternatives">
+          <div class="alternatives-label">
+            <span>Alternative Options</span>
+            <button class="btn sm ghost" onclick="addAlternative('${item.id}','${sectionId}')">+ Add Alternative</button>
+          </div>
+          <div id="alts-${item.id}">
+            ${(item.alternatives||[]).map(a=>`
+              <div class="alt-card ${a.active?'active':''}">
+                <input class="alt-title-input" placeholder="Alternative option..." value="${escHtml(a.title||'')}"
+                  oninput="updateAlt('${item.id}','${sectionId}','${a.id}','title',this.value)">
+                ${a.active ? '<span style="position:absolute;top:6px;right:6px;font-size:11px;color:var(--success)">✓ Active</span>' : `<button class="btn sm ghost alt-active-btn" onclick="setActiveAlt('${item.id}','${sectionId}','${a.id}')">Set Active</button>`}
+                <br>
+                <textarea class="alt-notes" rows="2" placeholder="Notes..."
+                  oninput="updateAlt('${item.id}','${sectionId}','${a.id}','notes',this.value)">${escHtml(a.notes||'')}</textarea>
+                <button class="btn sm danger" onclick="removeAlt('${item.id}','${sectionId}','${a.id}')" style="margin-top:4px">Remove</button>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function formatItemTime(item) {
+  if (!item.timeStart && !item.timeStart && !item.date) return '';
+  const parts = [];
+  if (item.date) parts.push(formatDate(item.date));
+  if (item.timeStart) {
+    let t = item.timeStart;
+    if (item.timeEnd) t += ' – '+item.timeEnd;
+    parts.push(t);
+  }
+  return parts.join(' ');
+}
+
+function updateEmptyState() {
+  const el = document.getElementById('empty-state');
+  if (el) el.style.display = state.sections.length ? 'none' : '';
+}
+
+// ---- MOVE ITEM MODAL ----
+function moveItemModal(itemId, sectionId) {
+  const options = state.sections.filter(s=>s.id!==sectionId);
+  if (!options.length) { toast('No other sections to move to', 'warn'); return; }
+  showModal('Move Item To Section', `
+    <div style="display:flex;flex-direction:column;gap:6px">
+      ${options.map(s=>`
+        <button class="btn" onclick="moveItemToSection('${itemId}','${sectionId}','${s.id}');closeModal()" style="justify-content:flex-start;gap:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:${s.color}"></div>
+          ${escHtml(s.name)}
+        </button>
+      `).join('')}
+    </div>
+  `,[{label:'Cancel',class:'',action:null}]);
+}
+
+// ---- DRAG & DROP SECTIONS ----
+function setupSectionDragDrop() {
+  const container = document.getElementById('sections-container');
+  if (!container) return;
+  const sections = container.querySelectorAll('.section-block');
+  sections.forEach(sec => {
+    const handle = sec.querySelector('.section-drag-handle');
+    if (!handle) return;
+    handle.addEventListener('dragstart', (e) => {
+      dragState = { type: 'section', id: sec.dataset.sectionId };
+      sec.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      log.info('Drag section start', dragState.id);
+    });
+    handle.addEventListener('dragend', () => {
+      sec.classList.remove('dragging');
+      container.querySelectorAll('.section-block').forEach(s=>s.classList.remove('drag-over'));
+    });
+    sec.addEventListener('dragover', (e) => {
+      if (dragState.type !== 'section' || dragState.id === sec.dataset.sectionId) return;
+      e.preventDefault();
+      container.querySelectorAll('.section-block').forEach(s=>s.classList.remove('drag-over'));
+      sec.classList.add('drag-over');
+    });
+    sec.addEventListener('drop', (e) => {
+      e.preventDefault();
+      if (dragState.type !== 'section') return;
+      sec.classList.remove('drag-over');
+      const fromId = dragState.id;
+      const toId = sec.dataset.sectionId;
+      if (fromId===toId) return;
+      pushUndo('Reorder sections');
+      const from = state.sections.findIndex(s=>s.id===fromId);
+      const to = state.sections.findIndex(s=>s.id===toId);
+      const [item] = state.sections.splice(from, 1);
+      state.sections.splice(to, 0, item);
+      render();
+      log.action('Section reorder', {from:fromId, to:toId});
+    });
+  });
+}
+
+// ---- DRAG & DROP ITEMS ----
+function setupItemDragDrop(sectionId) {
+  const list = document.getElementById('items-'+sectionId);
+  if (!list) return;
+  list.querySelectorAll('.item-card').forEach(card => {
+    card.addEventListener('dragstart', (e) => {
+      if (e.target.classList.contains('section-drag-handle')) return;
+      dragState = { type: 'item', id: card.dataset.itemId, sectionId };
+      card.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.stopPropagation();
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      list.querySelectorAll('.item-card').forEach(c=>{
+        c.classList.remove('drag-over-top','drag-over-bottom');
+      });
+    });
+    card.addEventListener('dragover', (e) => {
+      if (dragState.type !== 'item') return;
+      e.preventDefault(); e.stopPropagation();
+      list.querySelectorAll('.item-card').forEach(c=>{c.classList.remove('drag-over-top','drag-over-bottom');});
+      const rect = card.getBoundingClientRect();
+      const mid = rect.top + rect.height/2;
+      card.classList.add(e.clientY < mid ? 'drag-over-top' : 'drag-over-bottom');
+    });
+    card.addEventListener('drop', (e) => {
+      e.preventDefault(); e.stopPropagation();
+      if (dragState.type !== 'item') return;
+      list.querySelectorAll('.item-card').forEach(c=>{c.classList.remove('drag-over-top','drag-over-bottom');});
+      const fromId = dragState.id;
+      const fromSecId = dragState.sectionId;
+      const toId = card.dataset.itemId;
+      if (fromId===toId) return;
+      pushUndo('Reorder items');
+      const rect = card.getBoundingClientRect();
+      const mid = rect.top + rect.height/2;
+      const insertBefore = e.clientY < mid;
+      if (fromSecId === sectionId) {
+        const sec = state.sections.find(s=>s.id===sectionId);
+        const from = sec.items.findIndex(i=>i.id===fromId);
+        const to = sec.items.findIndex(i=>i.id===toId);
+        const [item] = sec.items.splice(from, 1);
+        const newTo = sec.items.findIndex(i=>i.id===toId);
+        sec.items.splice(insertBefore ? newTo : newTo+1, 0, item);
+        renderSection(sectionId);
+      } else {
+        moveItemToSection(fromId, fromSecId, sectionId);
+      }
+      log.action('Item reorder', {from:fromId, to:toId, section:sectionId});
+    });
+  });
+}
+
+// ---- SAVE / LOAD ----
+function saveFile() {
+  try {
+    const saveData = {
+      ...deepClone(state),
+      savedAt: new Date().toISOString(),
+      schemaVersion: '1.0'
+    };
+    const json = JSON.stringify(saveData, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const tripName = state.trip.title || 'itinerary';
+    a.href = url;
+    a.download = `voyagr-${tripName.replace(/[^a-z0-9]/gi,'_').toLowerCase()}-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    hasUnsaved = false;
+    toast('✓ Itinerary saved successfully', 'success');
+    log.info('Save file exported');
+  } catch (err) {
+    log.error('Save failed', err);
+    toast('Save failed: '+err.message, 'error');
+  }
+}
+
+function importFile() {
+  document.getElementById('file-input').click();
+}
+
+function handleFileLoad(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.sections || !data.trip) throw new Error('Invalid Voyagr save file format');
+      pushUndo('Load file');
+      state = {
+        version: data.version || VERSION,
+        trip: data.trip || {},
+        sections: data.sections || [],
+        settings: { ...state.settings, ...(data.settings||{}) },
+        ui: data.ui || { expandedSections:{}, expandedItems:{}, activePanel:null },
+        packing: data.packing || []
+      };
+      applyTheme();
+      render();
+      hasUnsaved = false;
+      toast('✓ Itinerary loaded: '+( state.trip.title||'Untitled'), 'success');
+      log.info('File loaded', { title: state.trip.title });
+    } catch (err) {
+      log.error('Load failed', err);
+      toast('Failed to load file: '+err.message, 'error');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+function duplicateTrip() {
+  pushUndo('Duplicate trip');
+  state.trip.title = (state.trip.title||'Trip') + ' (copy)';
+  state.sections = deepClone(state.sections).map(sec => ({
+    ...sec, id: genId(),
+    items: sec.items.map(item => ({ ...item, id: genId() }))
+  }));
+  render();
+  toast('Trip duplicated in memory', 'success');
+  log.action('Duplicate trip');
+}
+
+// ---- DEMO DATA ----
+function loadDemo() {
+  showConfirm('Load Demo Itinerary?', 'This will replace the current workspace. Save first if needed.',
+    [
+      { label: 'Load Demo', class: 'primary', action: () => {
+        pushUndo('Load demo');
+        loadDemoData();
+        toast('✓ Demo itinerary loaded', 'success');
+        log.info('Demo loaded');
+      }},
+      { label: 'Cancel', class: '', action: null }
+    ]
+  );
+}
+
+function loadDemoData() {
+  const s1 = genId(), s2 = genId(), s3 = genId(), s4 = genId();
+  state.trip = {
+    title: 'Italian Grand Tour',
+    dest: 'Rome, Florence, Venice, Amalfi Coast',
+    start: '2025-06-01', end: '2025-06-15',
+    travelers: 2, notes: 'Romantic anniversary trip. Focus on art, food, and coastal relaxation. Confirmed all bookings. Need to arrange travel insurance.'
+  };
+  state.sections = [
+    {
+      id: s1, name: 'Rome — Days 1–4', color: SECTION_COLORS[0],
+      notes: 'Check in by 3pm at Hotel Artemide. Pick up Roma Pass on arrival.',
+      items: [
+        {
+          id: genId(), sectionId: s1,
+          title: 'Fly LHR → FCO', category: 'Flight', emoji: '✈️', emojiOverride: false,
+          location: 'Heathrow Airport T2', date: '2025-06-01', timeStart: '08:00', timeEnd: '11:30',
+          notes: 'BA269. Check-in 05:30. Bags already checked online.',
+          color: COLORS[0], attachments: [{label:'BA Booking Ref XY1234',url:'https://ba.com'}],
+          alternatives: [], multiDay: false, dateEnd: ''
+        },
+        {
+          id: genId(), sectionId: s1,
+          title: 'Hotel Artemide Check-in', category: 'Stay', emoji: '🏨', emojiOverride: false,
+          location: 'Via Nazionale 22, Rome', date: '2025-06-01', timeStart: '15:00', timeEnd: '',
+          notes: '4-star boutique hotel. Superior double booked. Ref: ART-20250601. Rooftop terrace.',
+          color: COLORS[1], attachments: [], alternatives: [], multiDay: true, dateEnd: '2025-06-04'
+        },
+        {
+          id: genId(), sectionId: s1,
+          title: 'Colosseum & Roman Forum', category: 'Sightseeing', emoji: '🏛️', emojiOverride: false,
+          location: 'Piazza del Colosseo, Rome', date: '2025-06-02', timeStart: '09:00', timeEnd: '13:00',
+          notes: 'Pre-booked skip-the-line entry. Underground arena included. Guided tour at 09:30.',
+          color: COLORS[2], attachments: [{label:'Tickets',url:'https://colosseum.it'}],
+          alternatives: [
+            { id: genId(), title: 'Palatine Hill alternative morning', notes: 'Quieter option if crowds too heavy', active: false }
+          ], multiDay: false, dateEnd: ''
+        },
+        {
+          id: genId(), sectionId: s1,
+          title: 'Dinner — Da Enzo al 29', category: 'Restaurant', emoji: '🍽️', emojiOverride: false,
+          location: 'Via dei Vascellari 29, Trastevere', date: '2025-06-02', timeStart: '20:00', timeEnd: '22:00',
+          notes: 'Roman trattoria. Book 2 weeks ahead. Try: cacio e pepe, coda alla vaccinara. Cash preferred.',
+          color: COLORS[3], attachments: [],
+          alternatives: [
+            { id: genId(), title: 'Osteria dell\'Enoteca (backup)', notes: 'More formal. Via Santo Spirito 3.', active: false }
+          ], multiDay: false, dateEnd: ''
+        },
+        {
+          id: genId(), sectionId: s1,
+          title: 'Vatican Museums & Sistine Chapel', category: 'Museum', emoji: '🏛️', emojiOverride: false,
+          location: 'Viale Vaticano, Vatican City', date: '2025-06-03', timeStart: '09:00', timeEnd: '13:00',
+          notes: 'Early bird entry. Focus on Gallery of Maps, Raphael Rooms, Sistine Chapel. Shoulders covered required.',
+          color: COLORS[0], attachments: [], alternatives: [], multiDay: false, dateEnd: ''
+        }
+      ]
+    },
+    {
+      id: s2, name: 'Florence — Days 5–8', color: SECTION_COLORS[1],
+      notes: 'Slower pace. Focus on Uffizi and day trips. Studio Officina Profumo visit confirmed.',
+      items: [
+        {
+          id: genId(), sectionId: s2,
+          title: 'Train Rome → Florence', category: 'Train', emoji: '🚄', emojiOverride: false,
+          location: 'Roma Termini → Santa Maria Novella', date: '2025-06-05', timeStart: '09:30', timeEnd: '11:00',
+          notes: 'Trenitalia Frecciarossa FR9615. Car 4 seats 31A/31B. Pre-booked. Check in 30min early.',
+          color: COLORS[2], attachments: [], alternatives: [], multiDay: false, dateEnd: ''
+        },
+        {
+          id: genId(), sectionId: s2,
+          title: 'Uffizi Gallery', category: 'Museum', emoji: '🖼️', emojiOverride: false,
+          location: 'Piazzale degli Uffizi 6, Florence', date: '2025-06-06', timeStart: '10:00', timeEnd: '14:00',
+          notes: 'Must-see: Botticelli\'s Birth of Venus, Raphael\'s Madonna. Pre-book obligatory.',
+          color: COLORS[1], attachments: [], alternatives: [], multiDay: false, dateEnd: ''
+        },
+        {
+          id: genId(), sectionId: s2,
+          title: 'Day Trip — Cinque Terre', category: 'Activity', emoji: '🥾', emojiOverride: false,
+          location: 'Cinque Terre National Park', date: '2025-06-07', timeStart: '07:30', timeEnd: '20:00',
+          notes: 'Take 07:30 train from SMN. Buy Cinque Terre card. Walk Corniglia–Vernazza–Monterosso path. Sunset in Riomaggiore.',
+          color: COLORS[3], attachments: [], alternatives: [
+            { id: genId(), title: 'San Gimignano day trip instead', notes: 'Easier if weather is poor. Medieval towers.', active: false }
+          ], multiDay: false, dateEnd: ''
+        }
+      ]
+    },
+    {
+      id: s3, name: 'Venice — Days 9–11', color: SECTION_COLORS[2],
+      notes: 'Water taxi from Piazzale Roma to hotel. No wheeled luggage on bridges.',
+      items: [
+        {
+          id: genId(), sectionId: s3,
+          title: 'Florence → Venice', category: 'Train', emoji: '🚄', emojiOverride: false,
+          location: 'SMN → Santa Lucia', date: '2025-06-09', timeStart: '10:05', timeEnd: '12:53',
+          notes: 'Italo EVO. Pre-booked. 1st class. Arrive Venezia Santa Lucia.',
+          color: COLORS[0], attachments: [], alternatives: [], multiDay: false, dateEnd: ''
+        },
+        {
+          id: genId(), sectionId: s3,
+          title: 'Gondola Tour', category: 'Activity', emoji: '⛴️', emojiOverride: false,
+          location: 'Rialto Bridge, Venice', date: '2025-06-10', timeStart: '17:30', timeEnd: '18:30',
+          notes: 'Book through hotel. Shared gondola cheaper (~€30pp vs €80 private). Sunset time.',
+          color: COLORS[4], attachments: [], alternatives: [], multiDay: false, dateEnd: ''
+        }
+      ]
+    },
+    {
+      id: s4, name: 'Amalfi Coast — Days 12–15', color: SECTION_COLORS[3],
+      notes: 'Most relaxed section. SITA buses connect villages. Car rental not recommended — roads narrow.',
+      items: [
+        {
+          id: genId(), sectionId: s4,
+          title: 'Villa Rufolo, Ravello', category: 'Sightseeing', emoji: '🌿', emojiOverride: false,
+          location: 'Piazza Duomo, Ravello', date: '2025-06-13', timeStart: '10:00', timeEnd: '12:00',
+          notes: 'Stunning gardens overlooking the coast. Wagner wrote here. Worth the bus ride up.',
+          color: COLORS[2], attachments: [], alternatives: [], multiDay: false, dateEnd: ''
+        },
+        {
+          id: genId(), sectionId: s4,
+          title: 'Beach Day — Spiaggia di Duoglio', category: 'Beach', emoji: '🏖️', emojiOverride: false,
+          location: 'Amalfi, Salerno', date: '2025-06-14', timeStart: '10:00', timeEnd: '16:00',
+          notes: 'Quieter beach accessible by path from Amalfi. Bring snorkeling gear.',
+          color: COLORS[3], attachments: [], alternatives: [], multiDay: false, dateEnd: ''
+        },
+        {
+          id: genId(), sectionId: s4,
+          title: 'Return Flights Naples → LHR', category: 'Flight', emoji: '✈️', emojiOverride: false,
+          location: 'Naples Capodichino Airport', date: '2025-06-15', timeStart: '14:00', timeEnd: '16:45',
+          notes: 'BA2598. Allow 3 hours to reach airport from Amalfi by ferry+taxi.',
+          color: COLORS[0], attachments: [], alternatives: [], multiDay: false, dateEnd: ''
+        }
+      ]
+    }
+  ];
+  state.ui.expandedSections = {};
+  state.sections.forEach(s => state.ui.expandedSections[s.id] = true);
+  state.ui.expandedItems = {};
+  state.packing = [
+    { id: genId(), category: 'Documents', name: 'Passport', checked: false },
+    { id: genId(), category: 'Documents', name: 'Travel insurance docs', checked: false },
+    { id: genId(), category: 'Documents', name: 'Hotel confirmations printout', checked: true },
+    { id: genId(), category: 'Documents', name: 'Train tickets', checked: true },
+    { id: genId(), category: 'Clothing', name: 'Smart casual outfit (3x)', checked: false },
+    { id: genId(), category: 'Clothing', name: 'Comfortable walking shoes', checked: false },
+    { id: genId(), category: 'Clothing', name: 'Light jacket', checked: false },
+    { id: genId(), category: 'Clothing', name: 'Swimwear', checked: false },
+    { id: genId(), category: 'Essentials', name: 'Universal power adapter', checked: false },
+    { id: genId(), category: 'Essentials', name: 'Sunscreen SPF50', checked: false },
+    { id: genId(), category: 'Essentials', name: 'Portable power bank', checked: false }
+  ];
+  applyTheme();
+  render();
+}
+
+// ---- PANELS ----
+function togglePanel(type) {
+  const panel = document.getElementById('panel');
+  if (state.ui.activePanel === type) {
+    panel.classList.add('hidden');
+    state.ui.activePanel = null;
+    return;
+  }
+  state.ui.activePanel = type;
+  panel.classList.remove('hidden');
+  renderPanel(type);
+}
+
+function renderPanel(type) {
+  const content = document.getElementById('panel-content');
+  if (!content) return;
+  switch(type) {
+    case 'settings': content.innerHTML = renderSettingsPanel(); break;
+    case 'packing': content.innerHTML = renderPackingPanel(); break;
+    case 'map': content.innerHTML = renderMapPanel(); break;
+    case 'stats': content.innerHTML = renderStatsPanel(); break;
+    case 'help': content.innerHTML = renderHelpPanel(); break;
+    default: content.innerHTML = '';
+  }
+}
+
+function renderSettingsPanel() {
+  return `
+    <div class="panel-header">
+      <h3>Settings</h3>
+      <button class="btn icon ghost sm" onclick="togglePanel('settings')">✕</button>
+    </div>
+    <div class="panel-section">
+      <h4>Appearance</h4>
+      <div class="toggle-row">
+        <span>Dark Mode</span>
+        <label class="toggle"><input type="checkbox" ${state.settings.darkMode?'checked':''} onchange="state.settings.darkMode=this.checked;applyTheme()"><span class="toggle-slider"></span></label>
+      </div>
+    </div>
+    <div class="panel-section">
+      <h4>Assistive Features</h4>
+      <div class="toggle-row">
+        <span>Auto Emoji</span>
+        <label class="toggle"><input type="checkbox" ${state.settings.autoEmoji?'checked':''} onchange="state.settings.autoEmoji=this.checked"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <span>Conflict Warnings</span>
+        <label class="toggle"><input type="checkbox" ${state.settings.showConflicts?'checked':''} onchange="state.settings.showConflicts=this.checked"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <span>AI Mode</span>
+        <label class="toggle"><input type="checkbox" ${state.settings.aiMode?'checked':''} onchange="state.settings.aiMode=this.checked;toggleAIMode()"><span class="toggle-slider"></span></label>
+      </div>
+    </div>
+    <div class="panel-section">
+      <h4>Keyboard Shortcuts</h4>
+      <ul class="shortcut-list">
+        <li><span>Save</span><span><kbd>Ctrl</kbd>+<kbd>S</kbd></span></li>
+        <li><span>Undo</span><span><kbd>Ctrl</kbd>+<kbd>Z</kbd></span></li>
+        <li><span>Redo</span><span><kbd>Ctrl</kbd>+<kbd>⇧</kbd>+<kbd>Z</kbd></span></li>
+        <li><span>Add Section</span><span><kbd>Ctrl</kbd>+<kbd>⇧</kbd>+<kbd>S</kbd></span></li>
+        <li><span>Toggle Dark</span><span><kbd>Ctrl</kbd>+<kbd>D</kbd></span></li>
+        <li><span>Duplicate Trip</span><span><kbd>Ctrl</kbd>+<kbd>⇧</kbd>+<kbd>D</kbd></span></li>
+        <li><span>Export</span><span><kbd>Ctrl</kbd>+<kbd>E</kbd></span></li>
+        <li><span>Help</span><span><kbd>Ctrl</kbd>+<kbd>?</kbd></span></li>
+      </ul>
+    </div>
+  `;
+}
+
+function renderPackingPanel() {
+  const categories = [...new Set(state.packing.map(p=>p.category))];
+  const done = state.packing.filter(p=>p.checked).length;
+  return `
+    <div class="panel-header">
+      <h3>🧳 Packing List</h3>
+      <button class="btn icon ghost sm" onclick="togglePanel('packing')">✕</button>
+    </div>
+    <div style="padding:12px;border-bottom:1px solid var(--border)">
+      <div style="font-size:12px;color:var(--text3);margin-bottom:8px">${done}/${state.packing.length} items packed</div>
+      <div style="height:4px;background:var(--bg3);border-radius:2px;overflow:hidden">
+        <div style="height:100%;background:var(--accent);width:${state.packing.length?Math.round(done/state.packing.length*100):0}%;border-radius:2px;transition:width 0.3s"></div>
+      </div>
+    </div>
+    <div class="packing-section">
+      ${categories.map(cat=>`
+        <div class="packing-category">
+          <div class="packing-cat-title">${cat}</div>
+          ${state.packing.filter(p=>p.category===cat).map(p=>`
+            <div class="packing-item">
+              <input type="checkbox" ${p.checked?'checked':''} onchange="togglePackingItem('${p.id}',this.checked)">
+              <span style="${p.checked?'text-decoration:line-through;color:var(--text3)':''}">${escHtml(p.name)}</span>
+              <button class="btn icon ghost sm" onclick="removePackingItem('${p.id}')" style="margin-left:auto;font-size:11px">✕</button>
+            </div>
+          `).join('')}
+        </div>
+      `).join('')}
+      <div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--border)">
+        <div style="display:flex;gap:6px;margin-bottom:6px">
+          <input id="packing-cat-input" placeholder="Category" style="width:90px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:12px;padding:5px 8px;border-radius:6px;outline:none" value="Essentials">
+          <input id="packing-item-input" placeholder="Item name..." style="flex:1;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-size:12px;padding:5px 8px;border-radius:6px;outline:none"
+            onkeydown="if(event.key==='Enter')addPackingItem()">
+          <button class="btn sm" onclick="addPackingItem()">+</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function togglePackingItem(id, checked) {
+  const item = state.packing.find(p=>p.id===id);
+  if (item) { item.checked = checked; hasUnsaved = true; renderPanel('packing'); }
+}
+
+function removePackingItem(id) {
+  state.packing = state.packing.filter(p=>p.id!==id);
+  hasUnsaved = true;
+  renderPanel('packing');
+}
+
+function addPackingItem() {
+  const cat = document.getElementById('packing-cat-input')?.value?.trim()||'Essentials';
+  const name = document.getElementById('packing-item-input')?.value?.trim();
+  if (!name) return;
+  state.packing.push({ id: genId(), category: cat, name, checked: false });
+  hasUnsaved = true;
+  renderPanel('packing');
+}
+
+function renderMapPanel() {
+  const locations = [];
+  state.sections.forEach(sec => {
+    sec.items.forEach(item => {
+      if (item.location) locations.push({ name: item.title||item.location, location: item.location, color: item.color });
+    });
+  });
+  return `
+    <div class="panel-header">
+      <h3>🗺 Map View</h3>
+      <button class="btn icon ghost sm" onclick="togglePanel('map')">✕</button>
+    </div>
+    <div style="padding:12px">
+      <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Locations across your itinerary (${locations.length} places)</div>
+      ${locations.length ? `
+        <div id="map-view" style="min-height:200px;background:var(--bg3);border-radius:var(--radius);position:relative;overflow:hidden;margin-bottom:12px">
+          <div style="text-align:center;padding:40px 20px;color:var(--text3)">
+            <div style="font-size:32px;margin-bottom:8px">🗺️</div>
+            <div style="font-size:13px;font-weight:500;color:var(--text2)">Map Visualization</div>
+            <div style="font-size:12px;margin-top:4px">Shows ${locations.length} locations from your itinerary</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          ${locations.map((l,i)=>`
+            <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;background:var(--bg3);border-radius:6px;font-size:12px">
+              <span style="width:8px;height:8px;border-radius:50%;background:${l.color};flex-shrink:0"></span>
+              <span style="font-weight:500;color:var(--text)">${i+1}. ${escHtml(l.name)}</span>
+              <span style="color:var(--text3);margin-left:auto;font-size:11px">📍 ${escHtml(l.location)}</span>
+            </div>
+          `).join('')}
+        </div>
+      ` : `<div style="text-align:center;padding:40px;color:var(--text3)">
+        <div style="font-size:32px;margin-bottom:8px">📍</div>
+        <div>Add locations to items to see them here</div>
+      </div>`}
+    </div>
+  `;
+}
+
+function renderStatsPanel() {
+  const totalItems = state.sections.reduce((n,s)=>n+s.items.length,0);
+  const withTime = state.sections.reduce((n,s)=>n+s.items.filter(i=>i.timeStart).length,0);
+  const withLoc = state.sections.reduce((n,s)=>n+s.items.filter(i=>i.location).length,0);
+  const categories = {};
+  state.sections.forEach(s=>s.items.forEach(i=>{categories[i.category]=(categories[i.category]||0)+1;}));
+  const days = state.trip.start&&state.trip.end ? Math.round((new Date(state.trip.end)-new Date(state.trip.start))/(86400000))+1 : null;
+  return `
+    <div class="panel-header">
+      <h3>📊 Trip Stats</h3>
+      <button class="btn icon ghost sm" onclick="togglePanel('stats')">✕</button>
+    </div>
+    <div style="padding:16px">
+      <div class="stat-grid" style="margin-bottom:16px">
+        <div class="stat-box"><div class="stat-num">${state.sections.length}</div><div class="stat-label">Sections</div></div>
+        <div class="stat-box"><div class="stat-num">${totalItems}</div><div class="stat-label">Items</div></div>
+        <div class="stat-box"><div class="stat-num">${days||'—'}</div><div class="stat-label">Days</div></div>
+        <div class="stat-box"><div class="stat-num">${withLoc}</div><div class="stat-label">Locations</div></div>
+      </div>
+      <h4 style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px">By Category</h4>
+      ${Object.entries(categories).sort((a,b)=>b[1]-a[1]).map(([cat,count])=>`
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px">
+          <span>${getEmojiForType(cat)}</span>
+          <span style="flex:1;color:var(--text2)">${cat}</span>
+          <span style="font-family:var(--font-mono);color:var(--accent)">${count}</span>
+          <div style="width:60px;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden">
+            <div style="height:100%;background:var(--accent);width:${Math.round(count/totalItems*100)}%;border-radius:2px"></div>
+          </div>
+        </div>
+      `).join('')}
+      ${getAllConflicts()>0?`<div class="conflict-indicator" style="margin-top:16px">⚠️ ${getAllConflicts()} time conflict${getAllConflicts()>1?'s':''} detected</div>`:''}
+    </div>
+  `;
+}
+
+function renderHelpPanel() {
+  return `
+    <div class="panel-header">
+      <h3>Help & Guide</h3>
+      <button class="btn icon ghost sm" onclick="togglePanel('help')">✕</button>
+    </div>
+    <div class="help-section">
+      <h4>Getting Started</h4>
+      <p>Voyagr is a professional itinerary design tool. Research your trip elsewhere, then use Voyagr to organize, design, and present it.</p>
+      
+      <h4>Structure</h4>
+      <p><strong>Trip</strong> → <strong>Sections</strong> → <strong>Items</strong>. Sections can represent cities, travel phases, or any grouping. Items are activities, stays, flights, etc.</p>
+      
+      <h4>Saving Your Work</h4>
+      <p>Click <strong>Save</strong> to download a <code>.json</code> file. Open it later with <strong>Open</strong>. Files are portable across devices.</p>
+      
+      <h4>Drag & Drop</h4>
+      <p>Drag the <strong>⠿</strong> handle on sections or items to reorder. Drag items between sections using the ↕ button.</p>
+      
+      <h4>Export for Clients</h4>
+      <p>Use <strong>Export</strong> to generate a clean HTML presentation. Print or save as PDF from the browser.</p>
+      
+      <h4>Alternatives</h4>
+      <p>Each item can have up to 3 alternatives. Mark one as "Active" to select the preferred option.</p>
+      
+      <h4>AI Mode</h4>
+      <p>Enable AI Mode in Settings to import itinerary JSON generated by an AI or external tool.</p>
+      
+      <h4>About</h4>
+      <p style="color:var(--text3);font-size:12px">Voyagr v${VERSION}<br>✦ Brewed with love by KT using Cursor<br>Premium Travel Itinerary Design Platform</p>
+    </div>
+  `;
+}
+
+// ---- EXPORT PRESENTATION ----
+function exportPresentation() {
+  const html = buildPresentationHTML();
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `voyagr-${(state.trip.title||'itinerary').replace(/[^a-z0-9]/gi,'_').toLowerCase()}-presentation.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('✓ Presentation exported', 'success');
+  log.info('Presentation exported');
+}
+
+function buildPresentationHTML() {
+  const t = state.trip;
+  const dateRange = t.start && t.end ? formatDateRange(t.start, t.end) : '';
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${escHtml(t.title||'Itinerary')} — Voyagr</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#f5f3ee;color:#1a1a22;font-size:14px;line-height:1.6}
+  .cover{background:linear-gradient(135deg,#0a0a0f 0%,#1a1525 50%,#0f1520 100%);color:#e8e8f0;padding:80px 60px;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
+  .cover-subtitle{font-size:12px;text-transform:uppercase;letter-spacing:0.2em;color:#c8a96e;margin-bottom:12px;font-weight:500}
+  .cover-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:52px;font-weight:300;line-height:1.1;margin-bottom:12px}
+  .cover-meta{font-size:13px;color:#9898b0;margin-top:8px}
+  .cover-notes{font-size:13px;color:#b8b8c8;margin-top:16px;line-height:1.7;max-width:600px;font-style:italic}
+  .brand-tag{position:absolute;top:24px;right:24px;font-family:'Cormorant Garamond',serif;font-size:18px;color:#c8a96e;letter-spacing:0.05em}
+  .cover{position:relative}
+  .content{max-width:860px;margin:0 auto;padding:48px 40px}
+  .section-block{margin-bottom:40px;break-inside:avoid}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;border-left:4px solid #c8a96e;padding-left:16px;margin-bottom:16px;color:#1a1a22}
+  .section-notes-text{font-size:12px;color:#666;font-style:italic;margin-left:20px;margin-bottom:12px}
+  .item{padding:14px 16px;margin-bottom:10px;border:1px solid #ddd;border-radius:8px;background:#fff;position:relative}
+  .item.flight{border-left:4px solid #c8a96e}
+  .item.stay{border-left:4px solid #8fb4c8}
+  .item.restaurant{border-left:4px solid #a8c8a0}
+  .item-header{display:flex;align-items:flex-start;gap:12px}
+  .item-emoji{font-size:22px;margin-top:2px}
+  .item-title{font-weight:600;font-size:15px;color:#1a1a22}
+  .item-cat{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#888;margin-top:1px}
+  .item-meta{font-size:12px;color:#666;margin-top:6px;display:flex;flex-wrap:wrap;gap:10px}
+  .item-meta span{display:flex;align-items:center;gap:4px}
+  .item-notes-text{font-size:12.5px;color:#444;margin-top:8px;line-height:1.6;padding-top:8px;border-top:1px solid #eee}
+  .alt-section{margin-top:8px;padding-top:8px;border-top:1px dashed #ddd}
+  .alt-label{font-size:11px;color:#aaa;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.08em}
+  .alt-item{font-size:12px;background:#f8f6f2;padding:6px 10px;border-radius:6px;margin-bottom:4px;color:#555}
+  .alt-item.active{background:#f0f8f0;color:#2a6a3a;font-weight:500}
+  .footer{text-align:center;padding:32px;border-top:1px solid #ddd;margin-top:40px;font-size:11px;color:#aaa}
+  .footer strong{color:#c8a96e;font-family:'Cormorant Garamond',serif;font-size:14px}
+  .print-btn{position:fixed;bottom:20px;right:20px;background:#c8a96e;color:#0a0a0f;border:none;padding:12px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;box-shadow:0 4px 16px rgba(200,169,110,0.4)}
+  .print-btn:hover{background:#e8c98e}
+  @media print{.print-btn{display:none}}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="brand-tag">Voyagr</div>
+  <div class="cover-subtitle">Itinerary Design</div>
+  <div class="cover-title">${escHtml(t.title||'Travel Itinerary')}</div>
+  <div class="cover-meta">${[t.dest,dateRange,t.travelers>1?t.travelers+' Travelers':t.travelers===1?'Solo':''].filter(Boolean).join(' · ')}</div>
+  ${t.notes?`<div class="cover-notes">${escHtml(t.notes)}</div>`:''}
+</div>
+<div class="content">
+  ${state.sections.map(sec=>`
+    <div class="section-block">
+      <div class="section-title">${escHtml(sec.name)}</div>
+      ${sec.notes?`<div class="section-notes-text">${escHtml(sec.notes)}</div>`:''}
+      ${sec.items.map(item=>`
+        <div class="item ${(item.category||'').toLowerCase()}">
+          <div class="item-header">
+            <span class="item-emoji">${item.emoji||'📌'}</span>
+            <div style="flex:1">
+              <div class="item-title">${escHtml(item.title||'Untitled Item')}</div>
+              <div class="item-cat">${item.category||''}</div>
+            </div>
+          </div>
+          <div class="item-meta">
+            ${item.date?`<span>🗓 ${formatDate(item.date)}${item.dateEnd&&item.dateEnd!==item.date?' → '+formatDate(item.dateEnd):''}</span>`:''}
+            ${item.timeStart?`<span>⏰ ${item.timeStart}${item.timeEnd?' – '+item.timeEnd:''}</span>`:''}
+            ${item.location?`<span>📍 ${escHtml(item.location)}</span>`:''}
+          </div>
+          ${item.notes?`<div class="item-notes-text">${escHtml(item.notes)}</div>`:''}
+          ${(item.attachments||[]).length?`<div style="margin-top:6px;font-size:12px;color:#888">${item.attachments.map(a=>`🔗 ${escHtml(a.url)}`).join(' · ')}</div>`:''}
+          ${(item.alternatives||[]).length?`
+            <div class="alt-section">
+              <div class="alt-label">Alternatives</div>
+              ${item.alternatives.map(a=>`<div class="alt-item ${a.active?'active':''}">${a.active?'✓ ':''}${escHtml(a.title)}${a.notes?' — '+escHtml(a.notes):''}</div>`).join('')}
+            </div>
+          `:''}
+        </div>
+      `).join('')}
+    </div>
+  `).join('')}
+  <div class="footer">
+    <strong>Voyagr</strong> — Premium Travel Itinerary Design<br>
+    ✦ Brewed with love by KT using Cursor · Generated ${new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}
+  </div>
+</div>
+<button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+</body>
+</html>`;
+}
+
+// ---- MODAL HELPERS ----
+function showModal(title, bodyHtml, actions) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').innerHTML = bodyHtml;
+  const actionsEl = document.getElementById('modal-actions');
+  actionsEl.innerHTML = '';
+  (actions||[]).forEach(a => {
+    const btn = document.createElement('button');
+    btn.className = 'btn '+(a.class||'');
+    btn.textContent = a.label;
+    btn.onclick = () => { closeModal(); if (a.action) a.action(); };
+    actionsEl.appendChild(btn);
+  });
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function showConfirm(title, body, actions) {
+  showModal(title, `<p>${body}</p>`, actions);
+}
+
+function showInputModal(title, body, defaultVal, onConfirm) {
+  const id = 'modal-input-'+genId();
+  showModal(title, `<p>${body}</p><input class="modal-input" id="${id}" value="${escHtml(defaultVal||'')}">`, [
+    { label: 'Confirm', class: 'primary', action: () => {
+      const val = document.getElementById(id)?.value;
+      onConfirm(val||'');
+    }},
+    { label: 'Cancel', class: '', action: null }
+  ]);
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) { el.focus(); el.select(); }
+  }, 50);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+
+document.getElementById('modal-overlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+
+// ---- TOASTS ----
+function toast(msg, type='info') {
+  const container = document.getElementById('toast-container');
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  const icon = type==='success'?'✓':type==='error'?'✕':type==='warn'?'⚠️':'ℹ️';
+  el.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
+  container.appendChild(el);
+  setTimeout(() => {
+    el.style.animation = 'fadeOut 0.3s ease forwards';
+    setTimeout(() => el.remove(), 300);
+  }, 3000);
+}
+
+// ---- KEYBOARD SHORTCUTS ----
+function setupKeyboardShortcuts() {
+  document.addEventListener('keydown', (e) => {
+    const ctrl = e.ctrlKey || e.metaKey;
+    const shift = e.shiftKey;
+    const tag = e.target.tagName.toLowerCase();
+    const isInput = ['input','textarea','select'].includes(tag);
+    if (ctrl && e.key === 's') { e.preventDefault(); saveFile(); }
+    if (ctrl && !shift && e.key === 'z') { e.preventDefault(); undo(); }
+    if (ctrl && shift && e.key === 'Z') { e.preventDefault(); redo(); }
+    if (ctrl && shift && e.key === 'S' && !isInput) { e.preventDefault(); addSection(); }
+    if (ctrl && e.key === 'd' && !isInput) { e.preventDefault(); toggleDark(); }
+    if (ctrl && shift && e.key === 'D') { e.preventDefault(); duplicateTrip(); }
+    if (ctrl && e.key === 'e') { e.preventDefault(); exportPresentation(); }
+    if (ctrl && e.key === '/') { e.preventDefault(); showHelp(); }
+    if (e.key === 'Escape') closeModal();
+  });
+}
+
+// ---- BEFORE UNLOAD ----
+function setupBeforeUnload() {
+  window.addEventListener('beforeunload', (e) => {
+    if (!hasUnsaved) return;
+    e.preventDefault();
+    e.returnValue = '';
+  });
+}
+
+// ---- ABOUT / HELP ----
+function showAbout() {
+  showModal('About Voyagr', `
+    <div style="text-align:center;padding:8px 0">
+      <div style="font-family:var(--font-display);font-size:36px;font-weight:300;color:var(--accent);letter-spacing:0.05em;margin-bottom:4px">Voyagr</div>
+      <div style="font-size:12px;text-transform:uppercase;letter-spacing:0.15em;color:var(--text3);margin-bottom:16px">Premium Itinerary Design</div>
+      <p style="color:var(--text2);font-size:13px;line-height:1.7">A professional travel itinerary design platform for serious itinerary creators. Design, organize, and present beautiful travel plans for clients.</p>
+      <div style="margin-top:16px;padding:12px;background:var(--bg3);border-radius:var(--radius);font-size:12px;color:var(--text3)">
+        Version ${VERSION} · Frontend-only · Works offline<br>
+        ✦ Brewed with love by KT using Cursor
+      </div>
+    </div>
+  `,[{label:'Close',class:'',action:null}]);
+}
+
+function showHelp() {
+  togglePanel('help');
+  const panel = document.getElementById('panel');
+  panel.classList.remove('hidden');
+}
+
+// ---- AI MODE ----
+function toggleAIMode() {
+  state.settings.aiMode = !state.settings.aiMode;
+  const panel = document.getElementById('ai-panel');
+  if (panel) panel.style.display = state.settings.aiMode ? '' : 'none';
+  toast(state.settings.aiMode ? '🤖 AI Mode enabled' : 'AI Mode disabled', 'info');
+  log.action('AI Mode: '+state.settings.aiMode);
+}
+
+function importFromAI() {
+  const input = document.getElementById('ai-input')?.value?.trim();
+  if (!input) { toast('No JSON provided', 'warn'); return; }
+  try {
+    const data = JSON.parse(input);
+    if (data.trip || data.sections) {
+      pushUndo('AI import');
+      if (data.trip) state.trip = { ...state.trip, ...data.trip };
+      if (data.sections) state.sections = data.sections;
+      render();
+      toast('✓ AI import successful', 'success');
+      log.action('AI import', { sections: state.sections.length });
+    } else throw new Error('Missing trip or sections');
+  } catch (err) {
+    log.error('AI import failed', err);
+    toast('Import failed: '+err.message, 'error');
+  }
+}
+
+function copySchema() {
+  const schema = getSchemaDoc();
+  navigator.clipboard?.writeText(schema).then(()=>toast('Schema copied to clipboard','success')).catch(()=>toast('Copy failed — see console','error'));
+  console.log('[Voyagr][SCHEMA]', schema);
+}
+
+function getSchemaDoc() {
+  return JSON.stringify({
+    "$schema": "Voyagr Save File Schema v1.0",
+    "version": "1.0.0",
+    "schemaVersion": "1.0",
+    "savedAt": "ISO-8601 timestamp",
+    "trip": {
+      "title": "string",
+      "dest": "string — comma-separated destinations",
+      "start": "YYYY-MM-DD",
+      "end": "YYYY-MM-DD",
+      "travelers": "number",
+      "notes": "string — freeform trip notes"
+    },
+    "sections": [
+      {
+        "id": "string — unique",
+        "name": "string",
+        "color": "hex color string",
+        "notes": "string",
+        "items": [
+          {
+            "id": "string — unique",
+            "sectionId": "string — parent section id",
+            "title": "string",
+            "category": "Stay|Flight|Train|Transport|Restaurant|Activity|Sightseeing|Museum|Shopping|Beach|Hiking|Tour|Transfer|Buffer|Note|Meeting|Event|Other",
+            "emoji": "single emoji string",
+            "emojiOverride": "boolean",
+            "location": "string",
+            "date": "YYYY-MM-DD",
+            "dateEnd": "YYYY-MM-DD — for multi-day items",
+            "timeStart": "HH:MM",
+            "timeEnd": "HH:MM",
+            "notes": "string",
+            "color": "hex color",
+            "attachments": [{"label":"string","url":"string"}],
+            "alternatives": [{"id":"string","title":"string","notes":"string","active":"boolean"}],
+            "multiDay": "boolean"
+          }
+        ]
+      }
+    ],
+    "settings": {
+      "mode": "structured|hybrid",
+      "darkMode": "boolean",
+      "showConflicts": "boolean",
+      "autoEmoji": "boolean",
+      "aiMode": "boolean"
+    },
+    "packing": [
+      {"id":"string","category":"string","name":"string","checked":"boolean"}
+    ],
+    "ui": {
+      "expandedSections": {"sectionId":"boolean"},
+      "expandedItems": {"itemId":"boolean"}
+    }
+  }, null, 2);
+}
+
+// ---- HELPERS ----
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+</script>
+</body>
+</html>`;

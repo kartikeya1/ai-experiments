@@ -1,0 +1,175 @@
+{
+  "version": "1.0.0",
+  "settings": {
+    "theme": "dark",
+    "planningMode": "structured",
+    "smartAssistEnabled": true,
+    "mapEnabled": true,
+    "aiMode": "human",
+    "layoutView": "board"
+  },
+  "uiState": {
+    "activeTripId": "trip_crp4cy60",
+    "selectedEntity": null,
+    "expandedSections": {
+      "section_ujh1rjf0": true,
+      "section_oael1xou": true,
+      "section_exxp7zek": true
+    }
+  },
+  "trips": [
+    {
+      "id": "trip_crp4cy60",
+      "name": "Spring Lights: Tokyo & Kyoto",
+      "clientName": "The Nakamura Family",
+      "dateRange": {
+        "start": "2026-04-03",
+        "end": "2026-04-12"
+      },
+      "notes": "Family-focused itinerary with a gentle pace. Prioritize evening cityscapes, light experiences, and flexible daytime windows.",
+      "packingNotes": "Layering pieces; compact umbrellas; small gifts for local hosts; portable Wi‑Fi or eSIM confirmed externally.",
+      "sections": [
+        {
+          "id": "section_ujh1rjf0",
+          "title": "Arrival & Orientation – Tokyo",
+          "notes": "Soft landing day. Keep everything light and flexible in case of jet lag or delays.",
+          "colorTag": "#38bdf8",
+          "items": [
+            {
+              "id": "item_a5ettg4b",
+              "title": "Arrival in Tokyo",
+              "category": "Arrival",
+              "location": "Haneda Airport (HND)",
+              "startDateTime": "2026-04-03T08:30",
+              "endDateTime": "2026-04-03T10:00",
+              "untimed": false,
+              "spanning": false,
+              "notes": "Meet & greet at arrivals. Purchase Suica card. Light breakfast at airport café.",
+              "attachments": [
+                {
+                  "id": "att_rqx56l80",
+                  "label": "Airport map",
+                  "url": "https://tokyo-haneda.com"
+                }
+              ],
+              "emoji": "🛬",
+              "emojiLocked": false,
+              "colorTag": "#38bdf8",
+              "isCollapsed": false,
+              "alternatives": [],
+              "activeAlternativeId": null
+            },
+            {
+              "id": "item_0r1q1k0f",
+              "title": "Check-in & unwind",
+              "category": "Stay",
+              "location": "Shinjuku hotel",
+              "startDateTime": "2026-04-03T11:30",
+              "endDateTime": "2026-04-03T13:00",
+              "untimed": false,
+              "spanning": false,
+              "notes": "Early check-in requested. Short rest before afternoon exploration.",
+              "attachments": [],
+              "emoji": "🏨",
+              "emojiLocked": false,
+              "colorTag": "#a855f7",
+              "isCollapsed": false,
+              "alternatives": [],
+              "activeAlternativeId": null
+            },
+            {
+              "id": "item_5gkvz6f9",
+              "title": "Tokyo skyline sunset",
+              "category": "Sightseeing",
+              "location": "Tokyo Skytree",
+              "startDateTime": "2026-04-03T16:30",
+              "endDateTime": "2026-04-03T19:00",
+              "untimed": false,
+              "spanning": false,
+              "notes": "Golden-hour visit. Reserve fast-track tickets. Optional dinner in Solamachi.",
+              "attachments": [],
+              "emoji": "🌇",
+              "emojiLocked": false,
+              "colorTag": "#f97316",
+              "isCollapsed": false,
+              "alternatives": [
+                {
+                  "id": "alt_dnz5vv6s",
+                  "title": "Tokyo Tower viewpoint",
+                  "category": "Sightseeing",
+                  "location": "Tokyo Tower",
+                  "startDateTime": "2026-04-03T16:30",
+                  "endDateTime": "2026-04-03T19:00",
+                  "untimed": false,
+                  "spanning": false,
+                  "notes": "Classic tower silhouette. Slightly less crowded, easier taxi access.",
+                  "attachments": [],
+                  "emoji": "🗼",
+                  "emojiLocked": false,
+                  "colorTag": "#f97316",
+                  "isCollapsed": false
+                }
+              ],
+              "activeAlternativeId": null
+            }
+          ]
+        },
+        {
+          "id": "section_oael1xou",
+          "title": "Tokyo – Kyoto Transition",
+          "notes": "Core transit day – avoid stacking too many fixed-time commitments.",
+          "colorTag": "#22c55e",
+          "items": [
+            {
+              "id": "item_p4h1r11n",
+              "title": "Tokyo – Kyoto Shinkansen",
+              "category": "Travel",
+              "location": "Tokyo Station → Kyoto Station",
+              "startDateTime": "2026-04-06T09:00",
+              "endDateTime": "2026-04-06T11:20",
+              "untimed": false,
+              "spanning": false,
+              "notes": "Reserved seats. Sit on Mount Fuji side if weather is clear.",
+              "attachments": [],
+              "emoji": "🚅",
+              "emojiLocked": false,
+              "colorTag": "#22c55e",
+              "isCollapsed": false,
+              "alternatives": [],
+              "activeAlternativeId": null
+            },
+            {
+              "id": "item_udfkzuu4",
+              "title": "Japan Rail Pass validity",
+              "category": "Pass",
+              "location": "Nationwide",
+              "startDateTime": "2026-04-04T08:00",
+              "endDateTime": "2026-04-11T23:00",
+              "untimed": true,
+              "spanning": true,
+              "notes": "Covers all long-distance intercity travel – keep card accessible.",
+              "attachments": [],
+              "emoji": "🎫",
+              "emojiLocked": false,
+              "colorTag": "#0ea5e9",
+              "isCollapsed": false,
+              "alternatives": [],
+              "activeAlternativeId": null
+            }
+          ]
+        },
+        {
+          "id": "section_exxp7zek",
+          "title": "Kyoto – Slow Days",
+          "notes": "Design serene, spacious days. Focus on temples, gardens, and gentle walks.",
+          "colorTag": "#f97316",
+          "items": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "savedAt": "2026-02-28T11:40:12.193Z",
+    "product": "Aurora Voyage"
+  }
+}

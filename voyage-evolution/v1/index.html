@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aurora Voyage – Premium Itinerary Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aurora Voyage – a premium offline-first travel itinerary design studio for professionals." />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Leaflet for optional map visualization (works after initial online load) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+</head>
+<body>
+  <div id="app-root" class="av-app av-theme-light">
+    <header class="av-header">
+      <div class="av-header-left">
+        <div class="av-brand">
+          <div class="av-brand-mark">AV</div>
+          <div class="av-brand-text">
+            <div class="av-brand-title">Aurora Voyage</div>
+            <div class="av-brand-subtitle">Premium Itinerary Studio</div>
+          </div>
+        </div>
+        <div class="av-header-group">
+          <button class="av-btn av-btn-ghost" id="btn-add-trip" title="New trip (Ctrl/Cmd+N)">
+            + Trip
+          </button>
+          <button class="av-btn av-btn-ghost" id="btn-duplicate-trip" title="Duplicate trip as template (Ctrl/Cmd+D)">
+            Duplicate
+          </button>
+          <select id="trip-selector" class="av-select" title="Switch active trip"></select>
+        </div>
+      </div>
+      <div class="av-header-center">
+        <div class="av-header-group">
+          <label class="av-toggle-label" title="Planning mode (Ctrl/Cmd+M)">
+            <span>Structured</span>
+            <div class="av-toggle">
+              <input type="checkbox" id="planning-mode-toggle" />
+              <span class="av-toggle-slider"></span>
+            </div>
+            <span>Hybrid</span>
+          </label>
+          <label class="av-toggle-label" title="Human / AI compatibility mode">
+            <span>Human</span>
+            <div class="av-toggle">
+              <input type="checkbox" id="ai-mode-toggle" />
+              <span class="av-toggle-slider"></span>
+            </div>
+            <span>AI</span>
+          </label>
+        </div>
+      </div>
+      <div class="av-header-right">
+        <div class="av-header-group">
+          <button class="av-btn av-btn-ghost" id="btn-theme" title="Toggle dark/light (Ctrl/Cmd+L)">
+            🌗
+          </button>
+          <button class="av-btn" id="btn-save" title="Download save file (Ctrl/Cmd+S)">
+            Save
+          </button>
+          <button class="av-btn av-btn-ghost" id="btn-load" title="Load save file">
+            Load
+          </button>
+          <input type="file" id="file-input" accept="application/json" style="display:none" />
+        </div>
+        <div class="av-header-group">
+          <button class="av-btn av-btn-ghost" id="btn-export-presentation" title="Export presentation / Print / PDF">
+            Presentation
+          </button>
+          <button class="av-btn av-btn-ghost" id="btn-toggle-view" title="Switch layout view (Ctrl/Cmd+Shift+V)">
+            Board View
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="av-main">
+      <aside class="av-sidebar" id="left-sidebar">
+        <div class="av-sidebar-section">
+          <div class="av-sidebar-header">
+            <span>Trip Overview</span>
+          </div>
+          <div id="trip-overview"></div>
+        </div>
+        <div class="av-sidebar-section">
+          <div class="av-sidebar-header">
+            <span>Trip Notes</span>
+          </div>
+          <textarea id="trip-notes" class="av-textarea" placeholder="Long-form notes about this trip..."></textarea>
+        </div>
+        <div class="av-sidebar-section">
+          <div class="av-sidebar-header">
+            <span>Packing & Reminders</span>
+          </div>
+          <textarea id="trip-packing" class="av-textarea" placeholder="Packing reminders & special considerations..."></textarea>
+        </div>
+      </aside>
+
+      <section class="av-board" id="board-container">
+        <div class="av-board-toolbar">
+          <button class="av-btn av-btn-small" id="btn-add-section" title="Add section (Ctrl/Cmd+Alt+S)">
+            + Section
+          </button>
+          <label class="av-toggle-label" title="Enable/disable smart assistance">
+            <span>Assist</span>
+            <div class="av-toggle">
+              <input type="checkbox" id="assist-toggle" checked />
+              <span class="av-toggle-slider"></span>
+            </div>
+          </label>
+          <label class="av-toggle-label" title="Toggle map visualization">
+            <span>Map</span>
+            <div class="av-toggle">
+              <input type="checkbox" id="map-toggle" checked />
+              <span class="av-toggle-slider"></span>
+            </div>
+          </label>
+        </div>
+        <div id="sections-container" class="av-sections"></div>
+      </section>
+
+      <aside class="av-sidebar av-sidebar-right" id="right-sidebar">
+        <div class="av-draggable-handle" id="right-resize-handle" title="Drag to resize panel"></div>
+        <div class="av-tabs">
+          <button class="av-tab av-tab-active" data-tab="details">Details</button>
+          <button class="av-tab" data-tab="map">Map</button>
+          <button class="av-tab" data-tab="ai">AI Struct</button>
+          <button class="av-tab" data-tab="about">About</button>
+        </div>
+        <div class="av-tab-panels">
+          <div class="av-tab-panel av-tab-panel-active" data-tab="details">
+            <div id="inspector-empty" class="av-muted">Select an item or section to inspect details.</div>
+            <div id="inspector-panel" style="display:none"></div>
+          </div>
+          <div class="av-tab-panel" data-tab="map">
+            <div id="map-container" class="av-map-container">
+              <div id="map" class="av-map"></div>
+              <div class="av-muted av-map-hint">
+                Map uses manual coordinates (lat/lng) only. Works fully offline after first library load.
+              </div>
+            </div>
+          </div>
+          <div class="av-tab-panel" data-tab="ai">
+            <div class="av-muted av-ai-hint">
+              AI Mode exposes a structured JSON interface for future agents. Edit carefully.
+            </div>
+            <textarea id="ai-structure" class="av-textarea av-ai-textarea" spellcheck="false"></textarea>
+            <button class="av-btn av-btn-small" id="btn-apply-ai-structure">
+              Apply Structured Input
+            </button>
+          </div>
+          <div class="av-tab-panel" data-tab="about">
+            <div class="av-about">
+              <h2>Aurora Voyage</h2>
+              <p>A premium travel itinerary design studio for professionals crafting journeys for others.</p>
+              <p>Focuses purely on design, structure, and presentation – all research and booking stay outside this tool.</p>
+              <p class="av-signature">Brewed with love by KT using Cursor.</p>
+              <h3>Keyboard Shortcuts</h3>
+              <ul class="av-shortcuts-list">
+                <li><strong>Ctrl/Cmd + S</strong> – Save (download JSON)</li>
+                <li><strong>Ctrl/Cmd + O</strong> – Load save file</li>
+                <li><strong>Ctrl/Cmd + N</strong> – New trip</li>
+                <li><strong>Ctrl/Cmd + D</strong> – Duplicate active trip</li>
+                <li><strong>Ctrl/Cmd + Z</strong> – Undo</li>
+                <li><strong>Ctrl/Cmd + Shift + Z</strong> – Redo</li>
+                <li><strong>Ctrl/Cmd + M</strong> – Toggle Structured / Hybrid mode</li>
+                <li><strong>Ctrl/Cmd + L</strong> – Toggle dark / light</li>
+                <li><strong>Ctrl/Cmd + Alt + S</strong> – Add section</li>
+                <li><strong>Ctrl/Cmd + Alt + N</strong> – Add item to focused section</li>
+                <li><strong>Ctrl/Cmd + Shift + V</strong> – Switch layout view</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="av-footer">
+      <span>&copy; <span id="footer-year"></span> Aurora Voyage. All rights reserved.</span>
+      <span class="av-footer-signature">Brewed with love by KT using Cursor.</span>
+    </footer>
+  </div>
+
+  <div id="toast-container" class="av-toast-container"></div>
+
+  <div id="unsaved-modal" class="av-modal-backdrop" style="display:none">
+    <div class="av-modal">
+      <h2>Unsaved Changes</h2>
+      <p>You have unsaved changes in your itinerary. What would you like to do?</p>
+      <div class="av-modal-actions">
+        <button class="av-btn" id="unsaved-save">Save &amp; Download</button>
+        <button class="av-btn av-btn-ghost" id="unsaved-discard">Discard &amp; Exit</button>
+        <button class="av-btn av-btn-ghost" id="unsaved-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS (optional map integration) -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="app.js"></script>
+</body>
+</html>
+

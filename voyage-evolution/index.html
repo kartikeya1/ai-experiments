@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurora Voyage → Voyagr · The Evolution of an Itinerary Studio</title>
+<meta name="description" content="A case study in product evolution — how Aurora Voyage (v1) became Voyagr (v2) through iteration. Explore both live apps and a full feature tour.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0f; --bg2:#111118; --bg3:#1a1a24; --bg4:#22222f;
+  --border:#2a2a3a; --border2:#3a3a4f;
+  --text:#e8e8f0; --text2:#9898b0; --text3:#5a5a70;
+  --accent:#c8a96e; --accent2:#e8c98e; --accent3:#8fb4c8;
+  --v1:#8fb4c8; --v2:#c8a96e;
+  --danger:#c86868; --success:#68c888;
+  --shadow:0 4px 24px rgba(0,0,0,0.4); --shadow2:0 20px 60px rgba(0,0,0,0.55);
+  --radius:10px; --radius2:16px;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+  --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--text); font-family:var(--sans);
+  font-weight:300; line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(900px 500px at 15% -5%, rgba(143,180,200,0.10), transparent 60%),
+    radial-gradient(900px 600px at 90% 8%, rgba(200,169,110,0.12), transparent 55%),
+    radial-gradient(700px 700px at 50% 100%, rgba(200,169,110,0.06), transparent 60%);
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)}
+.serif{font-family:var(--display)}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+  background:rgba(10,10,15,0.72);border-bottom:1px solid var(--border);
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:var(--display);font-size:24px;font-weight:500;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+.logo b{color:var(--accent);font-weight:600}
+.logo .arw{color:var(--text3);font-size:18px}
+.navlinks{display:flex;gap:26px;align-items:center}
+.navlinks a{color:var(--text2);font-size:14px;transition:color .2s}
+.navlinks a:hover{color:var(--accent2)}
+@media(max-width:820px){.navlinks a:not(.btnnav){display:none}}
+.btnnav{
+  border:1px solid var(--accent);color:var(--accent);padding:8px 16px;border-radius:999px;
+  font-size:13px;letter-spacing:.03em;transition:all .2s
+}
+.btnnav:hover{background:var(--accent);color:#0a0a0f}
+
+/* ---------- HERO ---------- */
+header.hero{padding:86px 0 64px;position:relative}
+.badge{
+  display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border2);
+  background:var(--bg2);border-radius:999px;padding:7px 16px;font-family:var(--mono);
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);margin-bottom:30px
+}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--success);box-shadow:0 0 10px var(--success)}
+.hero h1{
+  font-family:var(--display);font-weight:300;font-size:clamp(46px,8vw,92px);
+  line-height:1.02;letter-spacing:-.01em;margin-bottom:24px
+}
+.hero h1 .v1n{color:var(--v1);font-style:italic;font-weight:400}
+.hero h1 .v2n{color:var(--accent);font-weight:500}
+.hero h1 .arrow{color:var(--text3);font-weight:300;padding:0 .12em}
+.hero p.lead{font-size:clamp(17px,2.2vw,21px);color:var(--text2);max-width:720px;font-weight:300}
+.hero p.lead b{color:var(--text);font-weight:500}
+.cta{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:var(--radius);
+  font-size:15px;font-weight:500;letter-spacing:.02em;transition:all .22s;cursor:pointer;border:1px solid transparent
+}
+.btn .k{font-family:var(--mono);font-size:11px;opacity:.6}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0a0f;box-shadow:0 8px 30px rgba(200,169,110,.28)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(200,169,110,.4)}
+.btn-ghost{border-color:var(--border2);color:var(--text);background:var(--bg2)}
+.btn-ghost:hover{border-color:var(--v1);color:var(--v1);transform:translateY(-2px)}
+.herometa{display:flex;gap:38px;margin-top:56px;flex-wrap:wrap}
+.herometa .stat .n{font-family:var(--display);font-size:38px;color:var(--accent2);font-weight:400;line-height:1}
+.herometa .stat .l{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-top:8px}
+
+/* ---------- SECTION SCAFFOLD ---------- */
+section{padding:80px 0;border-top:1px solid var(--border)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';width:34px;height:1px;background:var(--accent);opacity:.6}
+h2.sec{font-family:var(--display);font-weight:300;font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-.01em;margin-bottom:20px}
+h2.sec em{color:var(--accent2);font-style:italic}
+.sec-lead{color:var(--text2);max-width:680px;font-size:17px;margin-bottom:44px}
+
+/* ---------- STORY ---------- */
+.storygrid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+@media(max-width:780px){.storygrid{grid-template-columns:1fr}}
+.storycard{
+  border:1px solid var(--border);border-radius:var(--radius2);padding:34px;background:linear-gradient(160deg,var(--bg2),var(--bg));position:relative;overflow:hidden
+}
+.storycard.v1{border-top:2px solid var(--v1)}
+.storycard.v2{border-top:2px solid var(--v2)}
+.storycard .tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:14px}
+.storycard.v1 .tag b{color:var(--v1)}
+.storycard.v2 .tag b{color:var(--v2)}
+.storycard h3{font-family:var(--display);font-size:34px;font-weight:400;margin-bottom:6px}
+.storycard .sub{color:var(--text2);font-size:14px;margin-bottom:20px;font-style:italic;font-family:var(--display);font-size:17px}
+.storycard p{color:var(--text2);font-size:15px;margin-bottom:14px}
+.storycard ul{list-style:none;margin-top:6px}
+.storycard li{color:var(--text2);font-size:14px;padding:7px 0 7px 24px;position:relative;border-bottom:1px solid var(--border)}
+.storycard li:last-child{border-bottom:none}
+.storycard li::before{content:'—';position:absolute;left:0;color:var(--text3)}
+
+/* ---------- COMPARISON TABLE ---------- */
+.cmp{border:1px solid var(--border);border-radius:var(--radius2);overflow:hidden;background:var(--bg2)}
+.cmp-row{display:grid;grid-template-columns:1.1fr 1.6fr 1.6fr;border-bottom:1px solid var(--border)}
+.cmp-row:last-child{border-bottom:none}
+.cmp-row>div{padding:18px 22px}
+.cmp-head{background:var(--bg3);position:sticky}
+.cmp-head>div{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.cmp-head .c1{color:var(--text3)}
+.cmp-head .c2{color:var(--v1)}
+.cmp-head .c3{color:var(--v2)}
+.cmp-row .dim{color:var(--text);font-weight:500;font-size:14px}
+.cmp-row .val{color:var(--text2);font-size:14px}
+.cmp-row .val.up{color:var(--text)}
+.cmp-row:nth-child(even):not(.cmp-head){background:rgba(255,255,255,.012)}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:6px;margin-left:8px;letter-spacing:.06em;vertical-align:middle}
+.pill.new{background:rgba(104,200,136,.14);color:var(--success)}
+.pill.same{background:rgba(90,90,112,.2);color:var(--text3)}
+@media(max-width:780px){
+  .cmp-row{grid-template-columns:1fr}
+  .cmp-row>div{padding:12px 18px;border-bottom:1px solid var(--border)}
+  .cmp-head{display:none}
+  .cmp-row .val::before{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px}
+  .cmp-row .val.v1c::before{content:'v1 · Aurora Voyage';color:var(--v1)}
+  .cmp-row .val.v2c::before{content:'v2 · Voyagr';color:var(--v2)}
+}
+
+/* ---------- LIVE PREVIEW ---------- */
+.tabs{display:inline-flex;background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:5px;margin-bottom:26px;gap:4px}
+.tabs button{
+  font-family:var(--sans);font-size:14px;color:var(--text2);background:none;border:none;cursor:pointer;
+  padding:9px 22px;border-radius:999px;transition:all .2s;font-weight:500
+}
+.tabs button .mini{font-family:var(--mono);font-size:10px;display:block;color:var(--text3);letter-spacing:.06em}
+.tabs button.active{color:#0a0a0f}
+.tabs button.active .mini{color:rgba(10,10,15,.6)}
+.tabs button[data-v="1"].active{background:var(--v1)}
+.tabs button[data-v="2"].active{background:var(--accent)}
+.frame-shell{
+  border:1px solid var(--border2);border-radius:var(--radius2);overflow:hidden;background:var(--bg2);box-shadow:var(--shadow2)
+}
+.frame-bar{display:flex;align-items:center;gap:14px;padding:12px 18px;background:var(--bg3);border-bottom:1px solid var(--border)}
+.frame-bar .dots{display:flex;gap:7px}
+.frame-bar .dots i{width:11px;height:11px;border-radius:50%;display:block}
+.frame-bar .dots i:nth-child(1){background:#c86868}.frame-bar .dots i:nth-child(2){background:#c8a468}.frame-bar .dots i:nth-child(3){background:#68c888}
+.frame-bar .url{font-family:var(--mono);font-size:12px;color:var(--text3);background:var(--bg);padding:5px 14px;border-radius:6px;flex:1;border:1px solid var(--border)}
+.frame-bar a.open{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--accent);border:1px solid var(--border2);padding:6px 12px;border-radius:6px;transition:all .2s}
+.frame-bar a.open:hover{background:var(--accent);color:#0a0a0f;border-color:var(--accent)}
+.frame-shell iframe{width:100%;height:600px;border:none;display:block;background:#fff}
+.frame-note{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:14px;text-align:center;letter-spacing:.04em}
+
+/* ---------- EVOLUTION / WHY ---------- */
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.whycard{border:1px solid var(--border);border-radius:var(--radius2);padding:28px;background:var(--bg2);transition:all .25s}
+.whycard:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:var(--shadow)}
+.whycard .ic{font-size:26px;margin-bottom:16px;display:block}
+.whycard h4{font-family:var(--display);font-size:23px;font-weight:500;margin-bottom:8px}
+.whycard .move{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:.05em;margin-bottom:12px}
+.whycard .move b{color:var(--v1)}.whycard .move i{color:var(--v2);font-style:normal}
+.whycard p{color:var(--text2);font-size:14px}
+
+/* ---------- FEATURE TOUR ---------- */
+.featnav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+.featnav button{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text2);background:var(--bg2);border:1px solid var(--border);padding:8px 15px;border-radius:999px;cursor:pointer;transition:all .2s
+}
+.featnav button:hover,.featnav button.active{border-color:var(--accent);color:var(--accent)}
+.featgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.feat{
+  border:1px solid var(--border);border-radius:var(--radius);padding:24px;background:linear-gradient(160deg,var(--bg2),var(--bg));transition:all .25s;position:relative
+}
+.feat:hover{border-color:var(--accent);transform:translateY(-3px)}
+.feat.hide{display:none}
+.feat .fh{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.feat .fi{font-size:24px}
+.feat h4{font-family:var(--display);font-size:22px;font-weight:500}
+.feat .grp{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--border2);border-radius:5px;padding:2px 7px;margin-left:auto}
+.feat p{color:var(--text2);font-size:13.5px}
+.feat .kbd{font-family:var(--mono);font-size:11px;color:var(--accent2);margin-top:12px;display:inline-block;background:var(--bg3);border:1px solid var(--border);padding:3px 9px;border-radius:6px}
+
+/* ---------- TIMELINE ---------- */
+.timeline{position:relative;padding-left:34px;margin-top:20px}
+.timeline::before{content:'';position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--v1),var(--v2))}
+.tl{position:relative;padding:0 0 34px 0}
+.tl:last-child{padding-bottom:0}
+.tl::before{content:'';position:absolute;left:-30px;top:5px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl.v1dot::before{border-color:var(--v1)}
+.tl .when{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.tl h4{font-family:var(--display);font-size:26px;font-weight:400;margin-bottom:6px}
+.tl p{color:var(--text2);font-size:15px;max-width:640px}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--border);padding:60px 0 50px;text-align:center}
+footer .fl{font-family:var(--display);font-size:30px;font-weight:400;margin-bottom:10px}
+footer .fl b{color:var(--accent)}
+footer p{color:var(--text3);font-size:13px}
+footer .sig{color:var(--accent2);font-family:var(--display);font-style:italic;font-size:17px;margin-top:20px}
+footer .flinks{display:flex;gap:20px;justify-content:center;margin-top:24px}
+footer .flinks a{font-family:var(--mono);font-size:12px;color:var(--text2);letter-spacing:.05em;transition:color .2s}
+footer .flinks a:hover{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo"><span class="v1n" style="font-style:italic;color:var(--v1)">Aurora</span><span class="arw">→</span><b>Voyagr</b></div>
+    <div class="navlinks">
+      <a href="#story">The Story</a>
+      <a href="#compare">Compare</a>
+      <a href="#live">Live Apps</a>
+      <a href="#features">v2 Features</a>
+      <a href="#live" class="btnnav">Launch Apps</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span> A product-evolution case study · v1 → v2</div>
+    <h1 class="serif">From <span class="v1n">Aurora&nbsp;Voyage</span><br><span class="arrow">→</span> to <span class="v2n">Voyagr</span></h1>
+    <p class="lead">One idea — a premium, offline-first itinerary design studio — built <b>twice</b>. Aurora Voyage was the first cut. Then, after rounds of real feedback and rethinking, it was rebuilt from the ground up as <b>Voyagr</b>. This page lets you open both, side by side, and watch the thinking evolve.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="v2/" target="_blank" rel="noopener">Launch Voyagr <span class="k">v2</span></a>
+      <a class="btn btn-ghost" href="v1/" target="_blank" rel="noopener">Launch Aurora Voyage <span class="k">v1</span></a>
+    </div>
+    <div class="herometa">
+      <div class="stat"><div class="n">2</div><div class="l">Full builds</div></div>
+      <div class="stat"><div class="n">3&nbsp;→&nbsp;1</div><div class="l">Files per app</div></div>
+      <div class="stat"><div class="n">16+</div><div class="l">v2 features</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">Offline &amp; frontend-only</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- STORY -->
+<section id="story">
+  <div class="wrap">
+    <div class="eyebrow reveal">The premise</div>
+    <h2 class="sec reveal">Same mission, <em>two attempts</em> at getting it right.</h2>
+    <p class="sec-lead reveal">Both apps solve the exact same problem: give a professional trip designer a fast, offline canvas to structure a client itinerary — <em>Trip → Sections → Items → Alternatives</em> — and export a polished presentation. What changed between them is a study in editing your own product down to its essence.</p>
+    <div class="storygrid">
+      <div class="storycard v1 reveal">
+        <div class="tag">Version 01 · <b>Aurora Voyage</b></div>
+        <h3 class="serif">Aurora Voyage</h3>
+        <div class="sub">“Premium Itinerary Studio”</div>
+        <p>The first realization of the idea. Ambitious and broad — a classic three-file web app (HTML + CSS + JS) with a light, studio-style workspace, multi-trip management, and a real Leaflet map.</p>
+        <ul>
+          <li>Multi-file architecture: <code>index.html · styles.css · app.js</code></li>
+          <li>Light-first “studio” UI, <code>av-</code> component system</li>
+          <li>Multiple trips with a switcher dropdown</li>
+          <li>Leaflet + OpenStreetMap interactive map</li>
+          <li>Board &amp; Timeline views, undo/redo, AI-compat mode</li>
+        </ul>
+      </div>
+      <div class="storycard v2 reveal">
+        <div class="tag">Version 02 · <b>Voyagr</b></div>
+        <h3 class="serif">Voyagr</h3>
+        <div class="sub">“Premium Travel Itinerary Design”</div>
+        <p>The rebuild. Everything learned from v1, distilled into a single portable HTML file with a confident dark, editorial identity — and new capabilities that make it genuinely useful for real client work.</p>
+        <ul>
+          <li>One self-contained file — open or deploy anywhere</li>
+          <li>Branded dark aesthetic: Cormorant serif + gold accent</li>
+          <li>Focused single-trip depth over multi-trip breadth</li>
+          <li>New: Packing list, Trip Stats, conflict detection</li>
+          <li>Truly offline map (no external dependency)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section id="compare">
+  <div class="wrap">
+    <div class="eyebrow reveal">Side by side</div>
+    <h2 class="sec reveal">What actually <em>changed</em>.</h2>
+    <p class="sec-lead reveal">A dimension-by-dimension diff of the two builds — pulled straight from each app's code, docs, and save-file schema.</p>
+    <div class="cmp reveal">
+      <div class="cmp-row cmp-head">
+        <div class="c1">Dimension</div>
+        <div class="c2">v1 · Aurora Voyage</div>
+        <div class="c3">v2 · Voyagr</div>
+      </div>
+      <div class="cmp-row"><div class="dim">Architecture</div><div class="val v1c">Three files — HTML, CSS &amp; JS separated</div><div class="val v2c up">Single self-contained HTML file <span class="pill new">portable</span></div></div>
+      <div class="cmp-row"><div class="dim">Visual identity</div><div class="val v1c">Light-first, generic-premium studio UI</div><div class="val v2c up">Dark editorial theme, gold accent, serif display <span class="pill new">rebranded</span></div></div>
+      <div class="cmp-row"><div class="dim">Typography</div><div class="val v1c">System fonts</div><div class="val v2c up">Cormorant Garamond · DM Sans · DM Mono</div></div>
+      <div class="cmp-row"><div class="dim">Scope</div><div class="val v1c">Multi-trip management + switcher</div><div class="val v2c up">Focused single-trip, done deeply</div></div>
+      <div class="cmp-row"><div class="dim">Map</div><div class="val v1c">Leaflet + OpenStreetMap (CDN dependency)</div><div class="val v2c up">Offline location listing — zero dependency <span class="pill new">offline</span></div></div>
+      <div class="cmp-row"><div class="dim">Data model</div><div class="val v1c">Nested <code>trips[]</code>, <code>.auroravoyage.json</code></div><div class="val v2c up">Flat <code>trip + sections[] + packing[]</code>, versioned schema</div></div>
+      <div class="cmp-row"><div class="dim">Packing list</div><div class="val v1c">Notes field only</div><div class="val v2c up">Dedicated panel, categories, progress bar <span class="pill new">new</span></div></div>
+      <div class="cmp-row"><div class="dim">Trip stats</div><div class="val v1c">—</div><div class="val v2c up">Live dashboard: days, items, category breakdown <span class="pill new">new</span></div></div>
+      <div class="cmp-row"><div class="dim">Conflict detection</div><div class="val v1c">Visual overlap border</div><div class="val v2c up">Warning badges + running conflict count</div></div>
+      <div class="cmp-row"><div class="dim">Core model</div><div class="val v1c">Trip → Sections → Items → Alternatives</div><div class="val v2c">Trip → Sections → Items → Alternatives <span class="pill same">kept</span></div></div>
+      <div class="cmp-row"><div class="dim">AI mode</div><div class="val v1c">AI-compat tab with JSON skeleton</div><div class="val v2c up">AI import panel + one-click “Copy Schema Docs”</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE -->
+<section id="live">
+  <div class="wrap">
+    <div class="eyebrow reveal">See for yourself</div>
+    <h2 class="sec reveal">Both apps, running <em>right here</em>.</h2>
+    <p class="sec-lead reveal">These are the real, fully-functional apps embedded live. Switch between versions, click around, then open either full-screen. Tip: hit <b>Demo</b> inside each to load a sample itinerary.</p>
+    <div class="tabs reveal">
+      <button data-v="2" class="active" onclick="switchFrame(2)">Voyagr <span class="mini">v2 · final</span></button>
+      <button data-v="1" onclick="switchFrame(1)">Aurora Voyage <span class="mini">v1 · original</span></button>
+    </div>
+    <div class="frame-shell reveal">
+      <div class="frame-bar">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="url" id="frameurl">voyagr.app / v2 / index.html</div>
+        <a class="open" id="frameopen" href="v2/" target="_blank" rel="noopener">OPEN FULL ↗</a>
+      </div>
+      <iframe id="liveframe" src="v2/" title="Live app preview" loading="lazy"></iframe>
+    </div>
+    <p class="frame-note">Live embedded preview · everything runs in your browser, no backend</p>
+  </div>
+</section>
+
+<!-- WHY IT EVOLVED -->
+<section id="why">
+  <div class="wrap">
+    <div class="eyebrow reveal">The thinking</div>
+    <h2 class="sec reveal">Five decisions that defined <em>v2</em>.</h2>
+    <p class="sec-lead reveal">Each move traded something from v1 for something better — the kind of editing that only becomes obvious after you've shipped the first version.</p>
+    <div class="why">
+      <div class="whycard reveal"><span class="ic">📦</span><h4 class="serif">Consolidate</h4><div class="move"><b>3 files</b> → <i>1 file</i></div><p>Collapsing HTML, CSS and JS into one document made the app trivially portable — email it, host it, run it from disk. Distribution became a non-issue.</p></div>
+      <div class="whycard reveal"><span class="ic">🎨</span><h4 class="serif">Commit to a look</h4><div class="move"><b>generic light</b> → <i>editorial dark</i></div><p>v1 looked like a tool. v2 looks like a <em>product</em> — a deliberate dark palette, a serif display face, and a single gold accent that says “premium.”</p></div>
+      <div class="whycard reveal"><span class="ic">🎯</span><h4 class="serif">Narrow the focus</h4><div class="move"><b>many trips</b> → <i>one, deeply</i></div><p>Multi-trip management added surface area without depth. v2 does one trip at a time — and spends the saved complexity on packing, stats and conflicts.</p></div>
+      <div class="whycard reveal"><span class="ic">🔌</span><h4 class="serif">Earn “offline”</h4><div class="move"><b>Leaflet CDN</b> → <i>no dependency</i></div><p>The v1 map needed the network. v2 replaces it with an ordered location listing that works truly offline — honest to the “offline-first” promise.</p></div>
+      <div class="whycard reveal"><span class="ic">✨</span><h4 class="serif">Add what clients need</h4><div class="move"><b>notes</b> → <i>real tools</i></div><p>Packing checklists, a live stats dashboard, and time-conflict warnings turned a pretty canvas into something a professional can actually hand to a client.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="wrap">
+    <div class="eyebrow reveal">The full tour</div>
+    <h2 class="sec reveal">Everything <em>Voyagr (v2)</em> can do.</h2>
+    <p class="sec-lead reveal">The complete feature set of the final product. Filter by area, or launch Voyagr and try each one live.</p>
+    <div class="featnav reveal">
+      <button class="active" data-f="all">All</button>
+      <button data-f="Structure">Structure</button>
+      <button data-f="Items">Items</button>
+      <button data-f="Planning">Planning</button>
+      <button data-f="Client">Client-ready</button>
+      <button data-f="Data">Data &amp; AI</button>
+    </div>
+    <div class="featgrid" id="featgrid"></div>
+    <div style="text-align:center;margin-top:40px">
+      <a class="btn btn-primary" href="v2/" target="_blank" rel="noopener">Try all of it in Voyagr <span class="k">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="eyebrow reveal">How it unfolded</div>
+    <h2 class="sec reveal">The arc from <em>v1 to v2</em>.</h2>
+    <div class="timeline">
+      <div class="tl v1dot reveal"><div class="when">Version 01</div><h4 class="serif">Aurora Voyage ships</h4><p>The idea proven: a premium, offline itinerary studio with the full Trip → Section → Item → Alternative model, drag-and-drop, a real map, and multi-trip support across three files.</p></div>
+      <div class="tl v1dot reveal"><div class="when">The feedback loop</div><h4 class="serif">Rounds of input</h4><p>Using it for real surfaced the truth: the breadth (multi-trip, heavy map) mattered less than depth, portability, and a look that felt like a finished product. The direction became clear.</p></div>
+      <div class="tl reveal"><div class="when">Version 02</div><h4 class="serif">Voyagr — the rebuild</h4><p>Rebuilt as a single file with a confident editorial identity, a focused single-trip model, and the tools that actually close a client deal: packing, stats, conflict detection, and a cleaner export.</p></div>
+      <div class="tl reveal"><div class="when">Now</div><h4 class="serif">Both, side by side</h4><p>This showcase — one deploy holding both builds, so the evolution of the thinking and the implementation is visible in one place.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fl serif"><span style="color:var(--v1);font-style:italic">Aurora Voyage</span> → <b>Voyagr</b></div>
+    <p>A single deployment showcasing the evolution of one product across two builds.</p>
+    <div class="flinks">
+      <a href="v2/" target="_blank" rel="noopener">Launch Voyagr (v2) ↗</a>
+      <a href="v1/" target="_blank" rel="noopener">Launch Aurora Voyage (v1) ↗</a>
+    </div>
+    <div class="sig">✦ Brewed with love by KT using Cursor</div>
+  </div>
+</footer>
+
+<script>
+// ---- Live preview tab switch ----
+var FRAMES={
+  1:{src:'v1/',url:'auroravoyage.app / v1 / index.html'},
+  2:{src:'v2/',url:'voyagr.app / v2 / index.html'}
+};
+function switchFrame(v){
+  document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('active',b.dataset.v==String(v));});
+  document.getElementById('liveframe').src=FRAMES[v].src;
+  document.getElementById('frameurl').textContent=FRAMES[v].url;
+  document.getElementById('frameopen').href=FRAMES[v].src;
+}
+
+// ---- Full v2 feature set ----
+var FEATURES=[
+  {i:'🧳',g:'Structure',t:'Trip setup',d:'Name, dates, destinations, traveler count and trip-level notes — all inline-editable in the sidebar.'},
+  {i:'🗂️',g:'Structure',t:'Sections',d:'Group by city, day or phase. Add, rename, reorder by drag handle, recolor, duplicate, collapse or delete.',k:'Ctrl/Cmd+Shift+S'},
+  {i:'🎨',g:'Structure',t:'Section colors',d:'Color-code phases — transport, leisure, stays — with a click on the section color dots.'},
+  {i:'➕',g:'Items',t:'Category quick-add',d:'One-click buttons for Flight, Stay, Train, Restaurant, Activity, Museum and more — plus a “+ More” drawer.'},
+  {i:'📝',g:'Items',t:'Rich item fields',d:'Title, category, color tag, date, multi-day end, start/end time, location, long-form notes and any number of link attachments.'},
+  {i:'😀',g:'Items',t:'Smart emoji',d:'Emoji auto-detected from category and title keywords — click any emoji to override it manually.'},
+  {i:'✋',g:'Items',t:'Drag, move & duplicate',d:'Reorder items within a section by handle, move an item to another section, duplicate or delete from the item header.'},
+  {i:'⚠️',g:'Items',t:'Conflict detection',d:'Overlapping times on the same date raise a warning badge, and the header shows a running total of conflicts.'},
+  {i:'🔀',g:'Planning',t:'Planning modes',d:'Switch between Structured (clean day-by-day cards) and Hybrid (fluid mix of timed and loose blocks). Data is preserved.'},
+  {i:'🔁',g:'Planning',t:'Alternative options',d:'Up to three alternatives per item for side-by-side comparison — mark one “Active” to show your recommendation.'},
+  {i:'↩️',g:'Planning',t:'Undo / redo',d:'Full history so you can experiment with structure freely and step back at any time.',k:'Ctrl/Cmd+Z'},
+  {i:'📊',g:'Client',t:'Trip stats',d:'Live dashboard: total sections, items, days and locations, a per-category breakdown, and conflict count.'},
+  {i:'🗺️',g:'Client',t:'Map view',d:'An ordered listing of every item with a location — a visual reference of the whole route that works fully offline.'},
+  {i:'📄',g:'Client',t:'Client export',d:'Generate a clean HTML presentation — cover, sections, items with times/links, alternatives — then print to PDF in seconds.',k:'Ctrl/Cmd+E'},
+  {i:'🌗',g:'Client',t:'Dark / light theme',d:'A polished dark editorial theme by default, with a light mode a keystroke away.',k:'Ctrl/Cmd+D'},
+  {i:'💾',g:'Data',t:'Save & load',d:'Game-style JSON save files — download the whole trip, reopen it later, restored exactly as you left it.',k:'Ctrl/Cmd+S'},
+  {i:'⧉',g:'Data',t:'Clone trip',d:'Duplicate the current trip in memory to spin a new client plan off a master template.',k:'Ctrl/Cmd+Shift+D'},
+  {i:'🤖',g:'Data',t:'AI import mode',d:'Paste an AI-generated itinerary as JSON to import it instantly, and copy the full schema docs to your clipboard for prompting.'},
+  {i:'⌨️',g:'Data',t:'Keyboard shortcuts',d:'Save, undo/redo, add section, toggle theme, clone, export and help — all one chord away.',k:'Ctrl/Cmd+/'}
+];
+var grid=document.getElementById('featgrid');
+grid.innerHTML=FEATURES.map(function(f){
+  return '<div class="feat" data-g="'+f.g+'"><div class="fh"><span class="fi">'+f.i+'</span><h4 class="serif">'+f.t+'</h4><span class="grp">'+f.g+'</span></div><p>'+f.d+'</p>'+(f.k?'<span class="kbd">'+f.k+'</span>':'')+'</div>';
+}).join('');
+document.querySelectorAll('.featnav button').forEach(function(btn){
+  btn.onclick=function(){
+    document.querySelectorAll('.featnav button').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    var f=btn.dataset.f;
+    document.querySelectorAll('.feat').forEach(function(c){
+      c.classList.toggle('hide',!(f==='all'||c.dataset.g===f));
+    });
+  };
+});
+
+// ---- Reveal on scroll ----
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>
