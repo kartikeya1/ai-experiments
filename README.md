@@ -10,8 +10,21 @@ route.
 
 | Route | Experiment | What it is |
 |-------|-----------|------------|
+| [ResumeForge ↗](https://resume-forge-kartikeya-thapliyals-projects.vercel.app) | **ResumeForge** | A resume builder with a live pageless preview, deterministic ATS scoring, and job-description keyword matching. Exports clean PDF/DOCX. (Deployed separately.) |
 | [`/voyage-evolution`](voyage-evolution/) | **Aurora Voyage → Voyagr** | A case-study showcase of one itinerary studio built twice, embedding both live apps (v1 and v2). |
 | [`/sign-bridge`](sign-bridge/) | **Sign Bridge** | Turns typed English into a step-by-step sign-language sequence (ASL / ISL) with a player. |
+
+<br>
+
+## ResumeForge — resume builder with live ATS scoring
+
+A web app for building or importing a resume with a live, pageless black-and-white preview. Paste a
+job description and it extracts keywords, shows present/missing coverage, and computes an ATS score
+plus a JD-match score — all with a deterministic, explainable feedback engine (no AI required). It
+also flags weak bullets, tracks multiple resume versions, and exports design-preserving PDF and DOCX.
+Unlike the other experiments here, ResumeForge is a Next.js app **deployed separately** on Vercel, so
+its card links out to the live site:
+[resume-forge.vercel.app ↗](https://resume-forge-kartikeya-thapliyals-projects.vercel.app).
 
 <br>
 

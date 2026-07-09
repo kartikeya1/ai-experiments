@@ -55,8 +55,15 @@
     PROJECTS.forEach(function (proj) {
       var card = document.createElement('a');
       card.className = 'card';
-      // Trailing slash → Vercel serves <slug>/index.html natively (deep links + refresh work).
-      card.setAttribute('href', proj.slug + '/');
+      if (proj.url) {
+        // External experiment (deployed elsewhere) — open in a new tab.
+        card.setAttribute('href', proj.url);
+        card.setAttribute('target', '_blank');
+        card.setAttribute('rel', 'noopener noreferrer');
+      } else {
+        // Trailing slash → Vercel serves <slug>/index.html natively (deep links + refresh work).
+        card.setAttribute('href', proj.slug + '/');
+      }
 
       var top = document.createElement('div');
       top.className = 'card-top';
