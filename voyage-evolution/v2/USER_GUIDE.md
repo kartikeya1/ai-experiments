@@ -1,4 +1,4 @@
-# Voyagr — User Guide
+# Voyagr - User Guide
 
 **Premium Travel Itinerary Design Platform**  
 Version 1.0.0 · ✦ Brewed with love by KT using Cursor
@@ -30,7 +30,7 @@ Version 1.0.0 · ✦ Brewed with love by KT using Cursor
 
 Voyagr is a **travel itinerary design tool** for professional itinerary creators and serious travelers. It is not a booking engine, recommendation platform, or travel research tool.
 
-**Mental model:** Think of Voyagr as a creative canvas for organizing a travel plan — like a design tool, not a checklist app.
+**Mental model:** Think of Voyagr as a creative canvas for organizing a travel plan - like a design tool, not a checklist app.
 
 **Ideal workflow:**
 1. Research your trip using Google Maps, travel blogs, booking sites
@@ -60,13 +60,13 @@ Trip
 ```
 
 - A **Trip** has a title, dates, destination, and notes.
-- **Sections** are containers — use them for cities, days, travel phases, or whatever makes sense for your trip.
+- **Sections** are containers - use them for cities, days, travel phases, or whatever makes sense for your trip.
 - **Items** are individual activities, stays, flights, restaurants, etc.
 
 ### Design Philosophy
 
 - Items must belong to a section (no orphan items)
-- Sections have no forced time semantics — you define what they mean
+- Sections have no forced time semantics - you define what they mean
 - Everything is inline-editable; minimize clicking into modals
 
 ---
@@ -81,7 +81,7 @@ The **sidebar** on the left contains all trip-level fields:
 | Start / End Date | Used for duration stats |
 | Destination(s) | Free text, shown in header and exported PDF |
 | Travelers | Count used in stats |
-| Trip Notes | Overall notes — visible in presentation export |
+| Trip Notes | Overall notes - visible in presentation export |
 
 Click any field and type to edit. Changes save to memory immediately.
 
@@ -95,7 +95,7 @@ Click any field and type to edit. Changes save to memory immediately.
 - Press `Ctrl/Cmd + Shift + S`
 
 ### Rename a Section
-Click the section name and type directly — it updates inline.
+Click the section name and type directly - it updates inline.
 
 ### Reorder Sections
 Grab the **⠿** drag handle on the left of the section header and drag up or down.
@@ -133,8 +133,8 @@ In the section's footer row, click any category button:
 | Color Tag | Visual color coding |
 | Date | Primary date (YYYY-MM-DD) |
 | Multi-day End | For items spanning multiple days |
-| Start / End Time | 24h time — enables conflict detection |
-| Location | Free text — shown on map panel |
+| Start / End Time | 24h time - enables conflict detection |
+| Location | Free text - shown on map panel |
 | Notes | Long-form freeform notes |
 | Links | Add any number of reference URLs |
 
@@ -168,15 +168,15 @@ Access modes via the toggle in the app header.
 The primary planning mode. Items are displayed in a clean, organized card layout within their sections. Best for detailed day-by-day planning.
 
 ### Hybrid Mode
-A more flexible arrangement suited to combining rigid timed activities with loose flexible blocks. Sections and items remain the same — the layout shifts to a slightly more fluid feel.
+A more flexible arrangement suited to combining rigid timed activities with loose flexible blocks. Sections and items remain the same - the layout shifts to a slightly more fluid feel.
 
-Switch modes at any time — your data is preserved.
+Switch modes at any time - your data is preserved.
 
 ---
 
 ## Alternative Options
 
-Each item can have up to **3 alternatives** — backup or side-by-side comparison options.
+Each item can have up to **3 alternatives** - backup or side-by-side comparison options.
 
 **To add an alternative:**
 1. Expand an item
@@ -228,7 +228,7 @@ Click **📊 Stats** in the canvas header for a summary:
 - Click **💾 Save** button (top right), OR
 - Press `Ctrl/Cmd + S`
 
-A `.json` file will download. This is your save file — keep it safe.
+A `.json` file will download. This is your save file - keep it safe.
 
 ### Load (Open JSON)
 - Click **📂 Open** button
@@ -298,9 +298,9 @@ Click **Copy Schema Docs** to copy the schema to your clipboard to paste into an
 
 **Color coding:** Use different section colors to visually distinguish phases (transport = gold, leisure = green, accommodation = blue).
 
-**Notes as your working notes:** Use item notes for booking references, confirmation numbers, tips for clients — all exports show notes, making them perfect for client handoffs.
+**Notes as your working notes:** Use item notes for booking references, confirmation numbers, tips for clients - all exports show notes, making them perfect for client handoffs.
 
-**Alternatives for proposals:** Add 2–3 restaurant/hotel alternatives with your recommendation marked "Active". Export shows all options — clients can see your thinking.
+**Alternatives for proposals:** Add 2-3 restaurant/hotel alternatives with your recommendation marked "Active". Export shows all options - clients can see your thinking.
 
 **Fast presentation:** Export to HTML, open in browser, press print → PDF. Share with client in under 60 seconds.
 

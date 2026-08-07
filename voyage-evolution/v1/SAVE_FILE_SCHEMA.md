@@ -1,6 +1,6 @@
 ## Aurora Voyage Save File Schema
 
-This document describes the JSON save file format used by **Aurora Voyage – Premium Itinerary Studio**.
+This document describes the JSON save file format used by **Aurora Voyage - Premium Itinerary Studio**.
 
 Save files are designed to be:
 
@@ -33,7 +33,7 @@ The same schema is used for:
 - **version**: String. Application version. Used for forward-compatibility and future migrations.
 - **settings**: Global application settings (theme, modes, etc.).
 - **uiState**: Non-critical UI layout state (expanded panels, selection, etc.).
-- **trips**: Array of trip objects. Usually 1–5, but can be many.
+- **trips**: Array of trip objects. Usually 1-5, but can be many.
 - **metadata**: Non-essential metadata; safe to ignore for programmatic generation.
 
 ---
@@ -51,14 +51,14 @@ The same schema is used for:
 }
 ```
 
-- **theme**: `"dark"` | `"light"` – Current color theme.
+- **theme**: `"dark"` | `"light"` - Current color theme.
 - **planningMode**: `"structured"` | `"hybrid"`  
   - `"structured"`: time-ordered emphasis.
   - `"hybrid"`: flexible order inside sections.
 - **smartAssistEnabled**: Boolean. Enables emoji, buffer, and travel-load hints.
 - **mapEnabled**: Boolean. If `false`, map panel is visually disabled (data still preserved).
-- **aiMode**: `"human"` | `"ai"` – Toggles AI compatibility emphasis in UI.
-- **layoutView**: `"board"` | `"timeline"` – Current primary view.
+- **aiMode**: `"human"` | `"ai"` - Toggles AI compatibility emphasis in UI.
+- **layoutView**: `"board"` | `"timeline"` - Current primary view.
 
 All fields are **optional** but recommended. Missing fields will be defaulted by the app.
 
@@ -95,7 +95,7 @@ All fields in `uiState` are **optional** and safe to omit if you do not care abo
 
 ---
 
-### 4. `trips[]` – Trip Object
+### 4. `trips[]` - Trip Object
 
 ```json
 {
@@ -127,12 +127,12 @@ All fields in `uiState` are **optional** and safe to omit if you do not care abo
 
 ---
 
-### 5. `sections[]` – Section Object
+### 5. `sections[]` - Section Object
 
 ```json
 {
   "id": "section_tokyo_arrival_orientation",
-  "title": "Arrival & Orientation – Tokyo",
+  "title": "Arrival & Orientation - Tokyo",
   "notes": "Long-form section-level notes...",
   "colorTag": "#38bdf8",
   "items": [ ... ]
@@ -152,11 +152,11 @@ Sections are **pure containers**; they do **not** enforce time semantics. They c
 - Cities
 - Phases
 - Thematic clusters
-- Loosely “day” groupings
+- Loosely "day" groupings
 
 ---
 
-### 6. `items[]` – Item Object
+### 6. `items[]` - Item Object
 
 Items represent activities such as travel, stays, meals, sightseeing, notes, and buffers.
 
@@ -236,7 +236,7 @@ The UI can show:
 #### Alternatives
 
 - **alternatives**: Array of **Alternative Item** objects (same schema subset as items, see below).
-- **activeAlternativeId**: String or `null`. ID of the currently “active” alternative choice.
+- **activeAlternativeId**: String or `null`. ID of the currently "active" alternative choice.
 
 #### Optional Map Coordinates
 
@@ -254,7 +254,7 @@ The UI can show:
 
 ---
 
-### 7. `alternatives[]` – Alternative Item Object
+### 7. `alternatives[]` - Alternative Item Object
 
 Alternatives inherit the same conceptual shape as an item, but live inside `item.alternatives` and do not themselves contain further alternatives.
 
@@ -316,7 +316,7 @@ Differences from main items:
       "sections": [
         {
           "id": "section_city_phase",
-          "title": "City Phase – Example",
+          "title": "City Phase - Example",
           "notes": "Section-level notes.",
           "colorTag": "#38bdf8",
           "items": [
@@ -369,5 +369,5 @@ For another AI generating save files:
   - Leave `emoji` empty; the app will propose suggestions.
 - Try to keep `settings` coherent (e.g., `"planningMode": "structured"` for day-wise exports).
 
-If a field is unknown, you may omit it entirely—Aurora Voyage will fall back to defaults where possible.
+If a field is unknown, you may omit it entirely-Aurora Voyage will fall back to defaults where possible.
 

@@ -1,4 +1,4 @@
-// Aurora Voyage – Premium Itinerary Studio
+// Aurora Voyage - Premium Itinerary Studio
 // Frontend-only, offline-capable SPA. All state lives in-memory.
 
 (() => {
@@ -111,7 +111,7 @@
 
     const item4 = {
       id: generateId("item"),
-      title: "Tokyo – Kyoto Shinkansen",
+      title: "Tokyo - Kyoto Shinkansen",
       category: "Travel",
       location: "Tokyo Station → Kyoto Station",
       startDateTime: "2026-04-06T09:00",
@@ -137,7 +137,7 @@
       endDateTime: "2026-04-11T23:00",
       untimed: true,
       spanning: true,
-      notes: "Covers all long-distance intercity travel – keep card accessible.",
+      notes: "Covers all long-distance intercity travel - keep card accessible.",
       attachments: [],
       emoji: "🎫",
       emojiLocked: false,
@@ -158,11 +158,11 @@
       notes:
         "Family-focused itinerary with a gentle pace. Prioritize evening cityscapes, light experiences, and flexible daytime windows.",
       packingNotes:
-        "Layering pieces; compact umbrellas; small gifts for local hosts; portable Wi‑Fi or eSIM confirmed externally.",
+        "Layering pieces; compact umbrellas; small gifts for local hosts; portable Wi-Fi or eSIM confirmed externally.",
       sections: [
         {
           id: section1Id,
-          title: "Arrival & Orientation – Tokyo",
+          title: "Arrival & Orientation - Tokyo",
           notes:
             "Soft landing day. Keep everything light and flexible in case of jet lag or delays.",
           colorTag: "#38bdf8",
@@ -170,15 +170,15 @@
         },
         {
           id: section2Id,
-          title: "Tokyo – Kyoto Transition",
+          title: "Tokyo - Kyoto Transition",
           notes:
-            "Core transit day – avoid stacking too many fixed-time commitments.",
+            "Core transit day - avoid stacking too many fixed-time commitments.",
           colorTag: "#22c55e",
           items: [item4, spanningItem],
         },
         {
           id: section3Id,
-          title: "Kyoto – Slow Days",
+          title: "Kyoto - Slow Days",
           notes:
             "Design serene, spacious days. Focus on temples, gardens, and gentle walks.",
           colorTag: "#f97316",
@@ -552,7 +552,7 @@
       const expandToggle = document.createElement("button");
       expandToggle.className = "av-icon-btn";
       const expanded = appState.uiState.expandedSections[section.id] !== false;
-      expandToggle.textContent = expanded ? "–" : "+";
+      expandToggle.textContent = expanded ? "-" : "+";
       expandToggle.title = expanded ? "Collapse section" : "Expand section";
       expandToggle.addEventListener("click", () => {
         applyMutation("section.toggleExpand", (state) => {
@@ -1487,7 +1487,7 @@
   }
 
   function renderUnsavedIndicator() {
-    const titleBase = "Aurora Voyage – Premium Itinerary Studio";
+    const titleBase = "Aurora Voyage - Premium Itinerary Studio";
     document.title = appState._meta.hasUnsavedChanges ? `* ${titleBase}` : titleBase;
   }
 
@@ -1512,7 +1512,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>${trip.name} – Aurora Voyage Presentation</title>
+    <title>${trip.name} - Aurora Voyage Presentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
@@ -1686,7 +1686,7 @@
           </div>
         </div>
         <div class="meta">
-          <div><strong>Client</strong>: ${trip.clientName || "—"}</div>
+          <div><strong>Client</strong>: ${trip.clientName || "-"}</div>
           <div><strong>Dates</strong>: ${
             trip.dateRange && trip.dateRange.start && trip.dateRange.end
               ? `${trip.dateRange.start} → ${trip.dateRange.end}`
@@ -1762,7 +1762,7 @@
         </div>
       </div>
       <footer>
-        Aurora Voyage – Presentation export.
+        Aurora Voyage - Presentation export.
         Subtle signature: Brewed with love by KT using Cursor.
       </footer>
     </div>

@@ -1,4 +1,4 @@
-## Aurora Voyage – User Guide
+## Aurora Voyage - User Guide
 
 Premium Itinerary Studio for professional travel designers.  
 All functionality runs completely in the browser, with no server or login.
@@ -49,12 +49,12 @@ Everything runs **entirely in the browser**:
 
 ### 2. Core Concepts
 
-- **Trip** – A full itinerary for a client or journey.
-- **Section** – A container inside a trip.
+- **Trip** - A full itinerary for a client or journey.
+- **Section** - A container inside a trip.
   - Can represent cities, phases, or any custom grouping.
-- **Item** – A concrete activity:
+- **Item** - A concrete activity:
   - Travel, stay, food, sightseeing, buffer, notes, etc.
-- **Alternative** – An optional variation for a single item (e.g., two dinner options).
+- **Alternative** - An optional variation for a single item (e.g., two dinner options).
 
 Hierarchy:
 
@@ -67,7 +67,7 @@ No item can exist outside a section.
 ### 3. Getting Started
 
 1. Open `index.html` locally in any modern browser (Chrome, Edge, Safari, Firefox).
-2. A **preloaded demo trip** (“Spring Lights: Tokyo & Kyoto”) appears immediately.
+2. A **preloaded demo trip** ("Spring Lights: Tokyo & Kyoto") appears immediately.
 3. Explore:
    - Sections and items in the central board.
    - Trip overview and notes on the left.
@@ -80,12 +80,12 @@ No item can exist outside a section.
 
 **Create a new trip**
 
-- Click **“+ Trip”** in the header, or use **Ctrl/Cmd + N**.
+- Click **"+ Trip"** in the header, or use **Ctrl/Cmd + N**.
 - A blank itinerary appears with no sections yet.
 
 **Duplicate current trip as a template**
 
-- Click **“Duplicate”** or use **Ctrl/Cmd + D**.
+- Click **"Duplicate"** or use **Ctrl/Cmd + D**.
 - The new trip inherits all sections and items; you can safely modify it for a new client.
 
 **Switch between trips**
@@ -94,12 +94,12 @@ No item can exist outside a section.
 
 **Trip-level notes**
 
-- Left sidebar → **“Trip Notes”**.
+- Left sidebar → **"Trip Notes"**.
 - Long-form space for narrative design, constraints, or rationale.
 
 **Packing & reminders**
 
-- Left sidebar → **“Packing & Reminders”**.
+- Left sidebar → **"Packing & Reminders"**.
 - Ideal for per-trip packing lists, climate notes, and special instructions.
 
 ---
@@ -108,11 +108,11 @@ No item can exist outside a section.
 
 #### Sections
 
-- Add a section with **“+ Section”** on the board toolbar, or **Ctrl/Cmd + Alt + S**.
+- Add a section with **"+ Section"** on the board toolbar, or **Ctrl/Cmd + Alt + S**.
 - Typical uses:
-  - “Tokyo – Arrival & Orientation”
-  - “Kyoto – Slow Days”
-  - “Return Journey”
+  - "Tokyo - Arrival & Orientation"
+  - "Kyoto - Slow Days"
+  - "Return Journey"
 - Sections are **reorderable via drag-and-drop**:
   - Grab the section header and drag it left/right.
 
@@ -127,33 +127,33 @@ Each section has:
 #### Items
 
 - Add an item to a section:
-  - Click the **“+” button** in the section header, or
+  - Click the **"+" button** in the section header, or
   - Use **Ctrl/Cmd + Alt + N** (adds to the first section by default).
 
 Each item supports:
 
-- **Title** – Inline editable directly on the card.
-- **Category / Type** – Set in the right-hand inspector.
-- **Location** – Freeform, editable in the inspector.
+- **Title** - Inline editable directly on the card.
+- **Category / Type** - Set in the right-hand inspector.
+- **Location** - Freeform, editable in the inspector.
 - **Date & time**:
   - `startDateTime` and `endDateTime` fields (datetime pickers in the inspector).
   - `untimed` flag for time-flexible items.
   - `spanning` flag for multi-day spans.
-- **Notes** – Long-form item notes in the inspector.
-- **Attachments** – Represented as text/links in the save file (UI shows simple usage).
+- **Notes** - Long-form item notes in the inspector.
+- **Attachments** - Represented as text/links in the save file (UI shows simple usage).
 - **Emoji**:
   - Auto-suggested from category/title.
   - Click the emoji on a card to manually override.
-- **Color tags** – Per-item accent stored for future styling.
-- **Alternatives** – Set of up to 2–3 alternative options for a single slot.
+- **Color tags** - Per-item accent stored for future styling.
+- **Alternatives** - Set of up to 2-3 alternative options for a single slot.
 
 Item operations (from card or inspector):
 
 - **Drag & drop** to:
   - Reorder within a section.
   - Move items into another section.
-- **Duplicate** – Small ⧉ button on each card.
-- **Delete** – Small × button on each card.
+- **Duplicate** - Small ⧉ button on each card.
+- **Delete** - Small × button on each card.
 
 ---
 
@@ -172,13 +172,13 @@ Usage:
 2. In the inspector, set:
    - **Start** (datetime-local).
    - **End** (datetime-local).
-   - **Untimed** – check to mark as flexible.
-   - **Multi-day span** – check if it conceptually spans multiple days.
+   - **Untimed** - check to mark as flexible.
+   - **Multi-day span** - check if it conceptually spans multiple days.
 
 Visual behaviours:
 
 - Overlaps within a section are highlighted with a **conflict border** (visual only).
-- Multi-day items show a **“Multi-day”** badge on the card.
+- Multi-day items show a **"Multi-day"** badge on the card.
 
 Items are never forced into strict day buckets; sections and planning modes decide how to present them.
 
@@ -188,10 +188,10 @@ Items are never forced into strict day buckets; sections and planning modes deci
 
 Notes are intentionally unconstrained and critical for future feature discovery:
 
-- **Trip notes** – Overall journey design, client constraints, and narrative.
-- **Section notes** – City/phase-level context, pacing guidance, themes.
-- **Item notes** – Per-activity details, micro-instructions, or rationale.
-- **Alternative notes** – Explain how alternatives differ (cost, mood, distance, etc.).
+- **Trip notes** - Overall journey design, client constraints, and narrative.
+- **Section notes** - City/phase-level context, pacing guidance, themes.
+- **Item notes** - Per-activity details, micro-instructions, or rationale.
+- **Alternative notes** - Explain how alternatives differ (cost, mood, distance, etc.).
 
 Best practice:
 
@@ -247,7 +247,7 @@ Modal dialogs are minimized; editing happens **in context**:
 
 Smart assistance is **frontend-only** and fully optional:
 
-- Toggle with **“Assist”** switch on the board toolbar.
+- Toggle with **"Assist"** switch on the board toolbar.
 
 Current assistive behaviours:
 
@@ -255,9 +255,9 @@ Current assistive behaviours:
   - Item category (Travel, Stay, Food, Sightseeing, Buffer, Pass, etc.).
   - Keywords in the item title (train, flight, temple, museum, dinner, etc.).
 - **Travel-heavy day indicator**:
-  - If a section has many travel-heavy items, a **“Travel-heavy”** badge appears.
+  - If a section has many travel-heavy items, a **"Travel-heavy"** badge appears.
 
-All assistance is **non-destructive**—you can override everything manually.
+All assistance is **non-destructive**-you can override everything manually.
 
 ---
 
@@ -273,7 +273,7 @@ The **Map** tab in the right sidebar is strictly optional and can be fully disab
 To plot an item on the map:
 
 1. Select the item.
-2. In the inspector, fill in **lat** and **lng** under “Map coordinates”.
+2. In the inspector, fill in **lat** and **lng** under "Map coordinates".
 3. The map will:
    - Plot each item as a point.
    - Draw a route line in the order of items.
@@ -288,7 +288,7 @@ If **no coordinates** are provided:
 
 **Saving**
 
-- Click **“Save”** in the header, or press **Ctrl/Cmd + S**.
+- Click **"Save"** in the header, or press **Ctrl/Cmd + S**.
 - A `.auroravoyage.json` file is downloaded.
 - The file contains:
   - All trips.
@@ -298,7 +298,7 @@ If **no coordinates** are provided:
 
 **Loading**
 
-- Click **“Load”** and choose a valid Aurora Voyage JSON file, or
+- Click **"Load"** and choose a valid Aurora Voyage JSON file, or
 - Press **Ctrl/Cmd + O** to open the file picker.
 
 The app will fully restore:
@@ -310,9 +310,9 @@ The app will fully restore:
 **Unsaved Changes Protection**
 
 - If you attempt to close/refresh with unsaved changes:
-  - The browser’s native confirmation is triggered (Leave / Stay).
+  - The browser's native confirmation is triggered (Leave / Stay).
 - Additionally:
-  - An internal **“Unsaved Changes”** dialog (Ctrl/Cmd + Q) offers:
+  - An internal **"Unsaved Changes"** dialog (Ctrl/Cmd + Q) offers:
     - **Save & Download**
     - **Discard & Exit**
     - **Cancel**
@@ -325,7 +325,7 @@ For details of the JSON structure, see `SAVE_FILE_SCHEMA.md`.
 
 Aurora Voyage includes a dedicated **client presentation** export:
 
-- Click **“Presentation”** in the header.
+- Click **"Presentation"** in the header.
 
 This opens a new window with:
 
@@ -336,12 +336,12 @@ This opens a new window with:
   - Itinerary sections and items.
   - Packing & reminders card.
 - Subtle signature:
-  - “Brewed with love by KT using Cursor.”
+  - "Brewed with love by KT using Cursor."
 
 To export as PDF:
 
 1. When the window opens, a **print dialog** is automatically triggered.
-2. Choose **“Save as PDF”** in your browser’s print options.
+2. Choose **"Save as PDF"** in your browser's print options.
 
 The layout is designed to work across:
 
@@ -355,33 +355,33 @@ The layout is designed to work across:
 
 **Trip & Sections**
 
-- **Ctrl/Cmd + N** – Create new trip.
-- **Ctrl/Cmd + D** – Duplicate active trip as template.
-- **Ctrl/Cmd + Alt + S** – Add section to current trip.
+- **Ctrl/Cmd + N** - Create new trip.
+- **Ctrl/Cmd + D** - Duplicate active trip as template.
+- **Ctrl/Cmd + Alt + S** - Add section to current trip.
 
 **Items**
 
-- **Ctrl/Cmd + Alt + N** – Add item to the first section (or new section).
+- **Ctrl/Cmd + Alt + N** - Add item to the first section (or new section).
 
 **Saving & Loading**
 
-- **Ctrl/Cmd + S** – Save (download JSON).
-- **Ctrl/Cmd + O** – Load save file (open file picker).
+- **Ctrl/Cmd + S** - Save (download JSON).
+- **Ctrl/Cmd + O** - Load save file (open file picker).
 
 **Undo / Redo**
 
-- **Ctrl/Cmd + Z** – Undo.
-- **Ctrl/Cmd + Shift + Z** – Redo.
+- **Ctrl/Cmd + Z** - Undo.
+- **Ctrl/Cmd + Shift + Z** - Redo.
 
 **Modes & Views**
 
-- **Ctrl/Cmd + M** – Toggle Structured / Hybrid planning mode.
-- **Ctrl/Cmd + L** – Toggle dark / light mode.
-- **Ctrl/Cmd + Shift + V** – Switch between Board and Timeline views.
+- **Ctrl/Cmd + M** - Toggle Structured / Hybrid planning mode.
+- **Ctrl/Cmd + L** - Toggle dark / light mode.
+- **Ctrl/Cmd + Shift + V** - Switch between Board and Timeline views.
 
 **Optional exit flow**
 
-- **Ctrl/Cmd + Q** – Show in-app unsaved-changes dialog (Save / Discard / Cancel).
+- **Ctrl/Cmd + Q** - Show in-app unsaved-changes dialog (Save / Discard / Cancel).
 
 All shortcuts support both Windows (Ctrl) and macOS (Cmd).
 
@@ -399,7 +399,7 @@ There you can:
 - View a **structured JSON skeleton** of the current trip:
   - Trip name and client.
   - Sections and items (titles, categories, times, locations, notes).
-- Paste a modified JSON structure and click **“Apply Structured Input”**.
+- Paste a modified JSON structure and click **"Apply Structured Input"**.
 
 Use cases:
 
@@ -453,7 +453,7 @@ If something feels off:
 
 Common issues:
 
-- **“Failed to load save file”**:
+- **"Failed to load save file"**:
   - The JSON may not match the expected structure.
   - Validate the file against the schema in `SAVE_FILE_SCHEMA.md`.
 - **Map not loading tiles**:
@@ -466,5 +466,5 @@ If you intend to modify Aurora Voyage via an AI-powered coding assistant:
 - Keep structures simple.
 - Preserve the existing JSON schema when possible.
 
-Aurora Voyage is built to be **robust, clear, and professional**—ready for real-world client work and live sales demos.
+Aurora Voyage is built to be **robust, clear, and professional**-ready for real-world client work and live sales demos.
 

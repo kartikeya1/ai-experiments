@@ -1,4 +1,4 @@
-## Aurora Voyage – Premium Itinerary Studio
+## Aurora Voyage - Premium Itinerary Studio
 
 Aurora Voyage is a **frontend-only**, offline-friendly travel itinerary **design** tool built for professional trip creators. It runs entirely in the browser with no backend, database, or cloud services.
 
@@ -36,11 +36,11 @@ The save file schema is documented in `SAVE_FILE_SCHEMA.md` to allow AI agents o
 
 ### Documentation
 
-- `USER_GUIDE.md` – Full end-user documentation and workflows.
-- `SAVE_FILE_SCHEMA.md` – Detailed JSON schema and example save file.
+- `USER_GUIDE.md` - Full end-user documentation and workflows.
+- `SAVE_FILE_SCHEMA.md` - Detailed JSON schema and example save file.
 
 ### Branding & Credit
 
-- Product name: **Aurora Voyage – Premium Itinerary Studio**
-- Signature credit line: **“Brewed with love by KT using Cursor.”**
+- Product name: **Aurora Voyage - Premium Itinerary Studio**
+- Signature credit line: **"Brewed with love by KT using Cursor."**
 

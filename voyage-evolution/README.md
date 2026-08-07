@@ -1,4 +1,4 @@
-# Aurora Voyage → Voyagr — The Evolution of an Itinerary Studio
+# Aurora Voyage → Voyagr - The Evolution of an Itinerary Studio
 
 A single deployment that showcases one product built **twice**: how **Aurora Voyage (v1)** became **Voyagr (v2)** through iteration. The landing page tells the evolution story, compares both builds side by side, embeds both real apps live, and gives a full tour of every v2 feature.
 
@@ -11,15 +11,15 @@ A single deployment that showcases one product built **twice**: how **Aurora Voy
 ```
 voyage-evolution/
 ├── index.html          # The showcase / case-study landing page
-├── v1/                 # Aurora Voyage — the original build (HTML + CSS + JS)
+├── v1/                 # Aurora Voyage - the original build (HTML + CSS + JS)
 │   └── index.html
-├── v2/                 # Voyagr — the final build (single self-contained file)
+├── v2/                 # Voyagr - the final build (single self-contained file)
 │   └── index.html      # (a copy of voyagr.html, served as the folder index)
 ├── vercel.json         # Static hosting + clean-URL routing
 └── README.md
 ```
 
-Both apps are **100% frontend-only and offline-friendly** — no backend, no build step. The showcase page is a single static HTML file in the same design language as v2 (dark editorial theme, Cormorant Garamond, gold accent).
+Both apps are **100% frontend-only and offline-friendly** - no backend, no build step. The showcase page is a single static HTML file in the same design language as v2 (dark editorial theme, Cormorant Garamond, gold accent).
 
 ## The evolution, in one line
 
@@ -29,7 +29,7 @@ Both apps are **100% frontend-only and offline-friendly** — no backend, no bui
 | Identity | Light-first studio UI | Dark editorial + gold accent |
 | Scope | Multi-trip management | Focused single-trip depth |
 | Map | Leaflet + OpenStreetMap (CDN) | Offline location listing |
-| New in v2 | — | Packing list · Trip stats · Conflict detection |
+| New in v2 | - | Packing list · Trip stats · Conflict detection |
 
 ## Run locally
 
@@ -53,7 +53,7 @@ vercel          # preview deployment
 vercel --prod   # production
 ```
 
-Or import the GitHub repo at [vercel.com/new](https://vercel.com/new) — no framework preset needed, output is the repo root.
+Or import the GitHub repo at [vercel.com/new](https://vercel.com/new) - no framework preset needed, output is the repo root.
 
 ## Routes
 
