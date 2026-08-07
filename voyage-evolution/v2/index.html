@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voyagr — Premium Itinerary Design</title>
+<title>Voyagr - Premium Itinerary Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -388,7 +388,7 @@ kbd{display:inline-block;padding:1px 5px;background:var(--bg4);border:1px solid 
 
       <div id="ai-panel" style="display:none">
         <div class="ai-panel">
-          <div class="ai-label">🤖 AI Import Mode — Paste JSON itinerary data</div>
+          <div class="ai-label">🤖 AI Import Mode - Paste JSON itinerary data</div>
           <textarea id="ai-input" placeholder='{"trip":{"title":"My Trip"},"sections":[...]}'></textarea>
           <div style="display:flex;gap:8px;margin-top:8px">
             <button class="btn primary sm" onclick="importFromAI()">Import JSON</button>
@@ -437,7 +437,7 @@ kbd{display:inline-block;padding:1px 5px;background:var(--bg4);border:1px solid 
 
 <script>
 // ============================================================
-//  VOYAGR — Premium Travel Itinerary Design Platform
+//  VOYAGR - Premium Travel Itinerary Design Platform
 //  Version: 1.0.0
 //  Architecture: Frontend-only, serverless, in-memory
 // ============================================================
@@ -1256,7 +1256,7 @@ function formatItemTime(item) {
   if (item.date) parts.push(formatDate(item.date));
   if (item.timeStart) {
     let t = item.timeStart;
-    if (item.timeEnd) t += ' – '+item.timeEnd;
+    if (item.timeEnd) t += ' - '+item.timeEnd;
     parts.push(t);
   }
   return parts.join(' ');
@@ -1477,7 +1477,7 @@ function loadDemoData() {
   };
   state.sections = [
     {
-      id: s1, name: 'Rome — Days 1–4', color: SECTION_COLORS[0],
+      id: s1, name: 'Rome - Days 1-4', color: SECTION_COLORS[0],
       notes: 'Check in by 3pm at Hotel Artemide. Pick up Roma Pass on arrival.',
       items: [
         {
@@ -1507,7 +1507,7 @@ function loadDemoData() {
         },
         {
           id: genId(), sectionId: s1,
-          title: 'Dinner — Da Enzo al 29', category: 'Restaurant', emoji: '🍽️', emojiOverride: false,
+          title: 'Dinner - Da Enzo al 29', category: 'Restaurant', emoji: '🍽️', emojiOverride: false,
           location: 'Via dei Vascellari 29, Trastevere', date: '2025-06-02', timeStart: '20:00', timeEnd: '22:00',
           notes: 'Roman trattoria. Book 2 weeks ahead. Try: cacio e pepe, coda alla vaccinara. Cash preferred.',
           color: COLORS[3], attachments: [],
@@ -1525,7 +1525,7 @@ function loadDemoData() {
       ]
     },
     {
-      id: s2, name: 'Florence — Days 5–8', color: SECTION_COLORS[1],
+      id: s2, name: 'Florence - Days 5-8', color: SECTION_COLORS[1],
       notes: 'Slower pace. Focus on Uffizi and day trips. Studio Officina Profumo visit confirmed.',
       items: [
         {
@@ -1544,9 +1544,9 @@ function loadDemoData() {
         },
         {
           id: genId(), sectionId: s2,
-          title: 'Day Trip — Cinque Terre', category: 'Activity', emoji: '🥾', emojiOverride: false,
+          title: 'Day Trip - Cinque Terre', category: 'Activity', emoji: '🥾', emojiOverride: false,
           location: 'Cinque Terre National Park', date: '2025-06-07', timeStart: '07:30', timeEnd: '20:00',
-          notes: 'Take 07:30 train from SMN. Buy Cinque Terre card. Walk Corniglia–Vernazza–Monterosso path. Sunset in Riomaggiore.',
+          notes: 'Take 07:30 train from SMN. Buy Cinque Terre card. Walk Corniglia-Vernazza-Monterosso path. Sunset in Riomaggiore.',
           color: COLORS[3], attachments: [], alternatives: [
             { id: genId(), title: 'San Gimignano day trip instead', notes: 'Easier if weather is poor. Medieval towers.', active: false }
           ], multiDay: false, dateEnd: ''
@@ -1554,7 +1554,7 @@ function loadDemoData() {
       ]
     },
     {
-      id: s3, name: 'Venice — Days 9–11', color: SECTION_COLORS[2],
+      id: s3, name: 'Venice - Days 9-11', color: SECTION_COLORS[2],
       notes: 'Water taxi from Piazzale Roma to hotel. No wheeled luggage on bridges.',
       items: [
         {
@@ -1574,8 +1574,8 @@ function loadDemoData() {
       ]
     },
     {
-      id: s4, name: 'Amalfi Coast — Days 12–15', color: SECTION_COLORS[3],
-      notes: 'Most relaxed section. SITA buses connect villages. Car rental not recommended — roads narrow.',
+      id: s4, name: 'Amalfi Coast - Days 12-15', color: SECTION_COLORS[3],
+      notes: 'Most relaxed section. SITA buses connect villages. Car rental not recommended - roads narrow.',
       items: [
         {
           id: genId(), sectionId: s4,
@@ -1586,7 +1586,7 @@ function loadDemoData() {
         },
         {
           id: genId(), sectionId: s4,
-          title: 'Beach Day — Spiaggia di Duoglio', category: 'Beach', emoji: '🏖️', emojiOverride: false,
+          title: 'Beach Day - Spiaggia di Duoglio', category: 'Beach', emoji: '🏖️', emojiOverride: false,
           location: 'Amalfi, Salerno', date: '2025-06-14', timeStart: '10:00', timeEnd: '16:00',
           notes: 'Quieter beach accessible by path from Amalfi. Bring snorkeling gear.',
           color: COLORS[3], attachments: [], alternatives: [], multiDay: false, dateEnd: ''
@@ -1805,7 +1805,7 @@ function renderStatsPanel() {
       <div class="stat-grid" style="margin-bottom:16px">
         <div class="stat-box"><div class="stat-num">${state.sections.length}</div><div class="stat-label">Sections</div></div>
         <div class="stat-box"><div class="stat-num">${totalItems}</div><div class="stat-label">Items</div></div>
-        <div class="stat-box"><div class="stat-num">${days||'—'}</div><div class="stat-label">Days</div></div>
+        <div class="stat-box"><div class="stat-num">${days||'-'}</div><div class="stat-label">Days</div></div>
         <div class="stat-box"><div class="stat-num">${withLoc}</div><div class="stat-label">Locations</div></div>
       </div>
       <h4 style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px">By Category</h4>
@@ -1880,7 +1880,7 @@ function buildPresentationHTML() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${escHtml(t.title||'Itinerary')} — Voyagr</title>
+<title>${escHtml(t.title||'Itinerary')} - Voyagr</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
   *{box-sizing:border-box;margin:0;padding:0}
@@ -1942,7 +1942,7 @@ function buildPresentationHTML() {
           </div>
           <div class="item-meta">
             ${item.date?`<span>🗓 ${formatDate(item.date)}${item.dateEnd&&item.dateEnd!==item.date?' → '+formatDate(item.dateEnd):''}</span>`:''}
-            ${item.timeStart?`<span>⏰ ${item.timeStart}${item.timeEnd?' – '+item.timeEnd:''}</span>`:''}
+            ${item.timeStart?`<span>⏰ ${item.timeStart}${item.timeEnd?' - '+item.timeEnd:''}</span>`:''}
             ${item.location?`<span>📍 ${escHtml(item.location)}</span>`:''}
           </div>
           ${item.notes?`<div class="item-notes-text">${escHtml(item.notes)}</div>`:''}
@@ -1950,7 +1950,7 @@ function buildPresentationHTML() {
           ${(item.alternatives||[]).length?`
             <div class="alt-section">
               <div class="alt-label">Alternatives</div>
-              ${item.alternatives.map(a=>`<div class="alt-item ${a.active?'active':''}">${a.active?'✓ ':''}${escHtml(a.title)}${a.notes?' — '+escHtml(a.notes):''}</div>`).join('')}
+              ${item.alternatives.map(a=>`<div class="alt-item ${a.active?'active':''}">${a.active?'✓ ':''}${escHtml(a.title)}${a.notes?' - '+escHtml(a.notes):''}</div>`).join('')}
             </div>
           `:''}
         </div>
@@ -1958,7 +1958,7 @@ function buildPresentationHTML() {
     </div>
   `).join('')}
   <div class="footer">
-    <strong>Voyagr</strong> — Premium Travel Itinerary Design<br>
+    <strong>Voyagr</strong> - Premium Travel Itinerary Design<br>
     ✦ Brewed with love by KT using Cursor · Generated ${new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}
   </div>
 </div>
@@ -2103,7 +2103,7 @@ function importFromAI() {
 
 function copySchema() {
   const schema = getSchemaDoc();
-  navigator.clipboard?.writeText(schema).then(()=>toast('Schema copied to clipboard','success')).catch(()=>toast('Copy failed — see console','error'));
+  navigator.clipboard?.writeText(schema).then(()=>toast('Schema copied to clipboard','success')).catch(()=>toast('Copy failed - see console','error'));
   console.log('[Voyagr][SCHEMA]', schema);
 }
 
@@ -2115,29 +2115,29 @@ function getSchemaDoc() {
     "savedAt": "ISO-8601 timestamp",
     "trip": {
       "title": "string",
-      "dest": "string — comma-separated destinations",
+      "dest": "string - comma-separated destinations",
       "start": "YYYY-MM-DD",
       "end": "YYYY-MM-DD",
       "travelers": "number",
-      "notes": "string — freeform trip notes"
+      "notes": "string - freeform trip notes"
     },
     "sections": [
       {
-        "id": "string — unique",
+        "id": "string - unique",
         "name": "string",
         "color": "hex color string",
         "notes": "string",
         "items": [
           {
-            "id": "string — unique",
-            "sectionId": "string — parent section id",
+            "id": "string - unique",
+            "sectionId": "string - parent section id",
             "title": "string",
             "category": "Stay|Flight|Train|Transport|Restaurant|Activity|Sightseeing|Museum|Shopping|Beach|Hiking|Tour|Transfer|Buffer|Note|Meeting|Event|Other",
             "emoji": "single emoji string",
             "emojiOverride": "boolean",
             "location": "string",
             "date": "YYYY-MM-DD",
-            "dateEnd": "YYYY-MM-DD — for multi-day items",
+            "dateEnd": "YYYY-MM-DD - for multi-day items",
             "timeStart": "HH:MM",
             "timeEnd": "HH:MM",
             "notes": "string",

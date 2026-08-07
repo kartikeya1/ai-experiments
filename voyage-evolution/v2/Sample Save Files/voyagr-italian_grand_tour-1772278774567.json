@@ -11,7 +11,7 @@
   "sections": [
     {
       "id": "mm690tn7yad4o",
-      "name": "Rome — Days 1–4",
+      "name": "Rome - Days 1-4",
       "color": "#c8a96e",
       "notes": "Check in by 3pm at Hotel Artemide. Pick up Roma Pass on arrival.",
       "items": [
@@ -89,7 +89,7 @@
         {
           "id": "mm690tn7m6rqg",
           "sectionId": "mm690tn7yad4o",
-          "title": "Dinner — Da Enzo al 29",
+          "title": "Dinner - Da Enzo al 29",
           "category": "Restaurant",
           "emoji": "🍽️",
           "emojiOverride": false,
@@ -133,7 +133,7 @@
     },
     {
       "id": "mm690tn7h6nkl",
-      "name": "Florence — Days 5–8",
+      "name": "Florence - Days 5-8",
       "color": "#8fb4c8",
       "notes": "Slower pace. Focus on Uffizi and day trips. Studio Officina Profumo visit confirmed.",
       "items": [
@@ -176,7 +176,7 @@
         {
           "id": "mm690tn7t50ee",
           "sectionId": "mm690tn7h6nkl",
-          "title": "Day Trip — Cinque Terre",
+          "title": "Day Trip - Cinque Terre",
           "category": "Activity",
           "emoji": "🥾",
           "emojiOverride": false,
@@ -184,7 +184,7 @@
           "date": "2025-06-07",
           "timeStart": "07:30",
           "timeEnd": "20:00",
-          "notes": "Take 07:30 train from SMN. Buy Cinque Terre card. Walk Corniglia–Vernazza–Monterosso path. Sunset in Riomaggiore.",
+          "notes": "Take 07:30 train from SMN. Buy Cinque Terre card. Walk Corniglia-Vernazza-Monterosso path. Sunset in Riomaggiore.",
           "color": "#c8a0a8",
           "attachments": [],
           "alternatives": [
@@ -202,7 +202,7 @@
     },
     {
       "id": "mm690tn7326dq",
-      "name": "Venice — Days 9–11",
+      "name": "Venice - Days 9-11",
       "color": "#a8c8a0",
       "notes": "Water taxi from Piazzale Roma to hotel. No wheeled luggage on bridges.",
       "items": [
@@ -246,9 +246,9 @@
     },
     {
       "id": "mm690tn7j63sx",
-      "name": "Amalfi Coast — Days 12–15",
+      "name": "Amalfi Coast - Days 12-15",
       "color": "#c8a0a8",
-      "notes": "Most relaxed section. SITA buses connect villages. Car rental not recommended — roads narrow.",
+      "notes": "Most relaxed section. SITA buses connect villages. Car rental not recommended - roads narrow.",
       "items": [
         {
           "id": "mm690tn7dqvud",
@@ -271,7 +271,7 @@
         {
           "id": "mm690tn7qc08k",
           "sectionId": "mm690tn7j63sx",
-          "title": "Beach Day — Spiaggia di Duoglio",
+          "title": "Beach Day - Spiaggia di Duoglio",
           "category": "Beach",
           "emoji": "🏖️",
           "emojiOverride": false,

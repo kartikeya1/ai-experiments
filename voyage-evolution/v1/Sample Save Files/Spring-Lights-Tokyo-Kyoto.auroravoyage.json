@@ -27,11 +27,11 @@
         "end": "2026-04-12"
       },
       "notes": "Family-focused itinerary with a gentle pace. Prioritize evening cityscapes, light experiences, and flexible daytime windows.",
-      "packingNotes": "Layering pieces; compact umbrellas; small gifts for local hosts; portable Wi‑Fi or eSIM confirmed externally.",
+      "packingNotes": "Layering pieces; compact umbrellas; small gifts for local hosts; portable Wi-Fi or eSIM confirmed externally.",
       "sections": [
         {
           "id": "section_ujh1rjf0",
-          "title": "Arrival & Orientation – Tokyo",
+          "title": "Arrival & Orientation - Tokyo",
           "notes": "Soft landing day. Keep everything light and flexible in case of jet lag or delays.",
           "colorTag": "#38bdf8",
           "items": [
@@ -116,13 +116,13 @@
         },
         {
           "id": "section_oael1xou",
-          "title": "Tokyo – Kyoto Transition",
-          "notes": "Core transit day – avoid stacking too many fixed-time commitments.",
+          "title": "Tokyo - Kyoto Transition",
+          "notes": "Core transit day - avoid stacking too many fixed-time commitments.",
           "colorTag": "#22c55e",
           "items": [
             {
               "id": "item_p4h1r11n",
-              "title": "Tokyo – Kyoto Shinkansen",
+              "title": "Tokyo - Kyoto Shinkansen",
               "category": "Travel",
               "location": "Tokyo Station → Kyoto Station",
               "startDateTime": "2026-04-06T09:00",
@@ -147,7 +147,7 @@
               "endDateTime": "2026-04-11T23:00",
               "untimed": true,
               "spanning": true,
-              "notes": "Covers all long-distance intercity travel – keep card accessible.",
+              "notes": "Covers all long-distance intercity travel - keep card accessible.",
               "attachments": [],
               "emoji": "🎫",
               "emojiLocked": false,
@@ -160,7 +160,7 @@
         },
         {
           "id": "section_exxp7zek",
-          "title": "Kyoto – Slow Days",
+          "title": "Kyoto - Slow Days",
           "notes": "Design serene, spacious days. Focus on temples, gardens, and gentle walks.",
           "colorTag": "#f97316",
           "items": []

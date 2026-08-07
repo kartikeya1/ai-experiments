@@ -104,8 +104,8 @@ function describePause(symbol) {
         <text x="100" y="160" font-size="120" font-weight="800" text-anchor="middle" fill="#94a3b8">${symbol}</text>
       </svg>
     `,
-    description: symbol === '?' ? 'Pause and raise your eyebrows — the sentence is a question.'
-              : symbol === '!' ? 'Pause and add emphasis — the sentence is exclamatory.'
+    description: symbol === '?' ? 'Pause and raise your eyebrows - the sentence is a question.'
+              : symbol === '!' ? 'Pause and add emphasis - the sentence is exclamatory.'
               : 'A short pause between phrases.',
     meta: 'Pause',
     kind: 'pause',

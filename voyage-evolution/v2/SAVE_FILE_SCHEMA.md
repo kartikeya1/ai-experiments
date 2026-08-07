@@ -1,6 +1,6 @@
-# Voyagr Save File Schema — v1.0
+# Voyagr Save File Schema - v1.0
 
-**Product:** Voyagr — Premium Travel Itinerary Design Platform  
+**Product:** Voyagr - Premium Travel Itinerary Design Platform  
 **Schema Version:** 1.0  
 **File Extension:** `.json`
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Voyagr save files are portable JSON documents that capture the complete state of a travel itinerary project, including all trip data, UI state, and settings. They function like game save files — transferable across devices, openable on any machine with the app.
+Voyagr save files are portable JSON documents that capture the complete state of a travel itinerary project, including all trip data, UI state, and settings. They function like game save files - transferable across devices, openable on any machine with the app.
 
 ---
 
@@ -56,11 +56,11 @@ Voyagr save files are portable JSON documents that capture the complete state of
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `title` | string | ✓ | Display name of the trip |
-| `dest` | string | — | Destination(s), comma-separated |
-| `start` | string (YYYY-MM-DD) | — | Trip start date |
-| `end` | string (YYYY-MM-DD) | — | Trip end date |
-| `travelers` | number | — | Number of travelers (default 1) |
-| `notes` | string | — | Freeform trip-level notes |
+| `dest` | string | - | Destination(s), comma-separated |
+| `start` | string (YYYY-MM-DD) | - | Trip start date |
+| `end` | string (YYYY-MM-DD) | - | Trip end date |
+| `travelers` | number | - | Number of travelers (default 1) |
+| `notes` | string | - | Freeform trip-level notes |
 
 ---
 
@@ -71,7 +71,7 @@ Sections are the primary organizational containers. They may represent cities, p
 ```json
 {
   "id": "abc123xyz",
-  "name": "Rome — Days 1–4",
+  "name": "Rome - Days 1-4",
   "color": "#c8a96e",
   "notes": "Check in by 3pm. Pick up Roma Pass.",
   "items": [ ... ]
@@ -83,14 +83,14 @@ Sections are the primary organizational containers. They may represent cities, p
 | `id` | string | ✓ | Unique section identifier |
 | `name` | string | ✓ | Display name |
 | `color` | hex string | ✓ | Accent color for visual identity |
-| `notes` | string | — | Freeform section-level notes |
+| `notes` | string | - | Freeform section-level notes |
 | `items` | array | ✓ | Ordered list of Item objects |
 
 ---
 
 ## Item Object
 
-Items represent any element of a travel plan — flights, stays, meals, activities, notes, buffers.
+Items represent any element of a travel plan - flights, stays, meals, activities, notes, buffers.
 
 ```json
 {
@@ -130,12 +130,12 @@ Items represent any element of a travel plan — flights, stays, meals, activiti
 | `category` | string | ✓ | See Category Enum below |
 | `emoji` | string | ✓ | Single emoji character |
 | `emojiOverride` | boolean | ✓ | If true, emoji was set manually |
-| `location` | string | — | Address, venue, or city |
-| `date` | string (YYYY-MM-DD) | — | Primary date |
-| `dateEnd` | string (YYYY-MM-DD) | — | End date for multi-day spans |
-| `timeStart` | string (HH:MM) | — | Start time (24h) |
-| `timeEnd` | string (HH:MM) | — | End time (24h) |
-| `notes` | string | — | Detailed freeform notes |
+| `location` | string | - | Address, venue, or city |
+| `date` | string (YYYY-MM-DD) | - | Primary date |
+| `dateEnd` | string (YYYY-MM-DD) | - | End date for multi-day spans |
+| `timeStart` | string (HH:MM) | - | Start time (24h) |
+| `timeEnd` | string (HH:MM) | - | End time (24h) |
+| `notes` | string | - | Detailed freeform notes |
 | `color` | hex string | ✓ | Color tag |
 | `attachments` | array | ✓ | Reference links (see below) |
 | `alternatives` | array | ✓ | Alternative options (max 3) |
@@ -189,12 +189,12 @@ Only one alternative per item should have `"active": true`. When an alternative 
 | Field | Type | Values | Description |
 |-------|------|--------|-------------|
 | `mode` | string | `"structured"`, `"hybrid"` | Planning mode |
-| `darkMode` | boolean | — | Dark/light theme |
-| `showConflicts` | boolean | — | Show time conflict warnings |
-| `autoEmoji` | boolean | — | Auto-assign emoji from title/category |
-| `aiMode` | boolean | — | AI import panel visible |
-| `showMap` | boolean | — | Map panel state |
-| `showAssistant` | boolean | — | Assistant features enabled |
+| `darkMode` | boolean | - | Dark/light theme |
+| `showConflicts` | boolean | - | Show time conflict warnings |
+| `autoEmoji` | boolean | - | Auto-assign emoji from title/category |
+| `aiMode` | boolean | - | AI import panel visible |
+| `showMap` | boolean | - | Map panel state |
+| `showAssistant` | boolean | - | Assistant features enabled |
 
 ---
 
@@ -261,7 +261,7 @@ Only one alternative per item should have `"active": true`. When an alternative 
   "sections": [
     {
       "id": "sec_001",
-      "name": "Day 1 — Arrival",
+      "name": "Day 1 - Arrival",
       "color": "#c8a96e",
       "notes": "",
       "items": [
@@ -312,10 +312,10 @@ When generating a Voyagr save file programmatically:
 1. All `id` fields must be unique strings. Use any format (UUID, timestamp+random, etc.)
 2. `sectionId` in each item must match the parent section's `id` exactly
 3. Dates must be `YYYY-MM-DD` format; times `HH:MM` (24h)
-4. `alternatives` array should have 0–3 items; at most one with `"active": true`
+4. `alternatives` array should have 0-3 items; at most one with `"active": true`
 5. `emoji` should be a single emoji character appropriate to the category
 6. `expandedSections` and `expandedItems` should reference all section/item ids with value `true` to show them expanded on load
-7. The file is valid JSON — no trailing commas, all strings double-quoted
+7. The file is valid JSON - no trailing commas, all strings double-quoted
 
 ---
 

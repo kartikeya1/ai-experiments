@@ -1,23 +1,23 @@
 // Sign data for ASL (American) and ISL (Indian) sign languages.
 // Each letter entry produces a schematic SVG of the hand shape plus a
 // human-readable description. Word entries map common English words to a
-// "tokens" array — when a token isn't found in the word dictionary, the app
+// "tokens" array - when a token isn't found in the word dictionary, the app
 // falls back to fingerspelling.
 
 // ---- ASL hand-shape generator ----------------------------------------------
 // State per finger:
-//   'up'   — fully extended
-//   'half' — bent at middle joint
-//   'hook' — bent like a claw / X letter
-//   'curl' — closed against palm
+//   'up'   - fully extended
+//   'half' - bent at middle joint
+//   'hook' - bent like a claw / X letter
+//   'curl' - closed against palm
 // State per thumb:
-//   'side'     — resting along the side of the index (default closed-fist position)
-//   'across'   — across the front of the closed fingers (S, T-ish)
-//   'tuck'     — tucked inside the curled fingers (M, N)
-//   'open'     — extended out to the side (L, Y)
-//   'pinch'    — touching index/middle tips (F, O)
-//   'between'  — poking between fingers (T)
-//   'parallel' — alongside an extended index (G, H)
+//   'side'     - resting along the side of the index (default closed-fist position)
+//   'across'   - across the front of the closed fingers (S, T-ish)
+//   'tuck'     - tucked inside the curled fingers (M, N)
+//   'open'     - extended out to the side (L, Y)
+//   'pinch'    - touching index/middle tips (F, O)
+//   'between'  - poking between fingers (T)
+//   'parallel' - alongside an extended index (G, H)
 const FINGER_GEOMETRY = {
   index:  { x: 60,  w: 18, fullY: 18, fullH: 102 },
   middle: { x: 82,  w: 18, fullY: 10, fullH: 110 },
@@ -111,10 +111,10 @@ export const ASL_ALPHABET = {
        desc: 'Thumb and index touch in a circle; the other three fingers point up.' },
   G: { cfg: { index: 'up', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'open',
               overlay: '<text x="100" y="232" font-size="14" font-weight="700" text-anchor="middle" fill="#94a3b8">point sideways →</text>' },
-       desc: 'Index finger and thumb extended parallel — point them sideways (not up).' },
+       desc: 'Index finger and thumb extended parallel - point them sideways (not up).' },
   H: { cfg: { index: 'up', middle: 'up', ring: 'curl', pinky: 'curl', thumb: 'across',
               overlay: '<text x="100" y="232" font-size="14" font-weight="700" text-anchor="middle" fill="#94a3b8">point sideways →</text>' },
-       desc: 'Index and middle fingers extended together — point them sideways (not up).' },
+       desc: 'Index and middle fingers extended together - point them sideways (not up).' },
   I: { cfg: { index: 'curl', middle: 'curl', ring: 'curl', pinky: 'up', thumb: 'across' },
        desc: 'Pinky finger extended up; other fingers and thumb closed in a fist.' },
   J: { cfg: { index: 'curl', middle: 'curl', ring: 'curl', pinky: 'up', thumb: 'across',
@@ -124,7 +124,7 @@ export const ASL_ALPHABET = {
               overlay: '<rect x="82" y="40" width="18" height="80" rx="9" class="finger" transform="rotate(35 91 80)" />' },
        desc: 'Index up, middle finger angled out, thumb pressed between them.' },
   L: { cfg: { index: 'up', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'open' },
-       desc: 'Index finger up and thumb out — together they form an "L" shape.' },
+       desc: 'Index finger up and thumb out - together they form an "L" shape.' },
   M: { cfg: { index: 'curl', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'tuck',
               overlay: '<rect x="60" y="120" width="58" height="14" rx="7" class="finger" />' },
        desc: 'Three fingers (index, middle, ring) folded over a tucked thumb.' },
@@ -136,7 +136,7 @@ export const ASL_ALPHABET = {
        desc: 'All fingertips curl down to touch the thumb, forming an "O".' },
   P: { cfg: { index: 'up', middle: 'up', ring: 'curl', pinky: 'curl', thumb: 'between',
               overlay: '<rect x="82" y="40" width="18" height="80" rx="9" class="finger" transform="rotate(35 91 80)" /><text x="100" y="232" font-size="14" font-weight="700" text-anchor="middle" fill="#94a3b8">point downward ↓</text>' },
-       desc: 'Like "K", but the hand points downward — middle finger reaches forward.' },
+       desc: 'Like "K", but the hand points downward - middle finger reaches forward.' },
   Q: { cfg: { index: 'up', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'open',
               overlay: '<text x="100" y="232" font-size="14" font-weight="700" text-anchor="middle" fill="#94a3b8">point downward ↓</text>' },
        desc: 'Like "G", but the index finger and thumb point downward.' },
@@ -157,10 +157,10 @@ export const ASL_ALPHABET = {
   X: { cfg: { index: 'hook', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'side' },
        desc: 'Index finger bent like a hook; other fingers curled.' },
   Y: { cfg: { index: 'curl', middle: 'curl', ring: 'curl', pinky: 'up', thumb: 'open' },
-       desc: 'Thumb and pinky extended out, others curled — like "hang loose".' },
+       desc: 'Thumb and pinky extended out, others curled - like "hang loose".' },
   Z: { cfg: { index: 'up', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'across',
               overlay: '<polyline points="40,40 160,40 40,140 160,140" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="4 4" />' },
-       desc: 'Index finger out — trace the letter "Z" in the air.' },
+       desc: 'Index finger out - trace the letter "Z" in the air.' },
 };
 
 // Render the SVG once per letter
@@ -369,12 +369,12 @@ export const WORD_DICTIONARY = {
 };
 
 // Helper verbs and frequent connectors. In real ASL/ISL, many of these are
-// dropped or expressed through facial expression — but for a beginner caregiver
+// dropped or expressed through facial expression - but for a beginner caregiver
 // app, showing a recognisable sign is more useful than silently skipping them.
 const helpers = {
-  are:    { asl: 'Index and middle fingers ("R" shape) move outward from the lips.', isl: 'Same sign as "you" — index finger points forward.', cfg: { index: 'up', middle: 'up', ring: 'curl', pinky: 'curl', thumb: 'across' } },
-  am:     { asl: 'Index finger touches the lips and moves forward (often dropped).', isl: 'Often dropped — point to self.', cfg: { index: 'up', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'side' } },
-  is:     { asl: 'Pinky finger ("I" shape) touches the lips and moves forward.', isl: 'Often dropped — gesture briefly.', cfg: { index: 'curl', middle: 'curl', ring: 'curl', pinky: 'up', thumb: 'across' } },
+  are:    { asl: 'Index and middle fingers ("R" shape) move outward from the lips.', isl: 'Same sign as "you" - index finger points forward.', cfg: { index: 'up', middle: 'up', ring: 'curl', pinky: 'curl', thumb: 'across' } },
+  am:     { asl: 'Index finger touches the lips and moves forward (often dropped).', isl: 'Often dropped - point to self.', cfg: { index: 'up', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'side' } },
+  is:     { asl: 'Pinky finger ("I" shape) touches the lips and moves forward.', isl: 'Often dropped - gesture briefly.', cfg: { index: 'curl', middle: 'curl', ring: 'curl', pinky: 'up', thumb: 'across' } },
   was:    { asl: '"W" shape near the cheek, moves backward over the shoulder.', isl: 'Wave the right hand back over the shoulder.', cfg: { index: 'up', middle: 'up', ring: 'up', pinky: 'curl', thumb: 'across' } },
   do:     { asl: 'Both "C" hands face down, swing side to side.', isl: 'Both palms down, gesture forward.', cfg: { index: 'hook', middle: 'hook', ring: 'hook', pinky: 'hook', thumb: 'open' } },
   does:   { asl: 'Both "D" hands swing side to side.', isl: 'Both palms forward, gesture.', cfg: { index: 'up', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'pinch' } },
@@ -406,7 +406,7 @@ const helpers = {
   in:     { asl: 'Pinched fingertips dip into the cup of the other hand.', isl: 'Right fingertips drop into left cupped hand.', cfg: { index: 'hook', middle: 'hook', ring: 'hook', pinky: 'hook', thumb: 'pinch' } },
   on:     { asl: 'Right flat hand lands on the back of the left hand.', isl: 'Right palm rests on the back of left hand.', cfg: { thumb: 'across' } },
   at:     { asl: 'Right fingertips touch the back of the left hand.', isl: 'Right fingertips touch the back of left hand.', cfg: { index: 'half', middle: 'half', ring: 'half', pinky: 'half', thumb: 'across' } },
-  of:     { asl: 'Often omitted — fingerspell briefly.', isl: 'Often omitted.', cfg: { index: 'curl', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'open' } },
+  of:     { asl: 'Often omitted - fingerspell briefly.', isl: 'Often omitted.', cfg: { index: 'curl', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'open' } },
   a:      { asl: 'Use the "A" hand shape (often omitted in sign).', isl: 'Often omitted.', cfg: { index: 'curl', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'side' } },
   an:     { asl: 'Often omitted in sign.', isl: 'Often omitted.', cfg: { index: 'curl', middle: 'curl', ring: 'curl', pinky: 'curl', thumb: 'side' } },
   the:    { asl: 'Often omitted in sign.', isl: 'Often omitted.', cfg: { thumb: 'across' } },

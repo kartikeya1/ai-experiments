@@ -16,11 +16,11 @@ route.
 
 <br>
 
-## ResumeForge — resume builder with live ATS scoring
+## ResumeForge - resume builder with live ATS scoring
 
 A web app for building or importing a resume with a live, pageless black-and-white preview. Paste a
 job description and it extracts keywords, shows present/missing coverage, and computes an ATS score
-plus a JD-match score — all with a deterministic, explainable feedback engine (no AI required). It
+plus a JD-match score - all with a deterministic, explainable feedback engine (no AI required). It
 also flags weak bullets, tracks multiple resume versions, and exports design-preserving PDF and DOCX.
 Unlike the other experiments here, ResumeForge is a Next.js app **deployed separately** on Vercel, so
 its card links out to the live site:
@@ -28,7 +28,7 @@ its card links out to the live site:
 
 <br>
 
-## Aurora Voyage → Voyagr — the evolution of an itinerary studio
+## Aurora Voyage → Voyagr - the evolution of an itinerary studio
 
 A single deployment that showcases one product built **twice**: how **Aurora Voyage (v1)** became
 **Voyagr (v2)** through iteration. The landing page tells the evolution story, compares both builds
@@ -40,8 +40,8 @@ mini-showcase with its own internal routes.
 | Path | Serves |
 |------|--------|
 | [`/voyage-evolution/`](voyage-evolution/) | Evolution showcase (case study) |
-| [`/voyage-evolution/v1/`](voyage-evolution/v1/) | Aurora Voyage — the original build (HTML + CSS + JS, Leaflet map) |
-| [`/voyage-evolution/v2/`](voyage-evolution/v2/) | Voyagr — the final build (single self-contained file) |
+| [`/voyage-evolution/v1/`](voyage-evolution/v1/) | Aurora Voyage - the original build (HTML + CSS + JS, Leaflet map) |
+| [`/voyage-evolution/v2/`](voyage-evolution/v2/) | Voyagr - the final build (single self-contained file) |
 
 **The evolution, in one line**
 
@@ -51,7 +51,7 @@ mini-showcase with its own internal routes.
 | Identity | Light-first studio UI | Dark editorial + gold accent |
 | Scope | Multi-trip management | Focused single-trip depth |
 | Map | Leaflet + OpenStreetMap (CDN) | Offline location listing |
-| New in v2 | — | Packing list · Trip stats · Conflict detection |
+| New in v2 | - | Packing list · Trip stats · Conflict detection |
 
 Both apps are 100% frontend-only and offline-friendly. Deeper documentation is preserved inside the
 folder: the showcase's own [`voyage-evolution/README.md`](voyage-evolution/README.md), plus
@@ -64,11 +64,11 @@ version's `Sample Save Files/`.
 
 <br>
 
-## Sign Bridge — text to sign language
+## Sign Bridge - text to sign language
 
 A web app that turns typed English text into a step-by-step sign-language sequence, rendered as
 schematic SVG hand shapes with a built-in player. It supports **ASL** (American Sign Language) and
-**ISL** (Indian Sign Language). No build tools, no frameworks — plain HTML, CSS, and vanilla JS.
+**ISL** (Indian Sign Language). No build tools, no frameworks - plain HTML, CSS, and vanilla JS.
 
 **How it works**
 - Type some text and hit **Convert**.
@@ -83,7 +83,7 @@ schematic SVG hand shapes with a built-in player. It supports **ASL** (American 
 **Notes & limitations**
 - Hand shapes are **schematic** approximations meant to communicate the shape, not anatomically
   exact renderings.
-- Digits 0 and 6–9 ship a clean numeral-card fallback rather than a generated hand shape.
+- Digits 0 and 6-9 ship a clean numeral-card fallback rather than a generated hand shape.
 - Coverage depends on the word dictionary in `sign-bridge/data/sign-data.js`; anything not in it is
   fingerspelled.
 
@@ -95,8 +95,8 @@ schematic SVG hand shapes with a built-in player. It supports **ASL** (American 
 ai-experiments/
 ├── index.html                          # Generic home shell (loads config + renderer)
 ├── config/
-│   ├── site.js                         # window.SITE — page title, tagline, emoji, accent
-│   └── projects.js                     # window.PROJECTS — THE registry (single source of truth)
+│   ├── site.js                         # window.SITE - page title, tagline, emoji, accent
+│   └── projects.js                     # window.PROJECTS - THE registry (single source of truth)
 ├── assets/
 │   ├── home.css                        # Shared card-grid styling (dark, responsive)
 │   └── home.js                         # Renders cards from window.PROJECTS
@@ -112,7 +112,7 @@ ai-experiments/
 ```
 
 **How routing works.** Each experiment is a top-level folder served natively by Vercel at
-`/<folder>` — clean routes, deep links, and refresh with **no rewrite rules**. `voyage-evolution`
+`/<folder>` - clean routes, deep links, and refresh with **no rewrite rules**. `voyage-evolution`
 keeps its own internal `v1/`, `v2/` structure; because all asset references are **relative**, the
 nested routes (`/voyage-evolution/v1/`) resolve their `app.js`/`styles.css` correctly. The home page
 renders from `config/projects.js`.
@@ -145,7 +145,7 @@ Two steps, one config edit:
    { slug: "my-experiment", title: "My Experiment", tagline: "One-line description.", tags: ["AI"] }
    ```
 
-`slug` must equal the folder name (it becomes the route). The home page updates automatically — no
+`slug` must equal the folder name (it becomes the route). The home page updates automatically - no
 changes to `index.html`, `home.js`, or `vercel.json`.
 
 <br>
